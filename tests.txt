@@ -1,0 +1,51 @@
+// tests the parse quotes and in quotes function
+void test_parse_quotes(char *input) {
+    printf("Testing parse_quotes([%s]):\n", input);
+    if (parse_quotes(input) == true) {
+        printf("Result: All quotes are properly closed.\n");
+    } else {
+        printf("BAD.\n");
+    }
+    printf("\n");
+}
+
+void test_in_quote(char *input, int index) {
+    printf("Testing in_quote(\"%s\", %d):\n", input, index);
+    if (in_quote(input, index)) {
+        printf("Result: Character at index %d is inside a quote.\n", index);
+    } else {
+        printf("Result: Character at index %d is outside of quotes.\n", index);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Test cases for parse_quotes
+    test_parse_quotes("Hello \"world\"");
+    test_parse_quotes("This is a 'test'");
+    test_parse_quotes("This \"is a 'mixed quote\" example");
+    test_parse_quotes("Unclosed \"double quote");
+    test_parse_quotes("Another 'unclosed single quote");
+    test_parse_quotes("Nested \"quotes 'test' inside\" here");
+    test_parse_quotes("Correctly closed 'quotes' and \"double quotes\"");
+    test_parse_quotes("\"\"''");  // Empty quotes
+    test_parse_quotes("");  // Empty string
+
+    // Test cases for in_quote
+    test_in_quote("Hello \"world\"", 7);       // Inside double quotes
+    test_in_quote("This is a 'test'", 10);     // Inside single quotes
+    test_in_quote("This \"is a 'mixed' quote\" example", 15);  // Inside single quotes within double quotes
+    test_in_quote("Unclosed \"double quote", 8);  // Outside quote but in open double-quote
+    test_in_quote("Another 'unclosed single quote", 10);  // Inside single quote
+    test_in_quote("Correctly closed 'quotes' and \"double quotes\"", 25); // Inside double quotes
+    test_in_quote("Correctly closed 'quotes' and \"double quotes\"", 50); // Outside any quotes
+    test_in_quote("\"\"''", 1);  // Between empty double quotes
+    test_in_quote("\"\"''", 3);  // Between empty single quotes
+    test_in_quote("", 0);  // Empty string, index 0
+
+    return 0;
+}
+//---------------------------------------------------------------
+
+
+//-----------------------------------------

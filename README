@@ -1,0 +1,33 @@
+Hello, this is my minishell project!
+
+[Documentation]
+
+/*------------*/
+/*redirections*/
+/*------------*/
+In this project redirections are implemented in a very simple way.
+>[outfile] , <[infile] , <<[heredoc].
+Theese redirections are handled similiar to bash but with alot of limitations.
+The most important of wich are the inability to specify redirections from an fd to another.
+/*------------------------------*/
+
+/*-----------*/
+/*  tokens   */
+/*-----------*/
+The tokenization of the input is done in two parts,
+Firstly the input is tokanized by separating through spaces and initial token type assignement.
+Secondly the initial tokens are re-parsed to separate "words" from operators.
+(this is done in order to preserve the lack of spaces so things like ->"hey"hey"" is interpreted as "heyhey" without a space)
+
+The token struct is a doubly linked list containing the following content:
+(int)t_token->token_type;
+(char *)t_token->token;
+(int)t_token->index;
+
+E.g:
+"echo "hey"hello>test.txt|cat test.txt"
+Part 1
+token 1:[echo], token 2:["hey"hello>test.txt|cat], token 3:[test.txt]
+Part 2
+token 1:[echo] token 2:["hey"hello], token 3:[>] token 4:[test.txt], token 5:[|], token 6:[cat], token 7:[test.txt]
+/*----------------------------*/
