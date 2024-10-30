@@ -5,21 +5,27 @@ Hello, this is my minishell project!
 /*------------*/
 /*redirections*/
 /*------------*/
-In this project redirections are implemented in a very simple way.
->[outfile] , <[infile] , <<[heredoc].
-Theese redirections are handled similiar to bash but with alot of limitations.
+	In this project redirections are implemented in a very simple way.
+>[outfile] , >>[outfile], <[infile] , <<[heredoc].
+
+	Theese redirections are handled similiar to bash but with alot of limitations.
 The most important of wich are the inability to specify redirections from an fd to another.
+
+	The redirection operators are always handled as operators unless inside quotes, this means that
+if you want to use something like [echo >><>] as a command you need to do so like this [echo ">><>"],
+otherwise it will be handled like a redirection operator and give a syntax error. 
 /*------------------------------*/
 
 /*-----------*/
 /*  tokens   */
 /*-----------*/
-The tokenization of the input is done in two parts,
+	The tokenization of the input is done in two parts,
 Firstly the input is tokanized by separating through spaces and initial token type assignement.
-Secondly the initial tokens are re-parsed to separate "words" from operators.
-(this is done in order to preserve the lack of spaces so things like ->"hey"hey"" is interpreted as "heyhey" without a space)
 
-The token struct is a doubly linked list containing the following content:
+	Secondly the initial tokens are re-parsed to separate "words" from operators.
+(this is done in order to preserve the lack of spaces so things like ->"hey"hey"" is interpreted as ->"heyhey" without a space)
+
+	The token struct is a doubly linked list containing the following content:
 (int)t_token->token_type;
 (char *)t_token->token;
 (int)t_token->index;

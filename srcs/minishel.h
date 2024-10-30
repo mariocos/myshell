@@ -65,6 +65,7 @@ char	**special_split(char const *s);
 /*   is     */
 /*----------*/
 int	ft_isspace(char c);
+int	ft_isoperator(char *str, int index);
 /*-------------------*/
 
 
@@ -98,7 +99,8 @@ t_token	*re_tokenize(t_token *start);
 bool	needs_retoken(char *str);
 t_token	*token_separate(t_token *token);
 t_token	*token_reasign(t_token *t);
-bool	ft_isoperator(char *str, int index);
+t_token	*extract_operator(t_token *t);
+t_token	*extract_word(t_token *token);
 /*----------------------------------------*/
 
 /*--------*/

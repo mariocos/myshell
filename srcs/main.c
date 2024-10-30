@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	char str[100] = "echo hello\" \"world >||test.txt| cat test.txt";
+	char str[100] = "echo hello\">\"world >>test.txt| cat test.txt";
 	char **words = special_split(str);
 	print_double_array(words);
 	t_token *tokens = input_split_to_token(words);

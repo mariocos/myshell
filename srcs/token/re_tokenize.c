@@ -11,22 +11,22 @@ t_token	*re_tokenize(t_token *start)
  	while (step->next != NULL)
 	{
 		if (needs_retoken(step->token))
-		{
 			step = token_reasign(step);
-		}
 		else
 			step = step->next;
 	}
 	while (step->previous != NULL)
-	{
 		step = step->previous;
-	}
 	return (step);
 }
 
 /*
-receives a str and checks the existence of a valid operator, meaning its not in quotes and is part
-of the operators in the subject.
+checks the need for retokenizing,
+if there are operators and words in the same token they need to be separated,
+if there are multiple operators in the same token they need to be separated,
+e.g.
+returns (true) for: [token>>] [>>|] [>>test] [||]
+returns (false) for: [token] [>>] [|] [<]
 */
 bool	needs_retoken(char *str)
 {
@@ -47,62 +47,40 @@ bool	needs_retoken(char *str)
 	}
 	if (has_op && has_words)
 		return (true);
+	else if (ft_isoperator(str, 0) < (int)ft_strlen(str) && has_op)
+		return (true);
 	return (false);
 }
 
-bool	ft_isoperator(char *str, int i)
-{
-	if (str[i] == '<' && str[i + 1] == '<')
-		return (true);
-	else if (str[i] == '>' && str[i + 1] == '>')
-		return (true);
-	else if (str[i] == '|' || str[i] == '>' || str[i] == '<')
-		return (true);
-	else
-		return (false);
-}
-
+/*
+Receives a token that needs_retoken and identifies if it starts with a operator or word and
+promptly extracts it using the extract_word and extract_operator functions.
+*/
 t_token	*token_separate(t_token *token)//revisit in order to make it less than 25 lines
 {
 	t_token	*new_first;
-	t_token	*new_second;
-	char	*help;
-	int	i;
 
-	i = 0;
-	if (ft_isoperator(token->token, 0))
+	if (ft_isoperator(token->token, 0) < (int)ft_strlen(token->token)
+		&& ft_isoperator(token->token, 0) > 0)
 	{
-		while (ft_isoperator(token->token, i))
-			i++;
-		help = ft_substr(token->token, 0, i);
-		new_first = init_token(help);
-		free(help);
-		help = ft_substr(token->token, i, ft_strlen(token->token));
-		new_second = init_token(help);
-		free(help);
-		new_first->next = new_second;
-		new_first->next->previous = new_first;
+		new_first = extract_operator(token);
 	}
-	else
+	else//change to extract word
 	{
-		while (!ft_isoperator(token->token, i))
-			i++;
-		help = ft_substr(token->token, 0, i);
-		new_first = init_token(help);
-		free(help);
-		help = ft_substr(token->token, i, ft_strlen(token->token));
-		new_second = init_token(help);
-		free(help);
-		new_first->next = new_second;
-		new_first->next->previous = new_first;
+		new_first = extract_word(token);
 	}
 	return (new_first);
 }
 
+/*
+Reasigns the new retokenized token received from the token_separate funciton
+in place of the previous one.
+Freeing it after ensuring the double linked list pointers are set correctly.
+e.g. [a]<->[b>]<->[c] into [a]<->[b]<->[>]<->[c].
+*/
 t_token	*token_reasign(t_token *t)
 {
 	t_token	*new;
-//	t_token	*help;
 
 	new = token_separate(t);
 	if (t->next != NULL)
