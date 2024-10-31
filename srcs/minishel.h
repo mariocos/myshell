@@ -21,7 +21,8 @@ typedef struct s_mini
 {
 	char	*input;
 	struct s_token	*token;
-
+	struct s_env	*env;
+	struct s_env	*export;
 }		t_mini;
 
 typedef struct s_token
@@ -32,6 +33,14 @@ typedef struct s_token
 	struct s_token *previous;
 	struct s_token *next;
 }			t_token;
+
+typedef struct s_env
+{
+	char	*var;
+	char	*var_name;
+	char	*var_value;
+	struct s_env	*next;
+}	t_env;
 
 typedef enum e_t_types
 {
@@ -107,6 +116,9 @@ t_token	*extract_word(t_token *token);
 /*  free  */
 /*--------*/
 void	free_token(t_token *t);
+void	free_token_list(t_token *start);
+void	free_var(t_env *var);
+void	free_env_list(t_env *start);
 /*---------------------------*/
 
 /*-----------*/

@@ -77,11 +77,9 @@ t_token	*input_split_to_token(char **words)
 {
 	t_token	*start;
 	t_token	*add;
-	int	token_len;
 	int	i;
 
-	token_len = count_strs(words);
-	if (token_len == 0)
+	if (count_strs(words) == 0)
 		return (NULL);
 	start = init_token(words[0]);
 	i = 1;

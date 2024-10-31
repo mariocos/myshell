@@ -30,7 +30,7 @@ returns (false) for: [token] [>>] [|] [<]
 */
 bool	needs_retoken(char *str)
 {
-	int	i;
+	int		i;
 	bool	has_op;
 	bool	has_words;
 

@@ -14,6 +14,7 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/token/re_token_utils.c \
        $(SRC_PATH)/token/special_split.c \
 	   $(SRC_PATH)/token/re_tokenize.c \
+	   $(SRC_PATH)/init/envp.c \
 	   $(SRC_PATH)/main.c \
 
 

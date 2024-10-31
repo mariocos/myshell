@@ -1,9 +1,14 @@
 #include "minishel.h"
 
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
+	(void)argc;
+	(void)argv;
+	(void)envp;
+
 	char str[100] = "echo hello\">\"world >>test.txt| cat test.txt";
 	char **words = special_split(str);
+	
 	print_double_array(words);
 	t_token *tokens = input_split_to_token(words);
 	print_token_list(tokens);

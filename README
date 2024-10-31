@@ -37,3 +37,19 @@ token 1:[echo], token 2:["hey"hello>test.txt|cat], token 3:[test.txt]
 Part 2
 token 1:[echo] token 2:["hey"hello], token 3:[>] token 4:[test.txt], token 5:[|], token 6:[cat], token 7:[test.txt]
 /*----------------------------*/
+
+
+/*--------------*/
+/* tilde expand */
+/*--------------*/
+	Tilde expansions are a very complex part of bash, however in myshell its implemented with alot of simplifications.
+the only tilde expansions considered are " ~ " and " ~/",
+expanding to "$HOME" and "$HOME/" respectively.
+
+If tilde is not used as stated before it will not be interpreted.
+E.g. [hello~hey], ["~"], ['~'], [~beans] will not be expanded.
+
+/*------------------------------------------*/
+
+
+
