@@ -43,3 +43,15 @@ void	print_token(t_token *token)
 	}
 	printf("token content is [%s]\n", token->token);
 }
+
+void	print_envp(t_env *env)
+{
+	if (!env)
+		return ;
+	while (env->next != NULL)
+	{
+		printf("var [%s], var name[%s], var value [%s]\n",env->var, env->var_name, env->var_value);
+		env = env->next;
+	}
+	printf("var [%s], var name[%s], var value [%s]\n",env->var, env->var_name, env->var_value);
+}

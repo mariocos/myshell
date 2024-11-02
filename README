@@ -39,6 +39,15 @@ token 1:[echo] token 2:["hey"hello], token 3:[>] token 4:[test.txt], token 5:[|]
 /*----------------------------*/
 
 
+/*--------*/
+/*  envp  */
+/*--------*/
+	The enviroment properties in this project are handled in a linked list with the full var,
+var name, and var value.
+get_env returns the linked list populated with the envp and free_env frees the said linked list.
+/*------------------------*/
+
+
 /*--------------*/
 /* tilde expand */
 /*--------------*/

@@ -129,6 +129,16 @@ bool	parse_quotes(const char *input);
 /*---------------------*/
 
 
+/*---------*/
+/*  envp   */
+/*---------*/
+t_env	*get_env(char **envp);
+void	var_add_back(t_env *start, t_env *add);
+t_env	*init_var(char *str);
+/*-------------------------------------------*/
+
+
+
 
 /*------------------*/
 /*    print utils   */
@@ -136,6 +146,7 @@ bool	parse_quotes(const char *input);
 void	print_token(t_token *token);
 void	print_double_array(char **words);
 void	print_token_list(t_token *start);
+void	print_envp(t_env *env);
 /* to be removed ----------------------*/
 
 

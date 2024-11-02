@@ -14,7 +14,7 @@ t_env	*init_var(char *str)
 	while(str[i] != '=')
 		i++;
 	new->var_name = ft_substr(str, 0, i);
-	new->var_value = ft_substr(str, i, ft_strlen(str));
+	new->var_value = ft_substr(str, i + 1, ft_strlen(str));
 	new->next = NULL;
 	return (new);
 }
