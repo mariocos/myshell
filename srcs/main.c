@@ -5,11 +5,11 @@ int main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	t_env	*env = get_env(envp);
-	char str[100] = "echo hello\">\"world >>test.txt| cat test.txt";
+//	t_env	*env = get_env(envp);
+	char str[100] = "echo $HOME hello\">\"world >>test.txt| cat test.txt";
 	char **words = special_split(str);
 	
-	print_envp(env);
+//	print_envp(env);
 	print_double_array(words);
 	t_token *tokens = input_split_to_token(words);
 	print_token_list(tokens);
@@ -20,5 +20,6 @@ int main(int argc, char **argv, char **envp)
 		printf("great\n");
 	else
 		printf("brerror\n");
+	var_replace(tokens->next, "banana");
 	return (0);
 }

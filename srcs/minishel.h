@@ -74,7 +74,9 @@ char	**special_split(char const *s);
 /*   is     */
 /*----------*/
 int	ft_isspace(char c);
+int	ft_isalpha(char c);
 int	ft_isoperator(char *str, int index);
+int	ft_isdigit(char c);
 /*-------------------*/
 
 
@@ -138,7 +140,13 @@ t_env	*init_var(char *str);
 /*-------------------------------------------*/
 
 
+/*-------------*/
+/*   variables */
+/*-------------*/
+int	advance_var(char *str, int i);
+void	var_replace(t_token *t, char *var_value);
 
+/*---------------------------------*/
 
 /*------------------*/
 /*    print utils   */
