@@ -20,6 +20,8 @@ int main(int argc, char **argv, char **envp)
 		printf("great\n");
 	else
 		printf("brerror\n");
+	printf("finding vars\n");
+	tokens = expand_vars(tokens);
 	var_replace(tokens->next, "banana");
 	return (0);
 }

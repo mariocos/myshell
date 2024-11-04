@@ -4,7 +4,12 @@
 this file handles the string utils needed to perform shell expansions
 */
 
-int	advance_var(char *str, int i)
+
+/*
+returns len of the var name 
+E.g. returns 4 for "$HOME"
+*/
+int	advance_var(char *str, int i)//maybe change to receive only str and pass str + i when calling the function
 {
 	int	len;
 
@@ -59,3 +64,57 @@ void	var_replace(t_token *t, char *var_value)
 	print_token(t);
 }
 
+bool	needs_expand(t_token *t)
+{
+	int	i;
+
+	i = 0;
+	if (!t || !t->token)
+		return (false);
+	while (t->token[i] != '\0')
+	{
+		if (t->token[i] == '$' && !in_quote(t->token, i))
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+/*
+finds the var name of the first expansion in the token sent as parameter
+*/
+char	*get_var_name(t_token *t)
+{
+	int	i;
+	int	name_len;
+	char	*var_name;
+
+	i = 0;
+	name_len = 0;
+	while (t->token[i] != '$' && t->token[i] != '\0')
+		i++;
+	if (t->token[i] != '$')
+		return (NULL);
+	name_len = advance_var(t->token, i);
+	var_name = ft_substr(t->token, i, i + name_len);
+	printf("%s\n", var_name);
+	return (var_name);
+}
+
+/*
+gonna be a similiar function to the 
+*/
+t_token	*expand_vars(t_token *start)
+{
+	t_token	*step;
+
+	step = start;
+	while (step->next != NULL)
+	{
+		print_token(step);
+		if (needs_expand(step))
+			
+		step = step->next;
+	}
+	return (start);
+}

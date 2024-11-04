@@ -145,6 +145,7 @@ t_env	*init_var(char *str);
 /*-------------*/
 int	advance_var(char *str, int i);
 void	var_replace(t_token *t, char *var_value);
+t_token	*expand_vars(t_token *start);
 
 /*---------------------------------*/
 
