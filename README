@@ -2,20 +2,6 @@ Hello, this is my minishell project!
 
 [Documentation]
 
-/*------------*/
-/*redirections*/
-/*------------*/
-	In this project redirections are implemented in a very simple way.
->[outfile] , >>[outfile], <[infile] , <<[heredoc].
-
-	Theese redirections are handled similiar to bash but with alot of limitations.
-The most important of wich are the inability to specify redirections from an fd to another.
-
-	The redirection operators are always handled as operators unless inside quotes, this means that
-if you want to use something like [echo >><>] as a command you need to do so like this [echo ">><>"],
-otherwise it will be handled like a redirection operator and give a syntax error. 
-/*------------------------------*/
-
 /*-----------*/
 /*  tokens   */
 /*-----------*/
@@ -47,6 +33,31 @@ var name, and var value.
 get_env returns the linked list populated with the envp and free_env frees the said linked list.
 /*------------------------*/
 
+/*--------------*/
+/*  expansions  */
+/*--------------*/
+Expansions are implemented to substitute variables from envp or export into the comand line,
+the syntax is as follows $[NAME] and it will be fully replaced by the var value.
+A valid var name can only start with a letter or underscore,
+var names must only be composed of letters, numbers and underscores.
+e.g.
+[$HOME] expands to [/home/user]
+In case there is no var set with the intended name the var will be expanded to "".
+/*----------------------------------------------------------------------------------------------*/
+
+/*------------*/
+/*redirections*/
+/*------------*/
+In this project redirections are implemented in a very simple way.
+>[outfile] , >>[outfile], <[infile] , <<[heredoc].
+
+Theese redirections are handled similiar to bash but with alot of limitations.
+The most important of wich are the inability to specify redirections from an fd to another.
+
+The redirection operators are always handled as operators unless inside quotes, this means that
+if you want to use something like [echo >><>] as a command you need to do so like this [echo ">><>"],
+otherwise it will be handled like a redirection operator and give a syntax error. 
+/*------------------------------*/
 
 /*--------------*/
 /* tilde expand */
@@ -57,8 +68,4 @@ expanding to "$HOME" and "$HOME/" respectively.
 
 If tilde is not used as stated before it will not be interpreted.
 E.g. [hello~hey], ["~"], ['~'], [~beans] will not be expanded.
-
 /*------------------------------------------*/
-
-
-

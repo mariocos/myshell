@@ -1,69 +1,8 @@
 #include "../minishel.h"
 
 /*
-this file handles the string utils needed to perform shell expansions
+detects a $[var_name] inside a token that isnt inside quotes
 */
-
-
-/*
-returns len of the var name 
-E.g. returns 4 for "$HOME"
-*/
-int	advance_var(char *str, int i)//maybe change to receive only str and pass str + i when calling the function
-{
-	int	len;
-
-	len = 0;
-	if (ft_isdigit(str[i]) || (!ft_isalpha(str[i]) && str[i] != '_'))
-		return (0);
-	while (ft_isdigit(str[i + len]) || ft_isalpha(str[i + len]) || str[i + len] == '_')
-		len++;
-	return (len);
-}
-
-void	var_expand(char *dest, char *str, char *var)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (str[i] != '$')
-	{
-		dest[i] = str[i];
-		i++;	
-	}
-	while (var[j] != '\0')
-		dest[i++] = var[j++];
-}
-
-
-void	var_replace(t_token *t, char *var_value)
-{
-	int	len;
-	int	i;
-	char	*help;
-
-	(void)help;
-	i = 0;
-	len = 0;
-	while (t->token[i] != '\0')
-	{
-		if (t->token[i] == '$')
-			i += advance_var(t->token, i);
-		i++;
-		len++;
-	}
-	help = safe_malloc(len + ft_strlen(var_value));//by here it should have the final len of the token even if theres two vars
-	if (!help)
-		return ;
-	i = 0;
-	var_expand(help, t->token, var_value);
-	free (t->token);
-	t->token = help;
-	print_token(t);
-}
-
 bool	needs_expand(t_token *t)
 {
 	int	i;
@@ -80,41 +19,71 @@ bool	needs_expand(t_token *t)
 	return (false);
 }
 
+
 /*
-finds the var name of the first expansion in the token sent as parameter
+returns len of the var name ignoring the $
+E.g. returns 4 for "$HOME"
+*/
+int	var_name_len(char *str, int i)//maybe change a bit to return accounting for $
+{
+	int	len;
+
+	len = 0;
+	if (ft_isdigit(str[i]) || (!ft_isalpha(str[i]) && str[i] != '_'))
+		return (0);
+	while (ft_isdigit(str[i + len]) || ft_isalpha(str[i + len]) || str[i + len] == '_')
+		len++;
+	return (len);
+}
+
+/*
+calculates the len of the string after expansion
+*/
+int	expanded_len(t_token *t, char *var_value)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (t->token[i] != '$')
+		i++;
+	len += i;
+	i += var_name_len(t->token, i);
+	while (t->token[i] != '\0')
+	{
+		i++;
+		len++;
+	}
+	return (len + ft_strlen(var_value));
+}
+
+/*
+get_var_name and get_var_value always return a freeable str 
 */
 char	*get_var_name(t_token *t)
 {
 	int	i;
-	int	name_len;
-	char	*var_name;
+	char *var_name;
 
 	i = 0;
-	name_len = 0;
-	while (t->token[i] != '$' && t->token[i] != '\0')
+	while (t->token[i] != '$')
 		i++;
-	if (t->token[i] != '$')
-		return (NULL);
-	name_len = advance_var(t->token, i);
-	var_name = ft_substr(t->token, i, i + name_len);
-	printf("%s\n", var_name);
+	i++;
+	var_name = ft_substr(t->token, i, i + var_name_len(t->token, i));
+	printf("var name return %s\n", var_name);
 	return (var_name);
 }
 
-/*
-gonna be a similiar function to the 
-*/
-t_token	*expand_vars(t_token *start)
+char	*get_var_value(t_env *env, char *var_name)
 {
-	t_token	*step;
-
-	step = start;
-	while (step->next != NULL)
+	if (!env || !var_name)
+		return (NULL);
+	while (env->next != NULL)
 	{
-		print_token(step);
-		if (needs_expand(step))
-			
-		step = step->next;
+		if (!ft_strncmp(var_name, env->var_name, ft_strlen(env->var_name)))
+			return (ft_strdup(env->var_value));
+		env = env->next;
 	}
-	return (start);
+	return (ft_strdup(""));
 }

@@ -5,7 +5,14 @@ file that initializes the minishell struct
 */
 void	mini_init(void)
 {
-	mini_call()->
+	t_mini *mini;
+
+	mini = mini_call();
+	mini->token = NULL;
+	mini->env = NULL;
+	mini->export = NULL;
+	mini->input = NULL;
+	
 }
 
 t_mini	*mini_call(void)

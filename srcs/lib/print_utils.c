@@ -50,7 +50,7 @@ void	print_envp(t_env *env)
 		return ;
 	while (env->next != NULL)
 	{
-		printf("var [%s], var name[%s], var value [%s]\n",env->var, env->var_name, env->var_value);
+		printf("\nvar [%s], var name[%s], var value [%s]\n",env->var, env->var_name, env->var_value);
 		env = env->next;
 	}
 	printf("var [%s], var name[%s], var value [%s]\n",env->var, env->var_name, env->var_value);

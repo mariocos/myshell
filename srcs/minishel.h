@@ -87,6 +87,7 @@ size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 /*--------------------------------------------------------------*/
 
 /* malloc */
@@ -143,10 +144,15 @@ t_env	*init_var(char *str);
 /*-------------*/
 /*   variables */
 /*-------------*/
-int	advance_var(char *str, int i);
-void	var_replace(t_token *t, char *var_value);
-t_token	*expand_vars(t_token *start);
+bool	needs_expand(t_token *t);
+int	var_name_len(char *str, int i);
+int	expanded_len(t_token *t, char *var_value);
+char	*get_var_name(t_token *t);
+char	*get_var_value(t_env *env, char *var_name);
+void	do_expand(t_token *t);
 
+void	expand_var(t_token *t, char *var);
+void	expand_vars_loop(t_token *start);
 /*---------------------------------*/
 
 /*------------------*/
@@ -157,6 +163,20 @@ void	print_double_array(char **words);
 void	print_token_list(t_token *start);
 void	print_envp(t_env *env);
 /* to be removed ----------------------*/
+
+/*----------*/
+/*   mini   */
+/*----------*/
+t_mini	*mini_call(void);
+void	mini_init(void);
+/*-----------------------*/
+
+
+
+
+
+
+
 
 
 #endif
