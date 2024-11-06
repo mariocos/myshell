@@ -8,7 +8,7 @@ void	expand_vars_loop(t_token *start)
 	t_token	*step;
 
 	step = start;
-	while (step->next != NULL)
+	while (step->next != NULL || needs_expand(step))
 	{
 		if (needs_expand(step))
 			do_expand(step);
@@ -43,7 +43,7 @@ void	expand_var(t_token *t, char *var)
 	var_i = 0;
 	new_i = 0;
 	t_i = 0;
-	new = safe_malloc(expanded_len(t, var));
+	new = safe_malloc(expanded_len(t, var) + 1);
 	while (t->token[t_i] != '$')
 		new[new_i++] = t->token[t_i++];
 	while (var[var_i] != '\0')
@@ -51,6 +51,7 @@ void	expand_var(t_token *t, char *var)
 	t_i += var_name_len(t->token, t_i + 1) + 1;
 	while (t->token[t_i] != '\0')
 		new[new_i++] = t->token[t_i++];
+	new[++new_i] = '\0';
 	free(t->token);
 	t->token = new;
 }

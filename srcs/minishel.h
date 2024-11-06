@@ -170,11 +170,21 @@ void	print_envp(t_env *env);
 /*   mini   */
 /*----------*/
 t_mini	*mini_call(void);
-void	mini_init(void);
+void	mini_init(char **env);
 /*-----------------------*/
 
+/*-----------*/
+/*   tilde   */
+/*-----------*/
+void	expand_tilde(t_token *t);
+void	tilde_loop(t_token *t);
+/*-----------------------------*/
 
-
+/*-------------*/
+/*   input     */
+/*-------------*/
+void	input_handle(void);
+/*-----------------------*/
 
 
 
