@@ -161,10 +161,12 @@ void	print_envp(t_env *env);
 
 
 /*------------------*/
-/*      export	    */
+/*      builtins	    */
 /*------------------*/
 int		export(char *str, t_env *start, bool call);
 void	chk_not_exported(t_env *start);
+void	unset(char *str, t_env **env);
+
 //void	chk_export_var(char *str, t_env *start);
 
 #endif

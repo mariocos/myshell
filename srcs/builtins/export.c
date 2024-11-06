@@ -70,6 +70,40 @@ void	chk_not_exported(t_env *start)
 	}
 }
 
+
+// ➜  myshell git:(hugo) ✗ unset VAR=      
+// unset: VAR=: invalid parameter name
+// ➜  myshell git:(hugo) ✗ echo $?
+// 1
+
+void unset(char *str, t_env **env)
+{
+	t_env	*tmp;
+	t_env	*tmp_prev;
+
+	if (!env || !*env)
+		return ;
+
+	tmp = *env;
+	if (!ft_strncmp(tmp->var_name, str, ft_strlen(str)) && ft_strlen(str) == ft_strlen(tmp->var_name))
+	{
+		*env = tmp->next;
+		free_var(env);
+		return ;
+	}
+	while (tmp != NULL)
+	{
+		tmp_prev = tmp;
+		tmp = tmp->next;
+		if (!ft_strncmp(tmp->var_name, str, ft_strlen(str)) && ft_strlen(str) == ft_strlen(tmp->var_name))
+		{
+			tmp_prev->next = tmp->next;
+			free_var(tmp);
+			return ;
+		}
+	}
+}
+
 /* void	chk_export_var(char *str, t_env *start)
 {
 	(void)str;
@@ -84,4 +118,4 @@ void	chk_not_exported(t_env *start)
 			printf("IT'S A MATCH: %s\n", tmp->var_name);
 		tmp = tmp->next;
 	}
-} */
+} */	

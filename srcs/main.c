@@ -57,6 +57,7 @@ int main(int argc, char **argv, char **envp)
 	print_envp(env);
 
 	chk_not_exported(env);
+	unset("V_R", &env);
 	
 	free_env_list(env);
 
