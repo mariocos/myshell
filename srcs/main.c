@@ -5,7 +5,7 @@ int main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	char str[100] = "echo $HOME\"beans\"$HOME hello\">\"world >>test.txt| cat test.txt";
+	char *str = ft_strdup("echo $HOME\"beans\"$HOME hello\">\"world >>test.txt| cat test.txt |cat");
 	char **words = special_split(str);
 	
 	mini_init();

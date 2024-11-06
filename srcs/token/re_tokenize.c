@@ -8,7 +8,7 @@ t_token	*re_tokenize(t_token *start)
 	t_token	*step;
 
 	step = start;
- 	while (step->next != NULL)
+ 	while (step->next != NULL || needs_retoken(step->token))
 	{
 		if (needs_retoken(step->token))
 			step = token_reasign(step);

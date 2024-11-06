@@ -13,6 +13,8 @@
 # include <signal.h>
 # include <limits.h>
 # include <stdarg.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 /*-------------------*/
 /*     structs       */

@@ -71,7 +71,6 @@ char	*get_var_name(t_token *t)
 		i++;
 	i++;
 	var_name = ft_substr(t->token, i, i + var_name_len(t->token, i));
-	printf("var name return %s\n", var_name);
 	return (var_name);
 }
 

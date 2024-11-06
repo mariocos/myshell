@@ -30,7 +30,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) #-lreadline
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -lreadline -lncurses
 
 $(OBJ_DIR)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(@D)
