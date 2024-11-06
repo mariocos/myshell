@@ -19,6 +19,7 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/expand/expand_utils.c \
 	   $(SRC_PATH)/expand/expand_var.c \
 	   $(SRC_PATH)/expand/tilde_expand.c \
+	   $(SRC_PATH)/input_handle/handle_input.c \
 	   $(SRC_PATH)/main.c \
 
 
