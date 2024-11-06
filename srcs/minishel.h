@@ -39,6 +39,7 @@ typedef struct s_env
 	char	*var;
 	char	*var_name;
 	char	*var_value;
+	bool	exported;
 	struct s_env	*next;
 }	t_env;
 
@@ -158,5 +159,12 @@ void	print_token_list(t_token *start);
 void	print_envp(t_env *env);
 /* to be removed ----------------------*/
 
+
+/*------------------*/
+/*      export	    */
+/*------------------*/
+int		export(char *str, t_env *start, bool call);
+void	chk_not_exported(t_env *start);
+//void	chk_export_var(char *str, t_env *start);
 
 #endif
