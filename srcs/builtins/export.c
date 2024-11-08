@@ -1,121 +1,106 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/07 13:02:27 by hugo-mar          #+#    #+#             */
+/*   Updated: 2024/11/08 00:05:40 by hugo-mar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishel.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+static bool	valid_var(char *var)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < (n - 1))
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-// Returns 0 in case of success and 1 in case of failure, call option true for an explicit call
-int	export(char *str, t_env *start, bool call)
-{
-	t_env	*tmp;
-	t_env	*new;
-	char	*var;
-	int		i;
-
-	tmp = start;
-	i = 0;
-	while (str[i] != '=' && str[i])
-		i++;
-	var = ft_substr(str, 0, i);
-	i = 0;
+	if (!ft_isalpha(var[0]) && var[0] != '_')
+		return (false);
 	while (var[i])
 	{
-		if (!ft_isalpha(var[0]) || (!ft_isalpha(var[i]) && !ft_isdigit(var[i]) && var[i] != '_'))
-			return (1);
+		if (!ft_isalpha(var[i]) && !ft_isdigit(var[i]) && var[i] != '_')
+			return (false);
 		i++;
 	}
+	return (true);
+}
+
+static bool	update_var_values(t_env *tmp, char *str, int len)
+{
+	char	*new_var;
+	char	*new_value;
+
+	new_var = ft_strdup(str);
+	new_value = ft_substr(str, len + 1, ft_strlen(str));
+	if (!new_var || !new_value)
+	{
+		if (new_var)
+			free(new_var);
+		if (new_value)
+			free(new_value);
+		return (false);
+	}
+	free(tmp->var);
+	free(tmp->var_value);
+	tmp->var = new_var;
+	tmp->var_value = new_value;
+	return (true);
+}
+
+static bool	existing_var(t_env *tmp, char *var, char *str, int len)
+{
 	while (tmp != NULL)
 	{
-		if (ft_strncmp(tmp->var_name, var, i) == 0)			//Caso var exista
+		if (ft_strncmp(tmp->var_name, var, len) == 0
+			&& ft_strlen(tmp->var_name) == ft_strlen(var))
 		{
-			if (str[i] == '=') 					//Situação 'export VAR='
-			{
-				free(tmp->var);
-				free(tmp->var_value);
-				tmp->var = ft_strdup(str);
-				tmp->var_value = ft_substr(str, i + 1, ft_strlen(str));
-			}
+			if (str[len] == '=' && !update_var_values(tmp, str, len))
+				return (true);
 			tmp->exported = true;
-			free(var);
-			return (0);
+			return (true);
 		}
 		tmp = tmp->next;
 	}
-	free (var);
-	new = init_var(str);				//Caso var não exista
-	if (!call)
-		new->exported = false;
+	return (false);
+}
+
+static int	add_new_var(char *str, t_env *start, bool explicit_call)
+{
+	t_env	*new;
+
+	new = init_var(str);
+	if (!new)
+		return (1);
+	if (!explicit_call)
+		new->exported = (false);
 	var_add_back(start, new);
 	return (0);
 }
 
-void	chk_not_exported(t_env *start)
+int	export(char *str, t_env *start, bool explicit_call)
 {
-	t_env	*tmp;
-
-	tmp = start;
-	while (tmp != NULL)
-	{
-		if (tmp->exported == false)
-			printf("NOT EXPORTED: %s\n", tmp->var_name);
-		tmp = tmp->next;
-	}
-}
-
-
-// ➜  myshell git:(hugo) ✗ unset VAR=      
-// unset: VAR=: invalid parameter name
-// ➜  myshell git:(hugo) ✗ echo $?
-// 1
-
-void unset(char *str, t_env **env)
-{
-	t_env	*tmp;
-	t_env	*tmp_prev;
-
-	if (!env || !*env)
-		return ;
-
-	tmp = *env;
-	if (!ft_strncmp(tmp->var_name, str, ft_strlen(str)) && ft_strlen(str) == ft_strlen(tmp->var_name))
-	{
-		*env = tmp->next;
-		free_var(env);
-		return ;
-	}
-	while (tmp != NULL)
-	{
-		tmp_prev = tmp;
-		tmp = tmp->next;
-		if (!ft_strncmp(tmp->var_name, str, ft_strlen(str)) && ft_strlen(str) == ft_strlen(tmp->var_name))
-		{
-			tmp_prev->next = tmp->next;
-			free_var(tmp);
-			return ;
-		}
-	}
-}
-
-/* void	chk_export_var(char *str, t_env *start)
-{
-	(void)str;
 	t_env	*tmp;
 	char	*var;
+	int		len;
 
 	tmp = start;
-	var = str;
-	while (tmp != NULL)
+	len = 0;
+	while (str[len] != '=' && str[len])
+		len++;
+	var = ft_substr(str, 0, len);
+	if (!valid_var(var))
 	{
-		if (ft_strncmp(tmp->var, var, (int)ft_strlen(var)) == 0 && ft_strlen(var) == ft_strlen(tmp->var_name))			//Caso var exista
-			printf("IT'S A MATCH: %s\n", tmp->var_name);
-		tmp = tmp->next;
+		free(var);
+		return (1);
 	}
-} */	
+	if (existing_var(tmp, var, str, len))
+	{
+		free(var);
+		return (0);
+	}
+	free (var);
+	return (add_new_var(str, start, explicit_call));
+}
