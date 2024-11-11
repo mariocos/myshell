@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unused_utils.c                                     :+:      :+:    :+:   */
+/*   unused_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:40:37 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/07 22:41:21 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/11/11 23:21:27 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ void	chk_not_exported(t_env *start)
 			printf("NOT EXPORTED: %s\n", tmp->var_name);
 		tmp = tmp->next;
 	}
+}
+
+// Different echo version
+void	echo(char *str, bool n_flag)
+{
+	if (str && *str != '\0')
+	{
+		if (!n_flag)
+			printf("%s\n", str);
+		else
+			printf("%s", str);
+	}
+	else if (!n_flag)
+		printf("\n");
 }

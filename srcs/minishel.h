@@ -171,12 +171,14 @@ void	unset(char *str, t_env **env);
 void	env(t_env *env);
 void	pwd(void);
 void	cd(const char *new_dir, t_env *env);
+void	echo(char **args);
 
 
-/*------------------*/
-/*   unused utils   */
-/*------------------*/
+/*----------------------*/
+/*   unused functions   */
+/*----------------------*/
 // void	chk_env_var(char *str, t_env *start);
 // void	chk_not_exported(t_env *start);
+// void	echo(char *str, bool n_flag);
 
 #endif

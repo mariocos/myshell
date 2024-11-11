@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd_and_cd.c                                       :+:      :+:    :+:   */
+/*   pwd_cd_and_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/11 12:57:02 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/11/11 23:30:58 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,42 @@ void	cd(const char *new_dir, t_env *env) // Sem update OLDPWD (não é pedido)
 	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
 	ft_strlcat(env_var, wd, sizeof(env_var));
 	export(env_var, env, true);
+}
+
+static bool	check_flag(char *str)
+{
+	int	i;
+
+	if (str[0] == '-' && str[1] == 'n')
+	{
+		i = 2;
+		while (str[i] == 'n')
+			i++;
+		if (str[i] == '\0')
+			return (true);
+	}
+	return (false);
+}
+
+void	echo(char **args)
+{
+	int		i;
+	bool	flag;
+
+	i = 0;
+	flag = false;
+	if (args[0] && check_flag(args[0]))
+	{
+		flag = true;
+		i++;
+	}
+	while (args[i])
+	{
+		printf("%s", args[i]);
+		if (args[i + 1] != NULL)
+			printf(" ");
+		i++;
+	}
+	if (!flag)
+		printf("\n");
 }

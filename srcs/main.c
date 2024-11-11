@@ -67,5 +67,9 @@ int main(int argc, char **argv, char **envp)
 
 	free_env_list(ev);
 
+	char *args[] = {"-nnnnna", "THIS", "IS", "AN", "EXPERIENCE", NULL};
+
+	echo(args);
+
 	return (0);
 }
