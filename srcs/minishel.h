@@ -88,6 +88,9 @@ size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
 /*--------------------------------------------------------------*/
 
 /* malloc */
@@ -161,12 +164,19 @@ void	print_envp(t_env *env);
 
 
 /*------------------*/
-/*      builtins	    */
+/*     builtins	    */
 /*------------------*/
-int		export(char *str, t_env *start, bool call);
-void	chk_not_exported(t_env *start);
+int		export(char *str, t_env *start, bool explicit_call);
 void	unset(char *str, t_env **env);
+void	env(t_env *env);
+void	pwd(void);
+void	cd(const char *new_dir, t_env *env);
 
-//void	chk_export_var(char *str, t_env *start);
+
+/*------------------*/
+/*   unused utils   */
+/*------------------*/
+// void	chk_env_var(char *str, t_env *start);
+// void	chk_not_exported(t_env *start);
 
 #endif

@@ -31,35 +31,41 @@ int main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	t_env	*env = get_env(envp);
+	t_env	*ev = get_env(envp);
 	
-	print_envp(env);
-	if (export("VAR=hello", env, true) == 1)
+	print_envp(ev);
+	if (export("VAR=hello", ev, true) == 1)
 		printf("invalid var name: %s\n", "VAR=hello");
-	if (export("VAR=hi", env, true) == 1)
-		printf("invalid var name: %s\n", "VAR=hi");
-	if (export("VAR1", env, true) == 1)
-		printf("invalid var name: %s\n", "VAR1");
-	if (export("1V", env, true) == 1)
+	if (export("VAR=yeah", ev, true) == 1)
+		printf("invalid var name: %s\n", "VAR=yeah");
+	if (export("VAR1=hi", ev, true) == 1)
+		printf("invalid var name: %s\n", "VAR1=hi");
+	if (export("1V", ev, true) == 1)
 		printf("invalid var name: %s\n", "1V");
-	if (export("V@R", env, true) == 1)
+	if (export("AR1", ev, true) == 1)
+		printf("invalid var name: %s\n", "AR1");
+	// if (export("AR1=something", ev, false) == 1)
+	// 	printf("invalid var name: %s\n", "AR1=something");
+	if (export("V@R", ev, true) == 1)
 		printf("invalid var name: %s\n", "V@R");
-	if (export("V_R=man", env, true) == 1)
+	if (export("V_R=man", ev, true) == 1)
 		printf("invalid var name: %s\n", "V_R=man");
 	
-	if (export("TEST=false", env, false) == 1)
-		printf("invalid var name: %s\n", "V_R=man");
+	if (export("TEST=false", ev, false) == 1)
+		printf("invalid var name: %s\n", "TEST=false");
 
-	// if (export("TEST=", env, true) == 1)
-	// 	printf("invalid var name: %s\n", "V_R=man");
+	//  if (export("TEST=", ev, true) == 1)
+	// 	printf("invalid var name: %s\n", "TEST=");
 
+	// unset("V_R", &ev);
 
-	print_envp(env);
+	env(ev);
 
-	chk_not_exported(env);
-	unset("V_R", &env);
-	
-	free_env_list(env);
+	pwd();
+	cd("..", ev);
+	pwd();
+
+	free_env_list(ev);
 
 	return (0);
 }
