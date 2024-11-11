@@ -62,7 +62,7 @@ int main(int argc, char **argv, char **envp)
 	env(ev);
 
 	pwd();
-	cd("..", ev);
+	cd("~/", ev);
 	pwd();
 
 	free_env_list(ev);
