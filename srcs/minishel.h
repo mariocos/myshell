@@ -41,6 +41,7 @@ typedef struct s_env
 	char	*var;
 	char	*var_name;
 	char	*var_value;
+	bool	exported;
 	struct s_env	*next;
 }	t_env;
 
@@ -89,7 +90,9 @@ size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
 /*--------------------------------------------------------------*/
 
 /* malloc */
@@ -180,5 +183,23 @@ void	mini_init(void);
 
 
 
+
+/*------------------*/
+/*     builtins	    */
+/*------------------*/
+int		export(char *str, t_env *start, bool explicit_call);
+void	unset(char *str, t_env **env);
+void	env(t_env *env);
+void	pwd(void);
+void	cd(const char *new_dir, t_env *env);
+void	echo(char **args);
+
+
+/*----------------------*/
+/*   unused functions   */
+/*----------------------*/
+// void	chk_env_var(char *str, t_env *start);
+// void	chk_not_exported(t_env *start);
+// void	echo(char *str, bool n_flag);
 
 #endif

@@ -37,6 +37,21 @@ void	free_var(t_env *var)
 void	free_env_list(t_env *start)
 {
 	t_env	*step;
+
+	if (!start)
+		return ;
+	while (start != NULL)
+	{
+		step = start->next;
+		free_var(start);
+		start = step;
+	}
+}
+
+//Old version - last node remained intact and for that reason had a leak
+/* void	free_env_list(t_env *start)
+{
+	t_env	*step;
 	t_env	*current;
 
 	if (!start)
@@ -49,4 +64,4 @@ void	free_env_list(t_env *start)
 		free_var(current);
 		current = step;
 	}
-}
+} */

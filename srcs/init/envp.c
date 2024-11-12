@@ -11,10 +11,19 @@ t_env	*init_var(char *str)
 	new = (t_env *)safe_malloc(sizeof(t_env));
 	new->var = ft_strdup(str);
 	i = 0;
-	while(str[i] != '=')
+	while(str[i] != '=' && str[i])
 		i++;
 	new->var_name = ft_substr(str, 0, i);
-	new->var_value = ft_substr(str, i + 1, ft_strlen(str));
+	if (str[i] == '=')
+	{
+		new->var_value = ft_substr(str, i + 1, ft_strlen(str));
+		new->exported = true;
+	}
+	else
+	{
+		new->var_value = ft_strdup("");
+		new->exported = false;
+	}
 	new->next = NULL;
 	return (new);
 }
