@@ -19,6 +19,7 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/builtins/export.c \
 	   $(SRC_PATH)/builtins/unset_and_env.c \
 	   $(SRC_PATH)/builtins/pwd_cd_and_echo.c \
+	   $(SRC_PATH)/pipex/pipex.c \
 	   $(SRC_PATH)/expand/expand_utils.c \
 	   $(SRC_PATH)/expand/expand_var.c \
 	   $(SRC_PATH)/main.c \

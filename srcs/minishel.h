@@ -15,6 +15,7 @@
 # include <stdarg.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <sys/types.h>
 
 /*-------------------*/
 /*     structs       */
@@ -57,6 +58,15 @@ typedef enum e_t_types
 	WORD,
 
 }		t_e_types;
+
+typedef struct s_ppx_data
+{
+	int		nbr_processes;
+	int		nbr_pipes;
+	int		**pipes;
+	pid_t	*p_ids;
+	int		exit_status;
+}				t_ppx_data;
 
 /*----------*/
 /*  quotes  */
@@ -179,11 +189,6 @@ void	mini_init(void);
 
 
 
-
-
-
-
-
 /*------------------*/
 /*     builtins	    */
 /*------------------*/
@@ -193,6 +198,18 @@ void	env(t_env *env);
 void	pwd(void);
 void	cd(const char *new_dir, t_env *env);
 void	echo(char **args);
+/*-----------------------*/
+
+/*------------------*/
+/*     pipex	    */
+/*------------------*/
+void	free_pipes(int **pipes, size_t nbr_of_pipes);
+int		**create_pipes(size_t nbr_of_pipes);
+void	child_pipe_setup(int index, t_ppx_data *data);
+void	parent_pipe_setup(t_ppx_data *data);
+void	create_child(int p_index, t_ppx_data *data);
+void	child_spawn(t_ppx_data *data);
+/*-----------------------*/
 
 
 /*----------------------*/
@@ -201,5 +218,6 @@ void	echo(char **args);
 // void	chk_env_var(char *str, t_env *start);
 // void	chk_not_exported(t_env *start);
 // void	echo(char *str, bool n_flag);
+/*-----------------------*/
 
 #endif
