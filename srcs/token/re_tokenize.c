@@ -16,7 +16,9 @@ t_token	*re_tokenize(t_token *start)
 			step = step->next;
 	}
 	while (step->previous != NULL)
+	{
 		step = step->previous;
+	}
 	return (step);
 }
 
@@ -83,15 +85,10 @@ t_token	*token_reasign(t_token *t)
 	t_token	*new;
 
 	new = token_separate(t);
-	if (t->next != NULL)
-	{
-		new->next->next = t->next;
-	}
-	if (t->previous != NULL)
-	{
-		t->previous->next = new;
-		new->previous = t->previous;
-	}
+	new->next->next = t->next;
+	t->previous->next = new;
+	new->previous = t->previous;
+	t->next->previous = new->next;
 	free_token(t);
 	return (new);
 }

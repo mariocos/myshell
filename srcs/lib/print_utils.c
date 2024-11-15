@@ -28,7 +28,8 @@ void	print_token_list(t_token *start)
 		if (!start->token)
 			printf("token content is missing\n");
 		else
-		printf("token content is [%s] and token type %d\n", start->token, start->token_type);
+			printf("token content is [%s] and token type %d\n", start->token, start->token_type);
+//			printf("token content is [%s] and token type %d\ncurrent is [%p] next is [%p] and previous is[%p]\n\n", start->token, start->token_type, start, start->next, start->previous);
 		start = start->next;
 	}
 	printf("token content is [%s] and token type %d\n", start->token, start->token_type);
@@ -54,4 +55,27 @@ void	print_envp(t_env *env)
 		env = env->next;
 	}
 	printf("var [%s], var name[%s], var value [%s]\n",env->var, env->var_name, env->var_value);
+}
+
+void	print_pipex_list(t_pipex *start)
+{
+	if (!start)
+	{
+		printf("naughty naughty calling print pipex with bad pointer\n");
+		return ;
+	}
+	int	i = 0;
+	printf("gonna print pipex list\n");
+	while (start)
+	{
+		printf("ind is %d\n", i);
+		printf("\nprinting input redirections\n");
+		print_double_array(start->red_in);
+		printf("\nprinting output redirections\n");
+		print_double_array(start->red_out);
+		printf("\nprinting comands\n");
+		print_double_array(start->cmd);
+		start = start->next;
+		i++;
+	}
 }
