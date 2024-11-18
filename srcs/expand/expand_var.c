@@ -51,7 +51,7 @@ void	expand_var(t_token *t, char *var)
 	t_i += var_name_len(t->token, t_i + 1) + 1;
 	while (t->token[t_i] != '\0')
 		new[new_i++] = t->token[t_i++];
-	new[++new_i] = '\0';
+	new[new_i] = '\0';
 	free(t->token);
 	t->token = new;
 }
