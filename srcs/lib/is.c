@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 int	ft_isspace(char c)
 {

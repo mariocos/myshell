@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 void	free_token(t_token *t)
 {

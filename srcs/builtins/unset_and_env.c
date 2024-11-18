@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset_and_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:44:32 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/08 00:13:17 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:27:10 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishel.h"
+#include "../minishell.h"
 
 void	unset(char *str, t_env **env)
 {

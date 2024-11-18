@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 
 static bool	parse_pipe(t_token *t)//could already check for existence of words to left and right

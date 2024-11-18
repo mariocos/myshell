@@ -25,7 +25,22 @@ typedef struct s_mini
 	struct s_token	*token;
 	struct s_env	*env;
 	struct s_env	*export;
+	struct s_pipex	*pipex_list;
+
 }		t_mini;
+
+typedef struct s_pipex
+{
+	char	**red_out;
+	char	**red_in;
+	char	*path;
+	char	**cmd;
+	int		pipe[2];
+	int		out_fd;
+	int		in_fd;
+	struct s_pipex	*next;
+	struct s_pipex *previous;
+}			t_pipex;
 
 typedef struct s_token
 {
@@ -55,8 +70,36 @@ typedef enum e_t_types
 	CMD,
 	ARG,
 	WORD,
-
 }		t_e_types;
+
+typedef enum e_rev_op
+{
+	OP_OUT = -1,
+	OP_IN = -2,
+	OP_PIPE = -3,
+	OP_VAR = -4,
+}		t_rev_op;
+
+typedef struct	s_history
+{
+	int				index;
+	char			*input;
+	struct s_hisory *next;
+	struct s_hisory *previous;
+}		t_history;
+
+
+/*------------*/
+/*    gnl     */
+/*------------*/
+int		ft_linelen(char *str);
+void	ft_buffer_shift_left(char *Buffer, int move_size);
+char	*ft_special_join(char *str, char *Buffer);
+char	*get_next_line(int fd);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+/*-----------------------------------------------------------*/
 
 /*----------*/
 /*  quotes  */
@@ -90,10 +133,12 @@ size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-
+char	*ft_strcat(char *dst, const char *src, char	*ret);
+char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 /*--------------------------------------------------------------*/
+
 
 /* malloc */
 void	*safe_malloc(size_t size);
@@ -127,6 +172,7 @@ void	free_token(t_token *t);
 void	free_token_list(t_token *start);
 void	free_var(t_env *var);
 void	free_env_list(t_env *start);
+void	free_double_array(char **words);
 /*---------------------------*/
 
 /*-----------*/
@@ -155,7 +201,6 @@ int	expanded_len(t_token *t, char *var_value);
 char	*get_var_name(t_token *t);
 char	*get_var_value(t_env *env, char *var_name);
 void	do_expand(t_token *t);
-
 void	expand_var(t_token *t, char *var);
 void	expand_vars_loop(t_token *start);
 /*---------------------------------*/
@@ -167,19 +212,54 @@ void	print_token(t_token *token);
 void	print_double_array(char **words);
 void	print_token_list(t_token *start);
 void	print_envp(t_env *env);
+void	print_pipex_list(t_pipex *start);
 /* to be removed ----------------------*/
 
 /*----------*/
 /*   mini   */
 /*----------*/
 t_mini	*mini_call(void);
-void	mini_init(void);
+void	mini_init(char **env);
 /*-----------------------*/
 
 
+/*-----------*/
+/*   tilde   */
+/*-----------*/
+void	expand_tilde(t_token *t);
+void	tilde_loop(t_token *t);
+/*-----------------------------*/
+
+/*-------------*/
+/*   input     */
+/*-------------*/
+void	input_handle(void);
+/*-----------------------*/
+
+/*------------------*/
+/*  token_to_pipex  */
+/*------------------*/
+int	ft_find_pipes(t_token *t);
+void	tokens_to_pipex(t_token *t);
+int	array_word_counter(char	**words);
+char	**add_to_double_char_array(char **words, char *word);
+void	free_double_char_array(char **words);
+void	populate_pipex(t_token *t, t_pipex *start);
+char	**add_handler(char **words, char *word, char *prefix);
+
+/*-----------------------------------*/
 
 
 
+
+
+
+
+/*-------------*/
+/* errores     */
+/*-------------*/
+void	syntax_error(void);
+/*-------------------------*/
 
 
 

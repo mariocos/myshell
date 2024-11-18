@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unused_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:40:37 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/11 23:21:27 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:27:08 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishel.h"
+#include "../minishell.h"
 
 // Checks if a var is in the enviroment linked list
 void	chk_env_var(char *str, t_env *start)
