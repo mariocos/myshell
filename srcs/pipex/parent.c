@@ -28,8 +28,18 @@ void	ft_parent_process(t_pipex *p)
 	pid = fork();
 	if (pid < 0)
 		fork_error();
-	if (pid == 0)
+	if (pid == 0)//missing check for first and last child to not dup2 the fileno_stdin and out with the pipe
 		child_process(p);
-	waitpid(pid, NULL, 0);
-	close_fds(p);	
+	dup2(p->pipe[0], STDIN_FILENO);
+	close_fds(p->pipe);//missing implementation	
+}
+
+void	grandparent_process(t_pipex *p)
+{
+	//while pipe to do do pipe
+	//if child was bad stop piping
+
+
+	//wait for all childs to end
+//	wait();
 }
