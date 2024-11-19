@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 /*
 initializes a var node will be used for envp and export

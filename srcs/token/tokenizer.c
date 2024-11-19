@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 /*so this part is called twice, firstly to do an initial tokenization and then again
 to separate operators*/
 

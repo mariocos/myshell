@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 bool	parse_quotes(const char *input)
 {

@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 /*
 special split works as normal split but ignores spaces in quotes
 */

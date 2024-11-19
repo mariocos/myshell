@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 /*
 to be fully implemented but should signal that there was a critical error
@@ -13,6 +13,7 @@ void	*safe_malloc(size_t size)
 	{
 //		free_all();
 //		safe_exit();
+		printf("\nA CRITICAL ERROR HAS OCCURRED\n\n");
 		return (NULL);
 	}
 	return (ret);

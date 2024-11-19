@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 /*
 detects a $[var_name] inside a token that isnt inside quotes

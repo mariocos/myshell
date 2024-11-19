@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 
 /*
@@ -41,6 +41,5 @@ t_token	*extract_word(t_token *token)
 	free(help);
 	new_first->next = new_second;
 	new_first->next->previous = new_first;
-	printf("in here str[%s] and in %d\n", new_second->token, i);
 	return (new_first);
 }

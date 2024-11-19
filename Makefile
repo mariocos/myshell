@@ -22,6 +22,12 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/pipex/pipex.c \
 	   $(SRC_PATH)/expand/expand_utils.c \
 	   $(SRC_PATH)/expand/expand_var.c \
+	   $(SRC_PATH)/expand/tilde_expand.c \
+	   $(SRC_PATH)/input_handle/handle_input.c \
+	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \
+	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
+	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \
+	   $(SRC_PATH)/error_exit/error.c \
 	   $(SRC_PATH)/main.c \
 
 
