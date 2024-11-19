@@ -1,10 +1,17 @@
 #include "../minishell.h"
 
-void	child_proccess(t_pipex	*p)
+void	child_process_new(t_pipex	*p)
 {
+	if (!p)
+		return ;
+	if (!p->last_child)
+		dup2(p->pipe[1], STDOUT_FILENO);
+	
 	//do redirections!
 	do_input_redir(p);
-	//close pipe
-// do command
-//if command failed exit with failure
+
+	close_fds(p->pipe);
+	execve(p->path, p->cmd, NULL);
+	perror("execve");
+	exit(EXIT_FAILURE);
 }

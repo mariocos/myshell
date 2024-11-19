@@ -39,6 +39,7 @@ typedef struct s_pipex
 	int		pipe[2];
 	int		out_fd;
 	int		in_fd;
+	bool	last_child;
 	struct s_pipex	*next;
 	struct s_pipex *previous;
 }			t_pipex;
@@ -73,16 +74,6 @@ typedef enum e_t_types
 	WORD,
 }		t_e_types;
 
-<<<<<<< HEAD:srcs/minishel.h
-typedef struct s_ppx_data
-{
-	int		nbr_processes;
-	int		nbr_pipes;
-	int		**pipes;
-	pid_t	*p_ids;
-	int		exit_status;
-}				t_ppx_data;
-=======
 typedef enum e_rev_op
 {
 	OP_OUT = -1,
@@ -112,7 +103,6 @@ char	*get_next_line(int fd);
 #  define BUFFER_SIZE 42
 #endif
 /*-----------------------------------------------------------*/
->>>>>>> main:srcs/minishell.h
 
 /*----------*/
 /*  quotes  */
@@ -263,8 +253,6 @@ char	**add_handler(char **words, char *word, char *prefix);
 /*-----------------------------------*/
 
 
-<<<<<<< HEAD:srcs/minishel.h
-=======
 
 
 
@@ -279,7 +267,6 @@ void	syntax_error(void);
 
 
 
->>>>>>> main:srcs/minishell.h
 /*------------------*/
 /*     builtins	    */
 /*------------------*/
@@ -294,12 +281,10 @@ void	echo(char **args);
 /*------------------*/
 /*     pipex	    */
 /*------------------*/
-void	free_pipes(int **pipes, size_t nbr_of_pipes);
-int		**create_pipes(size_t nbr_of_pipes);
-void	child_pipe_setup(int index, t_ppx_data *data);
-void	parent_pipe_setup(t_ppx_data *data);
-void	create_child(int p_index, t_ppx_data *data);
-void	child_spawn(t_ppx_data *data);
+void	close_fds(int *fds);
+void	spawn_child(t_pipex *p);
+void	process_handler(t_pipex *p);
+void	child_process_new(t_pipex	*p);
 /*-----------------------*/
 
 

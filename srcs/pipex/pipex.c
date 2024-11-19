@@ -6,11 +6,11 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:03:33 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/15 18:12:05 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:36:16 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishel.h"
+#include "../minishell.h"
 
 // This is a ring scheme: parent -> child(0) -> ... -> child(n) -> parent 
 // The number of pipes is equal of (pick one from above, they are the same):

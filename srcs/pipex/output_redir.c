@@ -1,4 +1,4 @@
-#include "../minishel.h"
+#include "../minishell.h"
 
 void	do_out_redir(t_pipex *p)
 {
