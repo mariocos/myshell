@@ -13,6 +13,7 @@ void	do_input_redir(t_pipex *p)
 			do_here_doc(p->red_in[i] + 4);
 		else if (!ft_strncmp(p->red_in[i], "STD:", 4))
 			input_redir(p->red_in[i] + 4);
+		i++;
 	}
 }
 
@@ -21,9 +22,9 @@ void	do_here_doc(char *str)
 	int	fd;
 	char	*help;
 	//clean file
-	if (acess(".hered_doc_temp", F_OK) == -1)
+	if (access(".hered_doc_temp", F_OK) == 0)
 	{
-		if (unlink(".here_doc_temp") < 0);
+		if (unlink(".here_doc_temp") < 0)
 			here_doc_error();//mi
 	}
 	//open temp file in apend

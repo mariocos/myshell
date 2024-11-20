@@ -8,7 +8,7 @@ void	expand_vars_loop(t_token *start)
 	t_token	*step;
 
 	step = start;
-	while (step->next != NULL || needs_expand(step))
+	while (step->next != NULL)
 	{
 		if (needs_expand(step))
 			do_expand(step);

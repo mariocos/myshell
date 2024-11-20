@@ -14,7 +14,7 @@ void	hide_operators(char *str)
 		else if (str[i] == '<')
 			str[i] = OP_IN;
 		else if (str[i] == '|')
-			str[i] == OP_PIPE;
+			str[i] = OP_PIPE;
 		
 	}
 }
@@ -30,5 +30,6 @@ void	hide_operators_loop(t_token *t)
 	{
 		if (step->token_type == WORD)
 			hide_operators(step->token);
+		step = step->next;
 	}
 }

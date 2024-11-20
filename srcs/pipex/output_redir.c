@@ -23,13 +23,10 @@ void	app_redir_out(char *str)
 
 	if (!str)
 		return ;
-	if (access(str, F_OK) != -1)
+	if (access(str, F_OK) != -1 && access(str, W_OK) == -1)
 	{
-		if (access(str, R_OK) == -1)
-		{
-			printf("bad infile\n");
-			infile_err();
-		}
+		printf("bad infile\n");
+		infile_err();
 	}
 	fd = open(str, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	dup2(fd, STDOUT_FILENO);
@@ -42,13 +39,10 @@ void	redir_out(char *str)
 
 	if (!str)
 		return ;
-	if (access(str, F_OK) != -1)
+	if (access(str, F_OK) != -1 && access(str, W_OK) == -1)
 	{
-		if (access(str, R_OK) == -1)
-		{
-			printf("bad infile\n");
-			infile_err();
-		}
+		printf("bad infile\n");
+		infile_err();
 	}
 	fd = open(str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	dup2(fd, STDOUT_FILENO);
