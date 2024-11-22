@@ -13,9 +13,9 @@
 # include <signal.h>
 # include <limits.h>
 # include <stdarg.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <sys/types.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/types.h>
 
 /*-------------------*/
 /*     structs       */
@@ -249,12 +249,15 @@ char	**add_to_double_char_array(char **words, char *word);
 void	free_double_char_array(char **words);
 void	populate_pipex(t_token *t, t_pipex *start);
 char	**add_handler(char **words, char *word, char *prefix);
-
 /*-----------------------------------*/
 
 
-
-
+/*------------------*/
+/*     signals	    */
+/*------------------*/
+void	handle_sigint(int sig);
+void	setup_signal_handlers(void);
+/*-------------------------*/
 
 
 

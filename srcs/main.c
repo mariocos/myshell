@@ -22,6 +22,7 @@ int main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 	
+	setup_signal_handlers();
 	if (argc == 1)
 		mini_loop(envp);
 	else

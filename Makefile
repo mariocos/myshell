@@ -27,6 +27,7 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
 	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \
 	   $(SRC_PATH)/error_exit/error.c \
+	   $(SRC_PATH)/signals/signals.c \
 	   $(SRC_PATH)/main.c \
 
 
