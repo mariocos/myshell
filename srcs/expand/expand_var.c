@@ -23,8 +23,11 @@ void	do_expand(t_token *t)
 	char	*var_value;
 
 	var_name = get_var_name(t);
-	var_value = get_var_value(mini_call()->env, var_name);
-//	printf("var value is [%s]\n", var_value);
+	if (is_special_expand(var_name))//mi
+		var_value = get_special_var(var_name);//mi
+	else
+		var_value = get_var_value(mini_call()->env, var_name);
+	printf("var value is [%s]\n", var_value);
 	expand_var(t, var_value);
 	free(var_name);
 	free(var_value);
@@ -32,6 +35,9 @@ void	do_expand(t_token *t)
 
 /*
 copys whatever comes before the var then adds the var_value and then whatever was after the var
+
+not handling stand alone $ and not handling special expansions like $$ that should expand to pid
+
 */
 void	expand_var(t_token *t, char *var)
 {
@@ -54,4 +60,5 @@ void	expand_var(t_token *t, char *var)
 	new[new_i] = '\0';
 	free(t->token);
 	t->token = new;
+	printf("token after expansion is [%s]\n", t->token);
 }

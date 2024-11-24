@@ -42,7 +42,7 @@ char	**add_handler(char **words, char *word, char *prefix)
 	if (prefix)
 		new_add = ft_strjoin(prefix, word);
 	else
-		new_add = ft_strdup(prefix);
+		new_add = ft_strdup(word);//im pretty sure this is correct now used to strdup prefix idkwhy
 	ret = add_to_double_char_array(words, new_add);
 	return (ret);
 }

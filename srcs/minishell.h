@@ -138,6 +138,7 @@ char	*ft_strcat(char *dst, const char *src, char	*ret);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
+char	*ft_itoa(int n);
 /*--------------------------------------------------------------*/
 
 
@@ -204,6 +205,8 @@ char	*get_var_value(t_env *env, char *var_name);
 void	do_expand(t_token *t);
 void	expand_var(t_token *t, char *var);
 void	expand_vars_loop(t_token *start);
+char	*get_special_var(char *var_name);
+int	is_special_expand(char *var_name);
 /*---------------------------------*/
 
 /*------------------*/
