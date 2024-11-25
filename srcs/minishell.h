@@ -105,7 +105,9 @@ char	*get_next_line(int fd);
 /*----------*/
 /*  quotes  */
 /*----------*/
+int	advance_quotes(char *str, int i);
 bool	in_quote(const char *input, int index);
+int	remove_quote_len(char *str);
 /*-------------------------------------------*/
 
 /*----------*/
@@ -124,6 +126,7 @@ int	ft_isspace(char c);
 int	ft_isalpha(char c);
 int	ft_isoperator(char *str, int index);
 int	ft_isdigit(char c);
+int	ft_isquote(char c);
 /*-------------------*/
 
 

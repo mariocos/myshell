@@ -11,6 +11,7 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/lib/libft_utils.c \
 	   $(SRC_PATH)/lib/safe_malloc.c \
 	   $(SRC_PATH)/lib/itoa.c \
+	   $(SRC_PATH)/quotes/remove_quotes.c \
 	   $(SRC_PATH)/token/tokenizer.c \
 	   $(SRC_PATH)/token/re_token_utils.c \
        $(SRC_PATH)/token/special_split.c \
