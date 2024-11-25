@@ -1,7 +1,7 @@
 #include "../minishell.h"
 
 /*
-loop to go through token list looking for places that need expansion
+loop to go through token list looking for places that need expansion and performing them
 */
 void	expand_vars_loop(t_token *start)
 {

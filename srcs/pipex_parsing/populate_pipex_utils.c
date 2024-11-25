@@ -29,7 +29,7 @@ char	**add_to_double_char_array(char **words, char *word)
 	}
 	else
 	{
-		ret = safe_malloc(sizeof(char *) * (word_count + 1));
+		ret = safe_malloc(sizeof(char *) * (word_count + 2));
 		while (i < word_count)
 		{
 			ret[i] = ft_strdup(words[i]);
