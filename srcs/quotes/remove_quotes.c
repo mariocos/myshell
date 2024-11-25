@@ -94,8 +94,8 @@ char	*rem_quote(char *str)//working
 			if (ft_isquote(str[i]) > 0)
 			{
 				copy_quote(ret + ret_i, str + i);
-				i += advance_quotes(str, i);
 				ret_i += advance_quotes(str, i) - 2;
+				i += advance_quotes(str, i);
 			}
 			else
 				ret[ret_i++] = str[i];
@@ -103,4 +103,23 @@ char	*rem_quote(char *str)//working
 	}
 	free(str);
 	return (ret);
+}
+
+void	remove_pipex_quotes(t_pipex *p)
+{
+	int	i;
+
+	i = -1;
+	while (p)
+	{
+		while (p->cmd && p->cmd[++i] != NULL)
+			p->cmd[i] = rem_quote(p->cmd[i]);
+		i = -1;
+		while (p->red_in && p->red_in[++i])
+			p->red_in[i] = rem_quote(p->red_in[i]);
+		i = -1;
+		while (p->red_out && p->red_out[++i])
+			p->red_out[i] = rem_quote(p->red_out[i]);
+		p = p->next;
+	}
 }

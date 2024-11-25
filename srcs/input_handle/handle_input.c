@@ -21,10 +21,13 @@ void	input_handle(void)
 	tilde_loop(mini_call()->token);
 	if (!first_parse(mini_call()->token))
 		syntax_error();
-	printf("printing token list before sending to pipe list\n");
-	print_token_list(mini_call()->token);
-	printf("creating pipe list\n");
+//	printf("printing token list before sending to pipe list\n");
+//	print_token_list(mini_call()->token);
+//	printf("creating pipe list\n");
 	tokens_to_pipex(mini_call()->token);
+//	print_pipex_list(mini_call()->pipex_list);
+	remove_pipex_quotes(mini_call()->pipex_list);
+//	printf("\n\n after removing qutoes\n");
 	print_pipex_list(mini_call()->pipex_list);
 	finish_input(mini_call()->input);
 }

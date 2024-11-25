@@ -253,7 +253,7 @@ char	**add_to_double_char_array(char **words, char *word);
 void	free_double_char_array(char **words);
 void	populate_pipex(t_token *t, t_pipex *start);
 char	**add_handler(char **words, char *word, char *prefix);
-
+void	remove_pipex_quotes(t_pipex *p);
 /*-----------------------------------*/
 
 
