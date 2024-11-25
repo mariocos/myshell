@@ -47,11 +47,27 @@ bool	in_quote(const char *input, int index)
 }
 
 
-/* char	*input_to_token(char *input)
+bool	in_squote(const char *input, int index)
 {
-	char	**words;
+	int	i;
+	bool	q_flag;
+	bool	s_flag;
 
-	if (!input || !parse_quotes(input))
-		return (NULL);
-	words = ft_special_split(input);
-} */
+	i = 0;
+	q_flag = false;
+	s_flag = false;
+	while (i < index)
+	{
+		if (input[i] == '\"' && !s_flag)
+			q_flag = !q_flag;
+		else if (input[i] == '\'' && !q_flag)
+			s_flag = !s_flag;
+		i++;
+	}
+	if (!q_flag && !s_flag)
+		return (false);
+	if (!q_flag && s_flag)
+		return (true);
+	return (false);
+}
+

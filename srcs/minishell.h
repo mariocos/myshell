@@ -108,6 +108,8 @@ char	*get_next_line(int fd);
 int	advance_quotes(char *str, int i);
 bool	in_quote(const char *input, int index);
 int	remove_quote_len(char *str);
+bool	in_squote(const char *input, int index);
+
 /*-------------------------------------------*/
 
 /*----------*/
@@ -210,6 +212,8 @@ void	expand_var(t_token *t, char *var);
 void	expand_vars_loop(t_token *start);
 char	*get_special_var(char *var_name);
 int	is_special_expand(char *var_name);
+void	unhide_expand(char *str);
+void	hide_expand(char *str);
 /*---------------------------------*/
 
 /*------------------*/

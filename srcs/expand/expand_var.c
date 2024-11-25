@@ -10,10 +10,14 @@ void	expand_vars_loop(t_token *start)
 	step = start;
 	while (step->next != NULL || needs_expand(step))
 	{
+		hide_expand(step->token);
 		if (needs_expand(step))
 			do_expand(step);
 		else
+		{
+			unhide_expand(step->token);
 			step = step->next;
+		}
 	}
 }
 
@@ -27,7 +31,6 @@ void	do_expand(t_token *t)
 		var_value = get_special_var(var_name);//mi
 	else
 		var_value = get_var_value(mini_call()->env, var_name);
-	printf("var value is [%s]\n", var_value);
 	expand_var(t, var_value);
 	free(var_name);
 	free(var_value);

@@ -14,7 +14,7 @@ bool	needs_expand(t_token *t)
 		return (false);
 	while (t->token[i] != '\0')
 	{
-		if (t->token[i] == '$' && !in_quote(t->token, i))
+		if (t->token[i] == '$' && !in_squote(t->token, i))//needs to be changed to check if its in a special quote if not expand
 			return (true);
 		i++;
 	}
