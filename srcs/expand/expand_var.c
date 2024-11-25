@@ -27,8 +27,8 @@ void	do_expand(t_token *t)
 	char	*var_value;
 
 	var_name = get_var_name(t);
-	if (is_special_expand(var_name))//mi
-		var_value = get_special_var(var_name);//mi
+	if (is_special_expand(var_name))
+		var_value = get_special_var(var_name);
 	else
 		var_value = get_var_value(mini_call()->env, var_name);
 	expand_var(t, var_value);
