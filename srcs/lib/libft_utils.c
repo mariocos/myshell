@@ -10,7 +10,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = ft_strlen(s);
 	if ((start + len) > ft_strlen(s))
 		len = ft_strlen(s) - start;
-	ret = malloc(len + 1);
+	ret = safe_malloc(len + 1);
 	if (ret == NULL)
 		return (NULL);
 	ft_strlcpy(ret, s + start, len + 1);
@@ -46,7 +46,7 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	str_len = ft_strlen(s) + 1;
-	dest = malloc(sizeof(char) * str_len);
+	dest = safe_malloc(sizeof(char) * str_len);
 	if (dest == NULL)
 		return (NULL);
 	while (s && s[i] != '\0')

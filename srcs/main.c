@@ -9,6 +9,7 @@ void	mini_loop(char **envp)
 		if (!mini_call()->input)
 			break ;
 		input_handle();
+//		clean_all();
 		print_token_list(mini_call()->token);
 	}
 }
@@ -28,6 +29,7 @@ int main(int argc, char **argv, char **envp)
 		mini_call()->input = str;
 		input_handle();
 		print_token_list(mini_call()->token);
+		clean_all();
 	}
 	return (0);
 }

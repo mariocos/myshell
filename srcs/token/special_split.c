@@ -43,7 +43,7 @@ char	**special_split(char const *s)
 	if (!s)
 		return (NULL);
 	wordcount = count_words(s);
-	ret = malloc(sizeof(char *) * (wordcount + 1));
+	ret = safe_malloc(sizeof(char *) * (wordcount + 1));
 	if (!ret)
 		return (NULL);
 	i = -1;

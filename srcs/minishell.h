@@ -179,7 +179,9 @@ void	free_token(t_token *t);
 void	free_token_list(t_token *start);
 void	free_var(t_env *var);
 void	free_env_list(t_env *start);
-void	free_double_array(char **words);
+void	free_double_char_array(char **words);
+void	free_pipex_list(t_pipex *p);
+void	clean_all(void);
 /*---------------------------*/
 
 /*-----------*/

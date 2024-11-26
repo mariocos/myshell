@@ -1,6 +1,8 @@
 #include "../minishell.h"
 
-
+/*
+this entire file is unused
+*/
 
 void	hide_operators(char *str)
 {

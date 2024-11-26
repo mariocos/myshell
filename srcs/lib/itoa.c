@@ -29,7 +29,7 @@ char	*ft_itoa(int n)
 
 	i = 0;
 	len = ft_len(n);
-	str = (char *) malloc (sizeof(char) * (len + 1));
+	str = (char *) safe_malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	if (n < 0)

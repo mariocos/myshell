@@ -52,7 +52,8 @@ void	free_double_char_array(char **words)
 		return ;
 	while (words[i] != NULL)
 	{
-		free(words[i]);
+		if (words[i])
+			free(words[i]);
 		i++;
 	}
 	free(words);
