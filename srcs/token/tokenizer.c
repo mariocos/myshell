@@ -89,5 +89,6 @@ t_token	*input_split_to_token(char **words)
 		token_add_back(start, add);
 		i++;
 	}
+	free_double_char_array(words);
 	return (start);
 }
