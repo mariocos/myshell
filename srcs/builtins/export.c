@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:02:27 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/18 13:27:18 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:35:42 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	export(char *str, t_env *start, bool explicit_call)
 	char	*var;
 	int		len;
 
+	if (!str || !start)
+		return (1);
 	tmp = start;
 	len = 0;
 	while (str[len] != '=' && str[len])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_and_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:44:32 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/18 13:27:10 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:11:41 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	unset(char *str, t_env **env)
 	t_env	*tmp;
 	t_env	*tmp_prev;
 
-	if (!env || !*env)
+	if (!env || !*env || !str)
 		return ;
 	tmp = *env;
 	if (!ft_strncmp(tmp->var_name, str, ft_strlen(str))

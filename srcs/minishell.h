@@ -152,8 +152,8 @@ void	*safe_malloc(size_t size);
 /*---------------*/
 t_token	*init_token(char *str);
 t_token	*input_split_to_token(char **words);
-int	get_token_type(char *str);
-int	count_strs(char **words);//might change file
+int		get_token_type(char *str);
+int		count_strs(char **words);//might change file
 void	token_add_back(t_token *start, t_token *add);
 /*-------------------------------------------------*/
 
@@ -199,8 +199,8 @@ t_env	*init_var(char *str);
 /*   variables */
 /*-------------*/
 bool	needs_expand(t_token *t);
-int	var_name_len(char *str, int i);
-int	expanded_len(t_token *t, char *var_value);
+int		var_name_len(char *str, int i);
+int		expanded_len(t_token *t, char *var_value);
 char	*get_var_name(t_token *t);
 char	*get_var_value(t_env *env, char *var_name);
 void	do_expand(t_token *t);
@@ -249,6 +249,15 @@ char	**add_to_double_char_array(char **words, char *word);
 void	free_double_char_array(char **words);
 void	populate_pipex(t_token *t, t_pipex *start);
 char	**add_handler(char **words, char *word, char *prefix);
+
+
+//Command execution
+char	*path_search(char *command, t_env *env);
+char	*ft_strjointwist(char *path, char *cmd);
+void	ft_free(char **argv);
+char	**ft_split(char const *s, char c);
+char	**env_to_double_chr_ptr(t_env	*env);
+void	exec_if_builtin(t_pipex *process);
 /*-----------------------------------*/
 
 
@@ -278,7 +287,7 @@ void	unset(char *str, t_env **env);
 void	env(t_env *env);
 void	pwd(void);
 void	cd(const char *new_dir, t_env *env);
-void	echo(char **args);
+void	echo(char **cmd);
 /*-----------------------*/
 
 /*------------------*/

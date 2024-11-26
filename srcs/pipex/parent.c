@@ -38,7 +38,7 @@ void	spawn_child(t_pipex *p)
 	if (pid < 0)
 		fork_error();
 	if (pid == 0)
-		child_process(p);
+		child_process_new(p);
 	dup2(p->pipe[0], STDIN_FILENO);
 	close_fds(p->pipe);	
 }

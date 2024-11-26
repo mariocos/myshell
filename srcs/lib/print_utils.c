@@ -75,6 +75,25 @@ void	print_pipex_list(t_pipex *start)
 		print_double_array(start->red_out);
 		printf("\nprinting comands\n");
 		print_double_array(start->cmd);
+		printf("\nprinting path\n");
+
+		// H - Changes
+		printf("THE COMMAND IS %s\n", start->cmd[0]);
+		exec_if_builtin(start);
+		/* Only for command execution testing */
+		// char *path = path_search(start->cmd[0], mini_call()->env);
+		// if (*path)
+		// {
+		// 	printf("THE PATH IS %s\n", path);
+
+		// 	char **envp = env_to_double_chr_ptr(mini_call()->env);
+		// 	if (execve(path, start->cmd, envp)== -1)
+		// 		printf ("NOTHING HAPPENED\n");
+		// 	ft_free(envp);
+
+		// 	free(path);
+		// }
+
 		start = start->next;
 		i++;
 	}

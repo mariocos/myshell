@@ -26,11 +26,15 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
 	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \
+	   $(SRC_PATH)/pipex/twistft.c \
+	   $(SRC_PATH)/pipex/twistsplit.c \
+	   $(SRC_PATH)/pipex/pathsrch.c \
+	   $(SRC_PATH)/pipex/command_execution.c \
+	   $(SRC_PATH)/pipex/parent.c \
+	   $(SRC_PATH)/pipex/child.c \
 	   $(SRC_PATH)/error_exit/error.c \
 	   $(SRC_PATH)/signals/signals.c \
 	   $(SRC_PATH)/main.c \
-
-
 
 OBJ = $(SRCS:$(SRC_PATH)/%.c=$(OBJ_DIR)/%.o)
 

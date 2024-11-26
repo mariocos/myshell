@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/19 16:35:41 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:03:26 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,33 +55,30 @@ static bool	check_flag(char *str)
 {
 	int	i;
 
-	if (str[0] == '-' && str[1] == 'n')
-	{
-		i = 2;
-		while (str[i] == 'n')
-			i++;
-		if (str[i] == '\0')
-			return (true);
-	}
-	return (false);
+	if (!str || str[0] != '-' || str[1] != 'n')
+		return (false);
+	i = 2;
+	while (str[i] == 'n')
+		i++;
+	return (str[i] == '\0');
 }
 
-void	echo(char **args)
+void	echo(char **cmd)
 {
 	int		i;
 	bool	flag;
 
-	i = 0;
+	i = 1;
 	flag = false;
-	if (args[0] && check_flag(args[0]))
+	if (cmd[1] && check_flag(cmd[1]))
 	{
 		flag = true;
 		i++;
 	}
-	while (args[i])
+	while (cmd[i])
 	{
-		printf("%s", args[i]);
-		if (args[i + 1] != NULL)
+		printf("%s", cmd[i]);
+		if (cmd[i + 1] != NULL)
 			printf(" ");
 		i++;
 	}
