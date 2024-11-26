@@ -40,7 +40,7 @@ void	free_env_list(t_env *start)
 
 	if (!start)
 		return ;
-	while (start != NULL)
+	while (start)
 	{
 		step = start->next;
 		free_var(start);
@@ -50,15 +50,18 @@ void	free_env_list(t_env *start)
 
 void	free_pipex_list(t_pipex *p)
 {
+	t_pipex *help;
 	while (p)
 	{
+		help = p->next;
 		if (p->cmd)
 			free_double_char_array(p->cmd);
 		if (p->red_in)
 			free_double_char_array(p->red_in);
 		if (p->red_out)
 			free_double_char_array(p->red_out);
-		p = p->next;
+		free(p);
+		p = help;
 	}
 }
 
@@ -76,4 +79,5 @@ void	clean_all(void)
 		free_pipex_list(m->pipex_list);
 	if (m->env)
 		free_env_list(m->env);
+	clear_history();
 }
