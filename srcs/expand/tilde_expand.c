@@ -29,12 +29,12 @@ void	expand_tilde(t_token *t)
 	t_i = 1;
 	exp_i = 0;
 	expand = get_var_value(mini_call()->env, "HOME");
-	ret = safe_malloc(ft_strlen(expand) + ft_strlen(t->token));
+	ret = safe_malloc(ft_strlen(expand) + ft_strlen(t->token) + 1);
 	while (expand[exp_i] != '\0')
 		ret[ret_i++] = expand[exp_i++];
 	while (t->token[t_i] != '\0')
 		ret[ret_i++] = t->token[t_i++];
-	ret[++ret_i] = '\0';
+	ret[ret_i] = '\0';
 	free(t->token);
 	t->token = ret;
 }

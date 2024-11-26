@@ -29,7 +29,7 @@ int	wordlen(char *s)
 	int	i;
 
 	i = 0;
-	while (!ft_isspace(s[i]) || (ft_isspace(s[i]) && in_quote(s, i)))
+	while ((!ft_isspace(s[i]) || (ft_isspace(s[i]) && in_quote(s, i))) && s[i] != '\0')
 		i++;
 	return (i);
 }

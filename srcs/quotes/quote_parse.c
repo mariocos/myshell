@@ -33,7 +33,7 @@ bool	in_quote(const char *input, int index)
 	i = 0;
 	q_flag = false;
 	s_flag = false;
-	while (i < index)
+	while (i < index && input[i] != '\0')
 	{
 		if (input[i] == '\"' && !s_flag)
 			q_flag = !q_flag;
@@ -56,7 +56,7 @@ bool	in_squote(const char *input, int index)
 	i = 0;
 	q_flag = false;
 	s_flag = false;
-	while (i < index)
+	while (i < index && input[i] != '\0')
 	{
 		if (input[i] == '\"' && !s_flag)
 			q_flag = !q_flag;

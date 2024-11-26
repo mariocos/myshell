@@ -46,9 +46,7 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	str_len = ft_strlen(s) + 1;
-	dest = safe_malloc(sizeof(char) * str_len);
-	if (dest == NULL)
-		return (NULL);
+	dest = safe_malloc(str_len);
 	while (s && s[i] != '\0')
 	{
 		dest[i] = s[i];

@@ -24,7 +24,7 @@ int main(int argc, char **argv, char **envp)
 		mini_loop(envp);
 	else
 	{
-		char *str = ft_strdup("echo $$ <<in $ \"$\"HOME beans $HOME hello\">\"world >>test.txt| cat test.txt |cat ~");
+		char *str = ft_strdup("echo $$ <<in $ \"$\"HOME beans $HOME hello\">\"world >>test.txt| cat test.txt |cat ~\0");
 		mini_init(envp);
 		mini_call()->input = str;
 		input_handle();
