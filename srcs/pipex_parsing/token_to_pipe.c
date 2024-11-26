@@ -65,7 +65,6 @@ void	tokens_to_pipex(t_token *t)
 
 	start = get_pipex_list(t);
 	populate_pipex(t, start);
-	write(1, "check\n", 6);
-	print_pipex_list(start);
+//	print_pipex_list(start);
 	mini_call()->pipex_list = start;
 }

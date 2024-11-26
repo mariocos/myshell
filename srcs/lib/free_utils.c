@@ -16,7 +16,7 @@ void	free_token_list(t_token *start)
 		return ;
 	current = start;
 	step = start;
-	while (current->next != NULL)
+	while (current)
 	{
 		step = current->next;
 		free_token(current);
@@ -74,4 +74,6 @@ void	clean_all(void)
 		free_token_list(m->token);
 	if (m->pipex_list)
 		free_pipex_list(m->pipex_list);
+	if (m->env)
+		free_env_list(m->env);
 }

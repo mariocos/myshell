@@ -100,6 +100,7 @@ char	*rem_quote(char *str)//working
 			else
 				ret[ret_i++] = str[i];
 		}
+		ret[ret_i] = '\0';
 	}
 	free(str);
 	return (ret);

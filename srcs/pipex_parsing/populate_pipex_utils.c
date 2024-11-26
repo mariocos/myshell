@@ -37,7 +37,8 @@ char	**add_to_double_char_array(char **words, char *word)
 		}
 		ret[i] = word;
 	}
-	ret[++i] = NULL;
+	i++;//added to see if it changes later change back to ret[++i]
+	ret[i] = NULL;
 	if (words)
 		free_double_char_array(words);
 	return (ret);
