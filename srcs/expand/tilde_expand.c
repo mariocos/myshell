@@ -35,6 +35,7 @@ void	expand_tilde(t_token *t)
 	while (t->token[t_i] != '\0')
 		ret[ret_i++] = t->token[t_i++];
 	ret[ret_i] = '\0';
+	free(expand);
 	free(t->token);
 	t->token = ret;
 }

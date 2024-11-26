@@ -28,7 +28,7 @@ int main(int argc, char **argv, char **envp)
 		mini_init(envp);
 		mini_call()->input = str;
 		input_handle();
-		print_token_list(mini_call()->token);
+//		print_token_list(mini_call()->token);
 		clean_all();
 	}
 	return (0);

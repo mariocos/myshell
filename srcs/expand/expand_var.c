@@ -63,5 +63,4 @@ void	expand_var(t_token *t, char *var)
 	new[new_i] = '\0';
 	free(t->token);
 	t->token = new;
-	printf("token after expansion is [%s]\n", t->token);
 }
