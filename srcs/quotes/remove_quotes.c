@@ -95,7 +95,7 @@ char	*rem_quote(char *str)//working
 			{
 				copy_quote(ret + ret_i, str + i);
 				ret_i += advance_quotes(str, i) - 2;
-				i += advance_quotes(str, i);//magic! it makes it so it doesnt eat the char ahead of the "
+				i += advance_quotes(str, i) - 1;//magic! it makes it so it doesnt eat the char ahead of the "
 			}
 			else
 				ret[ret_i++] = str[i];

@@ -29,7 +29,7 @@ int main(int argc, char **argv, char **envp)
 		mini_loop(envp);
 	else
 	{
-		char *str = ft_strdup("\"$HOME\"");
+		char *str = ft_strdup("$$");
 		mini_init(envp);
 		mini_call()->input = str;
 		input_handle();
@@ -39,3 +39,6 @@ int main(int argc, char **argv, char **envp)
 	}
 	return (0);
 }
+
+/* valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all  
+ --suppressions=".valgrind.supp" ./minishell*/
