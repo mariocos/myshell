@@ -184,6 +184,7 @@ void	free_env_list(t_env *start);
 void	free_double_char_array(char **words);
 void	free_pipex_list(t_pipex *p);
 void	clean_all(void);
+void	clean_comand(void);
 /*---------------------------*/
 
 /*-----------*/

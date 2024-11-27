@@ -25,4 +25,3 @@ void	input_handle(void)
 //	print_pipex_list(mini_call()->pipex_list);
 	finish_input(mini_call()->input);
 }
-

@@ -84,3 +84,16 @@ void	clean_all(void)
 		free_env_list(m->env);
 	clear_history();
 }
+
+void	clean_comand(void)
+{
+	t_mini	*m;
+
+	m = mini_call();
+	if (!m)
+		return ;
+	if (m->token)
+		free_token_list(m->token);
+	if (m->pipex_list)
+		free_pipex_list(m->pipex_list);
+}

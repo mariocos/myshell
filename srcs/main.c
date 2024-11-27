@@ -6,12 +6,13 @@ void	mini_loop(char **envp)
 	while (1)
 	{
 		mini_call()->input = readline("mini>");
-		if (!mini_call()->input)
+		if (!mini_call()->input)//chould change to if its equal to "exit"
 			break ;
 		input_handle();
-//		clean_all();
 		print_token_list(mini_call()->token);
+		print_pipex_list(mini_call()->pipex_list);
 	}
+	clean_all();
 }
 
 int main(int argc, char **argv, char **envp)
@@ -20,16 +21,16 @@ int main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 	
-	setup_signal_handlers();
 	if (argc == 1)
 		mini_loop(envp);
 	else
 	{
-		char *str = ft_strdup("echo $$ <<in $ \"$\"HOME beans $HOME hello\">\"world >>test.txt| cat test.txt |cat ~\0");
+		char *str = ft_strdup("\"$HOME\"");
 		mini_init(envp);
 		mini_call()->input = str;
 		input_handle();
-//		print_token_list(mini_call()->token);
+		print_token_list(mini_call()->token);
+		print_pipex_list(mini_call()->pipex_list);
 		clean_all();
 	}
 	return (0);
