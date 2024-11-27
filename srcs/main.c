@@ -8,9 +8,13 @@ void	mini_loop(char **envp)
 		mini_call()->input = readline("mini>");
 		if (!mini_call()->input)//chould change to if its equal to "exit"
 			break ;
-		input_handle();
-		print_token_list(mini_call()->token);
-		print_pipex_list(mini_call()->pipex_list);
+		if (mini_call()->input && *mini_call()->input)
+		{
+			input_handle();
+			print_token_list(mini_call()->token);
+			print_pipex_list(mini_call()->pipex_list);
+		}
+		clean_comand();
 	}
 	clean_all();
 }
