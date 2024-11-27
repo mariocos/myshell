@@ -28,9 +28,12 @@ void	free_var(t_env *var)
 {
 	if (!var)
 		return ;
-	free (var->var);
-	free (var->var_name);
-	free (var->var_value);
+	if (var->var)
+		free (var->var);
+	if (var->var_name)
+		free (var->var_name);
+	if (var->var_value)
+		free (var->var_value);
 	free (var);
 }
 
