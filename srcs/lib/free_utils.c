@@ -85,7 +85,7 @@ void	clean_all(void)
 	clear_history();
 }
 
-void	clean_comand(void)
+void	clean_comand(void)//doesnt free mini_call()->input
 {
 	t_mini	*m;
 
