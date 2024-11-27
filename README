@@ -51,6 +51,7 @@ In case there is no var set with the intended name the var will be expanded to "
 In this project redirections are implemented in a very simple way.
 >[outfile] , >>[outfile], <[infile] , <<[heredoc].
 
+Similiar to bash the right most redirection of each kind overwrites the ones on the left.
 Theese redirections are handled similiar to bash but with alot of limitations.
 The most important of wich are the inability to specify redirections from an fd to another.
 
@@ -69,3 +70,9 @@ expanding to "$HOME" and "$HOME/" respectively.
 If tilde is not used as stated before it will not be interpreted.
 E.g. [hello~hey], ["~"], ['~'], [~beans] will not be expanded.
 /*------------------------------------------*/
+
+
+/*-----------------*/
+/*   readline      */
+/*-----------------*/
+	The readline function gets is part of a library so i wont go into to much detail,

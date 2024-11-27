@@ -16,7 +16,7 @@ void	free_token_list(t_token *start)
 		return ;
 	current = start;
 	step = start;
-	while (current->next != NULL)
+	while (current)
 	{
 		step = current->next;
 		free_token(current);
@@ -40,7 +40,7 @@ void	free_env_list(t_env *start)
 
 	if (!start)
 		return ;
-	while (start != NULL)
+	while (start)
 	{
 		step = start->next;
 		free_var(start);
@@ -48,20 +48,36 @@ void	free_env_list(t_env *start)
 	}
 }
 
-//Old version - last node remained intact and for that reason had a leak
-/* void	free_env_list(t_env *start)
+void	free_pipex_list(t_pipex *p)
 {
-	t_env	*step;
-	t_env	*current;
-
-	if (!start)
-		return ;
-	step = start;
-	current = start;
-	while (current->next != NULL)
+	t_pipex *help;
+	while (p)
 	{
-		step = current->next;
-		free_var(current);
-		current = step;
+		help = p->next;
+		if (p->cmd)
+			free_double_char_array(p->cmd);
+		if (p->red_in)
+			free_double_char_array(p->red_in);
+		if (p->red_out)
+			free_double_char_array(p->red_out);
+		free(p);
+		p = help;
 	}
-} */
+}
+
+
+void	clean_all(void)
+{
+	t_mini	*m;
+
+	m = mini_call();
+	if (!m)
+		return ;
+	if (m->token)
+		free_token_list(m->token);
+	if (m->pipex_list)
+		free_pipex_list(m->pipex_list);
+	if (m->env)
+		free_env_list(m->env);
+	clear_history();
+}

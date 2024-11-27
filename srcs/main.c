@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-
-
 void	mini_loop(char **envp)
 {
 	mini_init(envp);
@@ -11,10 +9,10 @@ void	mini_loop(char **envp)
 		if (!mini_call()->input)
 			break ;
 		input_handle();
+//		clean_all();
 		print_token_list(mini_call()->token);
 	}
 }
-
 
 int main(int argc, char **argv, char **envp)
 {
@@ -27,12 +25,12 @@ int main(int argc, char **argv, char **envp)
 		mini_loop(envp);
 	else
 	{
-		char *str = ft_strdup("echo <<in $HOME\"beans\"$HOME hello\">\"world >>test.txt| cat test.txt |cat ~");
+		char *str = ft_strdup("echo $$ <<in $ \"$\"HOME beans $HOME hello\">\"world >>test.txt| cat test.txt |cat ~\0");
 		mini_init(envp);
 		mini_call()->input = str;
 		input_handle();
-		print_token_list(mini_call()->token);
+//		print_token_list(mini_call()->token);
+		clean_all();
 	}
 	return (0);
 }
-

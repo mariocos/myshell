@@ -42,7 +42,7 @@ char	**add_handler(char **words, char *word, char *prefix)
 	if (prefix)
 		new_add = ft_strjoin(prefix, word);
 	else
-		new_add = ft_strdup(prefix);
+		new_add = ft_strdup(word);//im pretty sure this is correct now used to strdup prefix idkwhy
 	ret = add_to_double_char_array(words, new_add);
 	return (ret);
 }
@@ -73,7 +73,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	s1_len = ft_strlen((const char *)s1);
 	s2_len = ft_strlen((const char *)s2);
-	ret = malloc(s1_len + s2_len + 1);
+	ret = safe_malloc(s1_len + s2_len + 1);
 	if (ret == NULL)
 		return (NULL);
 	ret[0] = '\0';

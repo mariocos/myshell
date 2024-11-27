@@ -52,7 +52,7 @@ char	*ft_special_join(char *str, char *buffer)
 	j = 0;
 	if (buffer[0] == '\0' && (!str || str[0] == '\0'))
 		return (NULL);
-	ret_str = malloc(ft_strlen(str) + ft_linelen(buffer) + 2);
+	ret_str = safe_malloc(ft_strlen(str) + ft_linelen(buffer) + 2);
 	if (!ret_str)
 	{
 		free(str);

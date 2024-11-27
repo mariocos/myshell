@@ -29,7 +29,7 @@ int	wordlen(char *s)
 	int	i;
 
 	i = 0;
-	while (!ft_isspace(s[i]) || (ft_isspace(s[i]) && in_quote(s, i)))
+	while ((!ft_isspace(s[i]) || (ft_isspace(s[i]) && in_quote(s, i))) && s[i] != '\0')
 		i++;
 	return (i);
 }
@@ -43,7 +43,7 @@ char	**special_split(char const *s)
 	if (!s)
 		return (NULL);
 	wordcount = count_words(s);
-	ret = malloc(sizeof(char *) * (wordcount + 1));
+	ret = safe_malloc(sizeof(char *) * (wordcount + 1));
 	if (!ret)
 		return (NULL);
 	i = -1;

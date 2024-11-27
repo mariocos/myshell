@@ -29,7 +29,7 @@ char	**add_to_double_char_array(char **words, char *word)
 	}
 	else
 	{
-		ret = safe_malloc(sizeof(char *) * (word_count + 1));
+		ret = safe_malloc(sizeof(char *) * (word_count + 2));
 		while (i < word_count)
 		{
 			ret[i] = ft_strdup(words[i]);
@@ -37,7 +37,8 @@ char	**add_to_double_char_array(char **words, char *word)
 		}
 		ret[i] = word;
 	}
-	ret[++i] = NULL;
+	i++;//added to see if it changes later change back to ret[++i]
+	ret[i] = NULL;
 	if (words)
 		free_double_char_array(words);
 	return (ret);
@@ -52,7 +53,8 @@ void	free_double_char_array(char **words)
 		return ;
 	while (words[i] != NULL)
 	{
-		free(words[i]);
+		if (words[i])
+			free(words[i]);
 		i++;
 	}
 	free(words);

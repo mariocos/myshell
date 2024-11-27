@@ -35,3 +35,12 @@ int	ft_isdigit(char c)
 		return (1);
 	return (0);
 }
+
+int	ft_isquote(char c)
+{
+	if (c == '"')
+		return (1);
+	else if (c == '\'')
+		return (2);
+	return (0);
+}

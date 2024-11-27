@@ -32,7 +32,7 @@ t_token	*init_token(char *str)
 	if (!new_t)
 		return (NULL);
 	str_len = ft_strlen(str);
-	new_t->token = safe_malloc(str_len);
+	new_t->token = safe_malloc(str_len + 1);
 	if (!new_t->token)
 	{
 		free (new_t);
@@ -89,5 +89,6 @@ t_token	*input_split_to_token(char **words)
 		token_add_back(start, add);
 		i++;
 	}
+	free_double_char_array(words);
 	return (start);
 }

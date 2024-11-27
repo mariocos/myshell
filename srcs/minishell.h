@@ -107,7 +107,11 @@ char	*get_next_line(int fd);
 /*----------*/
 /*  quotes  */
 /*----------*/
+int	advance_quotes(char *str, int i);
 bool	in_quote(const char *input, int index);
+int	remove_quote_len(char *str);
+bool	in_squote(const char *input, int index);
+
 /*-------------------------------------------*/
 
 /*----------*/
@@ -126,6 +130,7 @@ int	ft_isspace(char c);
 int	ft_isalpha(char c);
 int	ft_isoperator(char *str, int index);
 int	ft_isdigit(char c);
+int	ft_isquote(char c);
 /*-------------------*/
 
 
@@ -140,6 +145,7 @@ char	*ft_strcat(char *dst, const char *src, char	*ret);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
+char	*ft_itoa(int n);
 /*--------------------------------------------------------------*/
 
 
@@ -175,7 +181,9 @@ void	free_token(t_token *t);
 void	free_token_list(t_token *start);
 void	free_var(t_env *var);
 void	free_env_list(t_env *start);
-void	free_double_array(char **words);
+void	free_double_char_array(char **words);
+void	free_pipex_list(t_pipex *p);
+void	clean_all(void);
 /*---------------------------*/
 
 /*-----------*/
@@ -206,6 +214,10 @@ char	*get_var_value(t_env *env, char *var_name);
 void	do_expand(t_token *t);
 void	expand_var(t_token *t, char *var);
 void	expand_vars_loop(t_token *start);
+char	*get_special_var(char *var_name);
+int	is_special_expand(char *var_name);
+void	unhide_expand(char *str);
+void	hide_expand(char *str);
 /*---------------------------------*/
 
 /*------------------*/
@@ -249,6 +261,7 @@ char	**add_to_double_char_array(char **words, char *word);
 void	free_double_char_array(char **words);
 void	populate_pipex(t_token *t, t_pipex *start);
 char	**add_handler(char **words, char *word, char *prefix);
+void	remove_pipex_quotes(t_pipex *p);
 
 
 //Command execution

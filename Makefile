@@ -3,13 +3,15 @@ NAME = minishell
 SRC_PATH = ./srcs
 OBJ_DIR = ./objs
 
-SRCS = $(SRC_PATH)/parse/quote_parse.c \
+SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/parse/first_parse.c \
 	   $(SRC_PATH)/lib/free_utils.c \
 	   $(SRC_PATH)/lib/print_utils.c \
 	   $(SRC_PATH)/lib/is.c \
 	   $(SRC_PATH)/lib/libft_utils.c \
 	   $(SRC_PATH)/lib/safe_malloc.c \
+	   $(SRC_PATH)/lib/itoa.c \
+	   $(SRC_PATH)/quotes/remove_quotes.c \
 	   $(SRC_PATH)/token/tokenizer.c \
 	   $(SRC_PATH)/token/re_token_utils.c \
        $(SRC_PATH)/token/special_split.c \
@@ -19,8 +21,10 @@ SRCS = $(SRC_PATH)/parse/quote_parse.c \
 	   $(SRC_PATH)/builtins/export.c \
 	   $(SRC_PATH)/builtins/unset_and_env.c \
 	   $(SRC_PATH)/builtins/pwd_cd_and_echo.c \
+	   $(SRC_PATH)/expand/hide_dolla.c \
 	   $(SRC_PATH)/expand/expand_utils.c \
 	   $(SRC_PATH)/expand/expand_var.c \
+	   $(SRC_PATH)/expand/special_cases.c \
 	   $(SRC_PATH)/expand/tilde_expand.c \
 	   $(SRC_PATH)/input_handle/handle_input.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \

@@ -10,9 +10,11 @@ bool	needs_expand(t_token *t)
 	i = 0;
 	if (!t || !t->token)
 		return (false);
+	if (ft_strlen(t->token) == 1 && t->token[0] == '$')
+		return (false);
 	while (t->token[i] != '\0')
 	{
-		if (t->token[i] == '$' && !in_quote(t->token, i))
+		if (t->token[i] == '$' && !in_squote(t->token, i))//needs to be changed to check if its in a special quote if not expand
 			return (true);
 		i++;
 	}
@@ -24,14 +26,16 @@ bool	needs_expand(t_token *t)
 returns len of the var name ignoring the $
 E.g. returns 4 for "$HOME"
 */
-int	var_name_len(char *str, int i)//maybe change a bit to return accounting for $
+int	var_name_len(char *var_name, int i)//maybe change a bit to return accounting for $
 {
 	int	len;
 
 	len = 0;
-	if (ft_isdigit(str[i]) || (!ft_isalpha(str[i]) && str[i] != '_'))
+	if (is_special_expand(var_name + i))
+		return (is_special_expand(var_name + i));
+	if (ft_isdigit(var_name[i]) || (!ft_isalpha(var_name[i]) && var_name[i] != '_'))
 		return (0);
-	while (ft_isdigit(str[i + len]) || ft_isalpha(str[i + len]) || str[i + len] == '_')
+	while (ft_isdigit(var_name[i + len]) || ft_isalpha(var_name[i + len]) || var_name[i + len] == '_')
 		len++;
 	return (len);
 }
