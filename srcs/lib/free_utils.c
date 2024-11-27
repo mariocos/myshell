@@ -2,8 +2,9 @@
 
 void	free_token(t_token *t)
 {
-	if (t->token)
-		free(t->token);
+	if (!t)
+		return ;
+	free(t->token);
 	free(t);
 }
 
@@ -76,13 +77,29 @@ void	clean_all(void)
 	m = mini_call();
 	if (!m)
 		return ;
+	if (m->input)
+	{
+		free (m->input);
+		m->input = NULL;
+	}
 	if (m->token)
+	{
 		free_token_list(m->token);
+		m->token = NULL;
+	}
 	if (m->pipex_list)
+	{
 		free_pipex_list(m->pipex_list);
+		m->pipex_list = NULL;
+	}
 	if (m->env)
+	{
 		free_env_list(m->env);
+		m->env = NULL;
+	}
 	clear_history();
+    rl_clear_signals();
+    rl_deprep_terminal(); 
 }
 
 void	clean_comand(void)//doesnt free mini_call()->input
@@ -93,7 +110,13 @@ void	clean_comand(void)//doesnt free mini_call()->input
 	if (!m)
 		return ;
 	if (m->token)
+	{
 		free_token_list(m->token);
+		m->token = NULL;
+	}
 	if (m->pipex_list)
+	{
 		free_pipex_list(m->pipex_list);
+		m->pipex_list = NULL;
+	}
 }

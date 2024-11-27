@@ -6,7 +6,7 @@ void	mini_loop(char **envp)
 	while (1)
 	{
 		mini_call()->input = readline("mini>");
-		if (!mini_call()->input)//chould change to if its equal to "exit"
+		if (!ft_strncmp(mini_call()->input, "exit\0", 5))//chould change to if its equal to "exit"
 			break ;
 		if (mini_call()->input && *mini_call()->input)
 		{
