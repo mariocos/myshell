@@ -19,7 +19,7 @@ int	remove_quote_len(char *str)//working as intended
 		if (ft_isquote(str[i]) > 0)
 		{
 			len -= 2;//take away the two quotes
-			i += advance_quotes(str, i);
+			i += advance_quotes(str, i) - 1;
 		}
 	}
 	return (len);
@@ -95,7 +95,7 @@ char	*rem_quote(char *str)//working
 			{
 				copy_quote(ret + ret_i, str + i);
 				ret_i += advance_quotes(str, i) - 2;
-				i += advance_quotes(str, i) - 1;//magic! it makes it so it doesnt eat the char ahead of the "
+				i += advance_quotes(str, i);//magic! it makes it so it doesnt eat the char ahead of the "
 			}
 			else
 				ret[ret_i++] = str[i];

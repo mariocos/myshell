@@ -77,10 +77,10 @@ void	print_pipex_list(t_pipex *start)
 		print_double_array(start->cmd);
 		printf("\nprinting path\n");
 
-		// H - Changes
+/*		// H - Changes
 		printf("THE COMMAND IS %s\n", start->cmd[0]);
 		exec_if_builtin(start);
-		/* Only for command execution testing */
+		Only for command execution testing
 		// char *path = path_search(start->cmd[0], mini_call()->env);
 		// if (*path)
 		// {
@@ -93,7 +93,7 @@ void	print_pipex_list(t_pipex *start)
 
 		// 	free(path);
 		// }
-
+*/
 		start = start->next;
 		i++;
 	}

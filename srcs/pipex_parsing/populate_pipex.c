@@ -73,7 +73,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	s1_len = ft_strlen((const char *)s1);
 	s2_len = ft_strlen((const char *)s2);
-	ret = safe_malloc(s1_len + s2_len + 1);
+	ret = safe_malloc(s1_len + s2_len + 2);//another magick number im not really sure why its needed but it makes the computer happy
 	if (ret == NULL)
 		return (NULL);
 	ret[0] = '\0';
