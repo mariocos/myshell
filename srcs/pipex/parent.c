@@ -22,10 +22,7 @@ void	close_fds(int *fds)
 	close(fds[0]);
 	close(fds[1]);
 }
-/*
-get_fd functions get the fd for each output and input, this is done like in bash and is only
-redirected inside the child
-*/
+
 void	spawn_child(t_pipex *p)
 {
 	pid_t	pid;
@@ -49,13 +46,20 @@ void	process_handler(t_pipex *p)
 {
 	pid_t p_id;
 	
-	while(p != NULL)
+	if (p->next == NULL)
 	{
-		p->last_child = (p->next == NULL);
-		spawn_child(p);
-		p = p->next;
+		printf("needs to be doing comand in parent\n");//todo!
 	}
-	p_id = 1;
-	while (p_id > 0)
-		p_id = wait(NULL);
+	else
+	{
+		while(p != NULL)
+		{
+			p->last_child = (p->next == NULL);//this can just be checked dinamicaly
+			spawn_child(p);
+			p = p->next;
+		}
+		p_id = 1;
+		while (p_id > 0)
+			p_id = wait(NULL);
+	}
 }

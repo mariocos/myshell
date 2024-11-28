@@ -7,7 +7,8 @@ static void	do_here_doc(char *str, t_pipex *p)
 	if (access(".hered_doc_temp", F_OK) == 0)
 	{
 		if (unlink(".here_doc_temp") < 0)
-			here_doc_error();//mi
+			printf("bad_heredoc touching file\n");
+//			here_doc_error();//mi
 	}
 	//open temp file in apend
 	p->in_fd = open(".here_doc_temp", O_WRONLY | O_APPEND | O_CREAT, 0644);
@@ -15,7 +16,7 @@ static void	do_here_doc(char *str, t_pipex *p)
 	while(1)
 	{
 		help = get_next_line(0);
-		if (!ft_strncmp(help, str, ft_strlen(str)));
+		if (!ft_strncmp(help, str, ft_strlen(str)))
 		{
 			free(help);//might change to free after break
 			break;
@@ -34,7 +35,7 @@ static void	input_redir(char *str, t_pipex *p)
 	if (access(str, F_OK) == -1 || access(str, R_OK) == -1)
 	{
 		printf("bad infile dude\n");
-		infile_error();//mi
+//		infile_error();//mi
 	}
 	p->in_fd = open(str, O_RDONLY);
 	dup2(p->in_fd, STDIN_FILENO);

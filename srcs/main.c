@@ -6,13 +6,16 @@ void	mini_loop(char **envp)
 	while (1)
 	{
 		mini_call()->input = readline("mini>");
-		if (!ft_strncmp(mini_call()->input, "exit\0", 5))//chould change to if its equal to "exit"
+		if (mini_call()->input && !ft_strncmp(mini_call()->input, "exit\0", 5))//this is supposed to be a builtin:(
 			break ;
 		if (mini_call()->input && *mini_call()->input)
 		{
-			input_handle();
-			print_token_list(mini_call()->token);
-			print_pipex_list(mini_call()->pipex_list);
+			if (input_handle() == 1)
+			{
+				print_token_list(mini_call()->token);
+				print_pipex_list(mini_call()->pipex_list);
+//				process_handler(mini_call()->pipex_list);
+			}
 		}
 		clean_comand();
 	}

@@ -131,6 +131,7 @@ int	ft_isalpha(char c);
 int	ft_isoperator(char *str, int index);
 int	ft_isdigit(char c);
 int	ft_isquote(char c);
+bool	is_builtin(t_pipex *p);
 /*-------------------*/
 
 
@@ -249,7 +250,7 @@ void	tilde_loop(t_token *t);
 /*-------------*/
 /*   input     */
 /*-------------*/
-void	input_handle(void);
+int	input_handle(void);
 /*-----------------------*/
 
 /*------------------*/
@@ -272,6 +273,10 @@ void	ft_free(char **argv);
 char	**ft_split(char const *s, char c);
 char	**env_to_double_chr_ptr(t_env	*env);
 void	exec_if_builtin(t_pipex *process);
+void	do_input_redir(t_pipex *p);
+void	do_out_redir(t_pipex *p);
+void	exec_if_builtin(t_pipex *process);
+bool	is_builtin(t_pipex *p);
 /*-----------------------------------*/
 
 

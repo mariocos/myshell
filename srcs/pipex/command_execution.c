@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/26 14:40:15 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:29:54 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void	exec_if_builtin(t_pipex *process)
 		export(process->cmd[1], mini_call()->env, true);
 	else if (has_equal_sign(cmd))
 		export(process->cmd[0], mini_call()->env, false);
-	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)	//Needs sanitize
+	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)	//Needs to be a builtin exit takes params
 		exit(0);
 }
