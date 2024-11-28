@@ -119,4 +119,6 @@ void	clean_comand(void)//doesnt free mini_call()->input
 		free_pipex_list(m->pipex_list);
 		m->pipex_list = NULL;
 	}
+	dup2(1,1);//just making sure no redirections from the previous command are still "open"
+	dup2(0,0);
 }

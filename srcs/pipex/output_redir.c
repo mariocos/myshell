@@ -36,7 +36,10 @@ void	do_out_redir(t_pipex *p)
 	if (!p)
 		return ;
 	if (p->next)
-		dup2(STDIN_FILENO, p->pipe[1]);//the redirect is the pipe unless others exist and not last cmd
+	{
+		printf("countme\n");
+			dup2(p->pipe[1], STDOUT_FILENO);//this is NOT WORKING WHY???????
+	}
 	if (!p->red_out)
 		return ;
 	while (p->red_out[i] != NULL)

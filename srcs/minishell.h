@@ -32,14 +32,15 @@ typedef struct s_mini
 
 typedef struct s_pipex
 {
-	char	**red_out;
-	char	**red_in;
-	char	*path;
-	char	**cmd;
+	int		pid;//TODO:var not yet in init!
 	int		pipe[2];
 	int		out_fd;
 	int		in_fd;
 	bool	last_child;
+	char	*path;
+	char	**red_out;
+	char	**red_in;
+	char	**cmd;
 	struct s_pipex	*next;
 	struct s_pipex *previous;
 }			t_pipex;

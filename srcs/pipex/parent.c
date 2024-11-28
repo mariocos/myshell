@@ -25,16 +25,14 @@ void	close_fds(int *fds)
 
 void	spawn_child(t_pipex *p)
 {
-	pid_t	pid;
-
 	if (!p)//this should be exit so we dont get double forks
 		return ;
 	if (pipe(p->pipe) < 0)
 		pipe_error();
-	pid = fork();
-	if (pid < 0)
+	p->pid = fork();
+	if (p->pid < 0)
 		fork_error();
-	if (pid == 0)
+	if (p->pid == 0)
 		child_process_new(p);
 	dup2(p->pipe[0], STDIN_FILENO);
 	close_fds(p->pipe);	
@@ -42,15 +40,14 @@ void	spawn_child(t_pipex *p)
 
 	//M - if child was bad stop piping - missing implementation
 	//H - Isn't exit_failure in child enough?
-void	process_handler(t_pipex *p)
+void	process_handler(t_pipex *p)//TODO:function too large split between call with pipes and without!
 {
-	pid_t p_id;
-	
 	if (p->next == NULL)
 	{
 		if (is_builtin(p))//and not echo! echo is run in fork();
 		{
 			/*redir*/
+			printf("doing command in parent\n");
 			do_out_redir(p);
 			do_input_redir(p);//i think i want to reset redirections after command exec so this doesnt impact the next comand
 			exec_if_builtin(p);
@@ -59,10 +56,10 @@ void	process_handler(t_pipex *p)
 		{
 			printf("doing comand in fork\n");
 			/*fork and execve*/
-			p_id = fork();
-			if (p_id == 0)
+			p->pid = fork();
+			if (p->pid == 0)
 				child_process_new(p);
-			waitpid(p_id, NULL, 0);
+			waitpid(p->pid, NULL, 0);
 		}
 	}
 	else
@@ -73,8 +70,10 @@ void	process_handler(t_pipex *p)
 			spawn_child(p);
 			p = p->next;
 		}
-		p_id = 1;
+		exit(0);
+/* 		p_id = 1;//i think this is a problem
 		while (p_id > 0)
-			p_id = wait(NULL);
+			p_id = wait(NULL); */
+		waitpid(p->pid, NULL, 0);
 	}
 }
