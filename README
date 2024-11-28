@@ -48,17 +48,27 @@ In case there is no var set with the intended name the var will be expanded to "
 /*------------*/
 /*redirections*/
 /*------------*/
-In this project redirections are implemented in a very simple way.
->[outfile] , >>[outfile], <[infile] , <<[heredoc].
+index:
+1: redirection syntax.
+2:input redirections.
+3:output redirections.
 
-Similiar to bash the right most redirection of each kind overwrites the ones on the left.
-Theese redirections are handled similiar to bash but with alot of limitations.
-The most important of wich are the inability to specify redirections from an fd to another.
+1:	In this project redirections are implemented in a very simple way.
+you can redirect both stdin and stdout to a specified file, a space after the operator is optional.
+e.g.
+	>[outfile] , >>[outfile], <[infile] , <<[heredoc].
+
+2:	input redirections are handled in order from left to right each of them overwriting the other.
+heredoc is supported but is overwritten if there is another heredoc after or a input redirection.
+
+3:	output redirections are also handled left to right and overwriting the last one.
+
+redirections inside pipes takeover the stdin and stdout from the pipe.
 
 The redirection operators are always handled as operators unless inside quotes, this means that
 if you want to use something like [echo >><>] as a command you need to do so like this [echo ">><>"],
 otherwise it will be handled like a redirection operator and give a syntax error. 
-/*------------------------------*/
+/*-------------------------------------------------------------------------------------------------*/
 
 /*--------------*/
 /* tilde expand */
