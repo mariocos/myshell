@@ -313,6 +313,15 @@ void	process_handler(t_pipex *p);
 void	child_process_new(t_pipex	*p);
 /*-----------------------*/
 
+/*------------------*/
+/*     redir	    */
+/*------------------*/
+void	do_input_redir(t_pipex *p);
+void	do_out_redir(t_pipex *p);
+/*----------------------------------*/
+
+
+
 
 /*----------------------*/
 /*   unused functions   */

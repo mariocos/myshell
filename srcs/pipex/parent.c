@@ -30,7 +30,7 @@ void	spawn_child(t_pipex *p)
 {
 	pid_t	pid;
 
-	if (!p)
+	if (!p)//this should be exit so we dont get double forks
 		return ;
 	if (pipe(p->pipe) < 0)
 		pipe_error();

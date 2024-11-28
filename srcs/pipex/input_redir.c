@@ -1,23 +1,6 @@
 #include "../minishell.h"
 
-void	do_input_redir(t_pipex *p)
-{
-	int	i;
-
-	i = 0;
-	if (!p || !p->red_in)
-		return ;
-	while (p->red_in[i] != NULL)
-	{
-		if (!ft_strncmp(p->red_in[i], "APP:", 4))
-			do_here_doc(p->red_in[i] + 4, p);
-		else if (!ft_strncmp(p->red_in[i], "STD:", 4))
-			input_redir(p->red_in[i] + 4);
-		i++;
-	}
-}
-
-void	do_here_doc(char *str, t_pipex *p)
+static void	do_here_doc(char *str, t_pipex *p)
 {
 	char	*help;
 	//clean file
@@ -45,7 +28,7 @@ void	do_here_doc(char *str, t_pipex *p)
 	close(p->in_fd);
 }
 
-void	input_redir(char *str, t_pipex *p)
+static void	input_redir(char *str, t_pipex *p)
 {
 	//check file perms
 	if (access(str, F_OK) == -1 || access(str, R_OK) == -1)
@@ -56,4 +39,21 @@ void	input_redir(char *str, t_pipex *p)
 	p->in_fd = open(str, O_RDONLY);
 	dup2(p->in_fd, STDIN_FILENO);
 	close(p->in_fd);
+}
+
+void	do_input_redir(t_pipex *p)
+{
+	int	i;
+
+	i = 0;
+	if (!p || !p->red_in)
+		return ;
+	while (p->red_in[i] != NULL)
+	{
+		if (!ft_strncmp(p->red_in[i], "APP:", 4))
+			do_here_doc(p->red_in[i] + 4, p);
+		else if (!ft_strncmp(p->red_in[i], "STD:", 4))
+			input_redir(p->red_in[i] + 4, p);
+		i++;
+	}
 }

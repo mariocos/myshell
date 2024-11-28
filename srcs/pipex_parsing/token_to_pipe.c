@@ -24,6 +24,8 @@ t_pipex	*init_pipex(void)
 	ret->red_in = NULL;
 	ret->red_out = NULL;
 	ret->cmd = NULL;
+	ret->in_fd = 0;
+	ret->out_fd = 1;
 	return (ret);
 }
 
