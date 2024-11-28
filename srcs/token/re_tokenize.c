@@ -86,9 +86,11 @@ t_token	*token_reasign(t_token *t)
 
 	new = token_separate(t);
 	new->next->next = t->next;
-	t->previous->next = new;
+	if (t->previous)
+		t->previous->next = new;
 	new->previous = t->previous;
-	t->next->previous = new->next;
+	if (t->next)
+		t->next->previous = new->next;
 	free_token(t);
 	return (new);
 }

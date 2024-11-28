@@ -70,10 +70,10 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 			spawn_child(p);
 			p = p->next;
 		}
-		exit(0);
-/* 		p_id = 1;//i think this is a problem
+		exit(0);//just for now
+/*  		int	p_id = 1;//i think this is a problem
 		while (p_id > 0)
-			p_id = wait(NULL); */
-		waitpid(p->pid, NULL, 0);
+			p_id = wait(NULL); */             /*wait not working need to fix!*/
+//		waitpid(p->pid, NULL, 0);
 	}
 }

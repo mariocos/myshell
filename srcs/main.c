@@ -12,8 +12,8 @@ void	mini_loop(char **envp)
 		{
 			if (input_handle() == 1)
 			{
-	//			print_token_list(mini_call()->token);
-	//			print_pipex_list(mini_call()->pipex_list);
+//				print_token_list(mini_call()->token);
+//				print_pipex_list(mini_call()->pipex_list);
 				process_handler(mini_call()->pipex_list);
 			}
 		}
