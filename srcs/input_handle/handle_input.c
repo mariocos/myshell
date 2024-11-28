@@ -16,7 +16,7 @@ int	input_handle(void)
 		syntax_error();
 		return (-1);
 	}
-	printf("input is [%s]\n", mini_call()->input);
+//	printf("input is [%s]\n", mini_call()->input);
 	mini_call()->token = input_split_to_token(special_split(mini_call()->input));
 	mini_call()->token = re_tokenize(mini_call()->token);
 	expand_vars_loop(mini_call()->token);

@@ -48,7 +48,22 @@ void	process_handler(t_pipex *p)
 	
 	if (p->next == NULL)
 	{
-		printf("needs to be doing comand in parent\n");//todo!
+		if (is_builtin(p))//and not echo! echo is run in fork();
+		{
+			/*redir*/
+			do_out_redir(p);
+			do_input_redir(p);//i think i want to reset redirections after command exec so this doesnt impact the next comand
+			exec_if_builtin(p);
+		}
+		else
+		{
+			printf("doing comand in fork\n");
+			/*fork and execve*/
+			p_id = fork();
+			if (p_id == 0)
+				child_process_new(p);
+			waitpid(p_id, NULL, 0);
+		}
 	}
 	else
 	{
