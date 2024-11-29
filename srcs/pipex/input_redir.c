@@ -47,7 +47,14 @@ void	do_input_redir(t_pipex *p)
 	int	i;
 
 	i = 0;
-	if (!p || !p->red_in)
+	if (!p)
+		return ;
+	if (p->previous)
+	{
+		dup2(p->previous->pipe[0], STDIN_FILENO);
+		close(p->previous->pipe[0]);
+	}
+	if (!p->red_in)
 		return ;
 	while (p->red_in[i] != NULL)
 	{

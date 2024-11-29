@@ -35,10 +35,10 @@ void	do_out_redir(t_pipex *p)
 	i = 0;
 	if (!p)
 		return ;
-	if (p->next)
+	if (p->next != NULL)
 	{
-		printf("countme\n");
 		dup2(p->pipe[1], STDOUT_FILENO);
+		close(p->pipe[1]);
 	}
 	if (!p->red_out)
 		return ;
@@ -50,5 +50,4 @@ void	do_out_redir(t_pipex *p)
 			redir_out(p->red_out[i] + 4, p);
 		i++;
 	}
-	close(p->pipe[0]);
 }

@@ -25,7 +25,7 @@ void	close_fds(int *fds)
 
 void	spawn_child(t_pipex *p)
 {
-	if (!p)//this should be exit so we dont get double forks
+	if (!p)
 		return ;
 	if (pipe(p->pipe) < 0)
 		pipe_error();
@@ -34,8 +34,9 @@ void	spawn_child(t_pipex *p)
 		fork_error();
 	if (p->pid == 0)
 		child_process_new(p);
-	dup2(p->pipe[0], STDIN_FILENO);//giving PROBLEMS!
-	close_fds(p->pipe);	
+	if (p->previous)
+		close(p->previous->pipe[0]);
+	close(p->pipe[1]);
 }
 
 	//M - if child was bad stop piping - missing implementation
@@ -66,7 +67,7 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 	{
 		while(p != NULL)
 		{
-			p->last_child = (p->next == NULL);//this can just be checked dinamicaly
+//			p->last_child = (p->next == NULL);//this can just be checked dinamicaly
 			spawn_child(p);
 			p = p->next;
 		}
