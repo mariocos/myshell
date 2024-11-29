@@ -4,7 +4,7 @@ void	finish_input(char *new_input)
 {
 	if (!new_input)
 		return ;
-//	add_history(new_input);
+	add_history(new_input);
 	free(new_input);
 	mini_call()->input = NULL;
 }

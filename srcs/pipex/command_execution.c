@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/28 20:33:55 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/11/29 10:08:50 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void	exec_if_builtin(t_pipex *process)
 		export(process->cmd[0], mini_call()->env, false);
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)	//Needs to be a builtin exit takes params
 		exit(0);
-	exit(1);//just making sure we dont leave childs alive!
+	if (process->pid == 0)
+		exit(1);//just making sure we dont leave childs alive!
 }

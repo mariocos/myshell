@@ -38,7 +38,7 @@ void	do_out_redir(t_pipex *p)
 	if (p->next)
 	{
 		printf("countme\n");
-			dup2(p->pipe[1], STDOUT_FILENO);//this is NOT WORKING WHY???????
+		dup2(p->pipe[1], STDOUT_FILENO);
 	}
 	if (!p->red_out)
 		return ;

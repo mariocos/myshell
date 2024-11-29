@@ -52,7 +52,7 @@ t_pipex	*get_pipex_list(t_token	*t)
 
 	i = 0;
 	pipe_amount = count_pipes(t);
-	printf("pipe amount for list is %d\n", pipe_amount);
+//	printf("pipe amount for list is %d\n", pipe_amount);
 	start = init_pipex();
 	while (i < pipe_amount)
 	{
@@ -69,7 +69,6 @@ void	tokens_to_pipex(t_token *t)
 
 	start = get_pipex_list(t);
 	populate_pipex(t, start);
-	write(1, "check\n", 6);
-	print_pipex_list(start);
+//	print_pipex_list(start);
 	mini_call()->pipex_list = start;
 }

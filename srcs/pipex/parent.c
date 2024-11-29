@@ -34,7 +34,7 @@ void	spawn_child(t_pipex *p)
 		fork_error();
 	if (p->pid == 0)
 		child_process_new(p);
-	dup2(p->pipe[0], STDIN_FILENO);
+	dup2(p->pipe[0], STDIN_FILENO);//giving PROBLEMS!
 	close_fds(p->pipe);	
 }
 
@@ -70,10 +70,12 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 			spawn_child(p);
 			p = p->next;
 		}
-		exit(0);//just for now
-/*  		int	p_id = 1;//i think this is a problem
-		while (p_id > 0)
-			p_id = wait(NULL); */             /*wait not working need to fix!*/
-//		waitpid(p->pid, NULL, 0);
+//		exit(0);//just for now
+		p = mini_call()->pipex_list;
+		while (p)
+		{
+			waitpid(p->pid, NULL, 0);
+			p = p->next;
+		}
 	}
 }

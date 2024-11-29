@@ -7,6 +7,7 @@ void	child_process_new(t_pipex	*p)
 	/* do redirections! */
 	do_input_redir(p);
 	do_out_redir(p);
+	close_fds(p->pipe);
 
 
 	/*catch builtins here*/
