@@ -72,7 +72,7 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 			p = p->next;
 		}
 //		exit(0);//just for now
-		p = mini_call()->pipex_list;
+		p = mini_call()->pipex_list;//can be changed back
 		while (p)
 		{
 			waitpid(p->pid, NULL, 0);
