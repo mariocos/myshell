@@ -27,6 +27,7 @@ t_pipex	*init_pipex(void)
 	ret->in_fd = 0;
 	ret->out_fd = 1;
 	ret->pid = -1;
+	ret->has_doc = 0;
 	return (ret);
 }
 

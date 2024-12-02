@@ -18,7 +18,7 @@ void	populate_pipex(t_token *t_start, t_pipex *start)
 		else if (t->token_type == RED_APP)
 			step->red_out = add_handler(step->red_out, t->next->token, "APP:");
 		else if (t->token_type == WORD)
-			step->cmd = add_handler(step->cmd, t->token, "");
+			step->cmd = add_handler(step->cmd, t->token, NULL);
 		else if (t->token_type == PIPE)
 			step = step->next;
 		if (t->token_type == WORD || t->token_type == PIPE)

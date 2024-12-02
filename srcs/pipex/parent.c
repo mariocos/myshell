@@ -39,23 +39,22 @@ void	spawn_child(t_pipex *p)
 	close(p->pipe[1]);
 }
 
-	//M - if child was bad stop piping - missing implementation
-	//H - Isn't exit_failure in child enough?
 void	process_handler(t_pipex *p)//TODO:function too large split between call with pipes and without!
 {
+	prep_input_redir(mini_call()->pipex_list);
 	if (p->next == NULL)
 	{
 		if (is_builtin(p))//and not echo! echo is run in fork();
 		{
 			/*redir*/
-			printf("doing command in parent\n");
-			do_out_redir(p);
-			do_input_redir(p);//i think i want to reset redirections after command exec so this doesnt impact the next comand
+	//		printf("doing command in parent\n");
+			do_out_redir(p);//maybe change so its like prep input redir
+			do_input_redir(p);
 			exec_if_builtin(p);
 		}
 		else
 		{
-			printf("doing comand in fork\n");
+	//		printf("doing %s comand in fork\n", p->cmd[0]);
 			/*fork and execve*/
 			p->pid = fork();
 			if (p->pid == 0)
@@ -67,12 +66,10 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 	{
 		while(p != NULL)
 		{
-//			p->last_child = (p->next == NULL);//this can just be checked dinamicaly
 			spawn_child(p);
 			p = p->next;
 		}
-//		exit(0);//just for now
-		p = mini_call()->pipex_list;//can be changed back
+		p = mini_call()->pipex_list;
 		while (p)
 		{
 			waitpid(p->pid, NULL, 0);

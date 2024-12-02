@@ -37,11 +37,13 @@ void	do_out_redir(t_pipex *p)
 		return ;
 	if (p->next != NULL)
 	{
+		printf("duping with pipe out\n");
 		dup2(p->pipe[1], STDOUT_FILENO);
 		close(p->pipe[1]);
 	}
 	if (!p->red_out)
 		return ;
+	printf("redirs being done\n");
 	while (p->red_out[i] != NULL)
 	{
 		if (!ft_strncmp(p->red_out[i], "APP:", 4))

@@ -37,6 +37,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex/parent.c \
 	   $(SRC_PATH)/pipex/child.c \
 	   $(SRC_PATH)/pipex/input_redir.c \
+	   $(SRC_PATH)/pipex/prep_input_redir.c \
 	   $(SRC_PATH)/pipex/output_redir.c \
 	   $(SRC_PATH)/error_exit/error.c \
 	   $(SRC_PATH)/gnl/gnl.c \

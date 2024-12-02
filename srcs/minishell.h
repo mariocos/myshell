@@ -34,6 +34,8 @@ typedef struct s_pipex
 {
 	int		pid;//TODO:var not yet in init!
 	int		pipe[2];
+	int		has_doc;//maybe bool
+	int		doc_pipe[2];
 	int		out_fd;
 	int		in_fd;
 	bool	last_child;
@@ -324,6 +326,7 @@ void	child_process_new(t_pipex	*p);
 /*------------------*/
 void	do_input_redir(t_pipex *p);
 void	do_out_redir(t_pipex *p);
+void	prep_input_redir(t_pipex *p);
 /*----------------------------------*/
 
 
