@@ -44,9 +44,7 @@ void	ft_waitpid(int pid)
 	int		status;
 	int		exit_code;
 	int		term_signal;
-	int		i;
 
-	i = 0;
 	mini_call()->exit_status = 0;
 	if (waitpid(pid, &status, 0) != -1)
 	{

@@ -28,5 +28,5 @@ void	child_process_new(t_pipex	*p)
 		// ft_free(envp);
 		perror("execve");
 	}
-	exit(EXIT_FAILURE);
+	exit(127);
 }
