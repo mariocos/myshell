@@ -33,8 +33,12 @@ void	mini_loop(char **envp)
 	(void)argv;
 	(void)envp;
 	
+
 	if (argc == 1)
+	{
+		setup_signal_handlers();
 		mini_loop(envp);
+	}
 	else
 	{
 		char *str = ft_strdup("$$");

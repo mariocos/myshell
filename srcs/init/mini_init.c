@@ -12,6 +12,7 @@ void	mini_init(char **env)
 	mini->env = get_env(env);
 	mini->export = NULL;
 	mini->input = NULL;
+	mini->exit_status = 0;
 	
 }
 
