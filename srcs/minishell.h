@@ -110,9 +110,9 @@ char	*get_next_line(int fd);
 /*----------*/
 /*  quotes  */
 /*----------*/
-int	advance_quotes(char *str, int i);
+int		advance_quotes(char *str, int i);
 bool	in_quote(const char *input, int index);
-int	remove_quote_len(char *str);
+int		remove_quote_len(char *str);
 bool	in_squote(const char *input, int index);
 
 /*-------------------------------------------*/
@@ -129,11 +129,11 @@ char	**special_split(char const *s);
 /*----------*/
 /*   is     */
 /*----------*/
-int	ft_isspace(char c);
-int	ft_isalpha(char c);
-int	ft_isoperator(char *str, int index);
-int	ft_isdigit(char c);
-int	ft_isquote(char c);
+int		ft_isspace(char c);
+int		ft_isalpha(char c);
+int		ft_isoperator(char *str, int index);
+int		ft_isdigit(char c);
+int		ft_isquote(char c);
 bool	is_builtin(t_pipex *p);
 /*-------------------*/
 
@@ -205,6 +205,7 @@ bool	parse_quotes(const char *input);
 t_env	*get_env(char **envp);
 void	var_add_back(t_env *start, t_env *add);
 t_env	*init_var(char *str);
+t_env	*init_minimal_env(void);
 /*-------------------------------------------*/
 
 
@@ -259,9 +260,9 @@ int	input_handle(void);
 /*------------------*/
 /*  token_to_pipex  */
 /*------------------*/
-int	ft_find_pipes(t_token *t);
+int		ft_find_pipes(t_token *t);
 void	tokens_to_pipex(t_token *t);
-int	array_word_counter(char	**words);
+int		array_word_counter(char	**words);
 char	**add_to_double_char_array(char **words, char *word);
 void	free_double_char_array(char **words);
 void	populate_pipex(t_token *t, t_pipex *start);
@@ -310,6 +311,7 @@ void	env(t_env *env);
 void	pwd(void);
 void	cd(const char *new_dir, t_env *env);
 void	echo(char **cmd);
+void	exit_builtin(char *nbr);
 /*-----------------------*/
 
 /*------------------*/

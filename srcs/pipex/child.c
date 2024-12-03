@@ -14,8 +14,14 @@ void	child_process_new(t_pipex	*p)
 	else
 	{
 		char *path = path_search(p->cmd[0], mini_call()->env);
+		printf("PATH - %s\n", path);
 		char **envp = env_to_double_chr_ptr(mini_call()->env);//if theese are neeeded they need to be added to the p struct to be freed
-//		printf("execing in fork\n");
+/* 		if (!envp || !envp[0])
+		{
+    		static char *empty_env[] = {NULL};
+    		envp = empty_env; // Um ambiente vazio válido
+		} */
+		printf("execing in fork\n");
 		if (execve(path, p->cmd, envp) == -1)
 	 		printf ("EXECVE - NOTHING HAPPENED\n");
 		// free(path);
