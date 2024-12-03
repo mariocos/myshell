@@ -4,8 +4,10 @@ SRC_PATH = ./srcs
 OBJ_DIR = ./objs
 
 SRCS = $(SRC_PATH)/quotes/quote_parse.c \
-	   $(SRC_PATH)/parse/first_parse.c \
+	   $(SRC_PATH)/input_handle/first_parse.c \
+	   $(SRC_PATH)/input_handle/handle_input.c \
 	   $(SRC_PATH)/lib/free_utils.c \
+	   $(SRC_PATH)/lib/clean.c \
 	   $(SRC_PATH)/lib/print_utils.c \
 	   $(SRC_PATH)/lib/is.c \
 	   $(SRC_PATH)/lib/libft_utils.c \
@@ -27,19 +29,18 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/expand/expand_var.c \
 	   $(SRC_PATH)/expand/special_cases.c \
 	   $(SRC_PATH)/expand/tilde_expand.c \
-	   $(SRC_PATH)/input_handle/handle_input.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
 	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \
-	   $(SRC_PATH)/pipex/twistft.c \
-	   $(SRC_PATH)/pipex/twistsplit.c \
-	   $(SRC_PATH)/pipex/pathsrch.c \
-	   $(SRC_PATH)/pipex/command_execution.c \
+	   $(SRC_PATH)/pipex/utils/twistft.c \
+	   $(SRC_PATH)/pipex/utils/twistsplit.c \
+	   $(SRC_PATH)/pipex/utils/pathsrch.c \
+	   $(SRC_PATH)/pipex/utils/command_execution.c \
+	   $(SRC_PATH)/pipex/redir/input_redir.c \
+	   $(SRC_PATH)/pipex/redir/output_redir.c \
+	   $(SRC_PATH)/pipex/redir/prep_input_redir.c \
 	   $(SRC_PATH)/pipex/parent.c \
 	   $(SRC_PATH)/pipex/child.c \
-	   $(SRC_PATH)/pipex/input_redir.c \
-	   $(SRC_PATH)/pipex/prep_input_redir.c \
-	   $(SRC_PATH)/pipex/output_redir.c \
 	   $(SRC_PATH)/error_exit/error.c \
 	   $(SRC_PATH)/gnl/gnl.c \
 	   $(SRC_PATH)/signals/signals.c \

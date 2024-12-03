@@ -59,3 +59,19 @@ void	free_double_char_array(char **words)
 	}
 	free(words);
 }
+
+/*
+Add handler adds prefix to beggining of string before adding it to the char **words.
+*/
+char	**add_handler(char **words, char *word, char *prefix)
+{
+	char	*new_add;
+	char	**ret;
+
+	if (prefix)
+		new_add = ft_strjoin(prefix, word);
+	else
+		new_add = ft_strdup(word);
+	ret = add_to_double_char_array(words, new_add);
+	return (ret);
+}
