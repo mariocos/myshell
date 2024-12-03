@@ -6,13 +6,13 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/26 12:03:26 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:11:31 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	pwd(void) // Também pode ser retirada da env
+void	pwd(void)
 {
 	char	*wd;
 
@@ -21,13 +21,16 @@ void	pwd(void) // Também pode ser retirada da env
 	{
 		printf("%s\n", wd);
 		free(wd);
+		mini_call()->exit_status = 0;
 	}
 	else
-		perror("bash: pwd: ");
+	{
+		perror("minishell: pwd: ");
+		mini_call()->exit_status = 1;
+	}
 }
 
-// Ainda há a situação do "~/any/dir" - "~/" tem de ser tratado como expansion
-void	cd(const char *new_dir, t_env *env) // Sem update OLDPWD (não é pedido)
+void	cd(const char *new_dir, t_env *env)
 {
 	char	env_var[4128];
 	char	wd[4096];
@@ -38,17 +41,20 @@ void	cd(const char *new_dir, t_env *env) // Sem update OLDPWD (não é pedido)
 		new_dir = getenv("HOME");
 	if (chdir(new_dir))
 	{
-		perror("bash: cd: ");
+		perror("minishell: cd");
+		mini_call()->exit_status = 1;
 		return ;
 	}
 	if (getcwd(wd, sizeof(wd)) == NULL)
 	{
-		perror("bash: pwd: ");
+		perror("minishell: pwd: ");
+		mini_call()->exit_status = 1;
 		return ;
 	}
 	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
 	ft_strlcat(env_var, wd, sizeof(env_var));
 	export(env_var, env, true);
+	mini_call()->exit_status = 0;
 }
 
 static bool	check_flag(char *str)
@@ -84,4 +90,5 @@ void	echo(char **cmd)
 	}
 	if (!flag)
 		printf("\n");
+	mini_call()->exit_status = 0;
 }
