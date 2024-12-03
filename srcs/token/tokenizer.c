@@ -28,7 +28,7 @@ t_token	*init_token(char *str)
 	t_token	*new_t;
 	int		str_len;
 
-	new_t = (t_token *)safe_malloc(sizeof(t_token));
+	new_t = (t_token *)safe_malloc(sizeof(t_token) + 1);
 	if (!new_t)
 		return (NULL);
 	str_len = ft_strlen(str);

@@ -27,7 +27,9 @@ char	*get_special_var(char *var_name)//could be changed in order to just pass a 
 	if (!ft_strncmp(var_name, "$", var_len))
 		return (ft_itoa(getpid()));//gotta flesh this out
 	else if (!ft_strncmp(var_name, "?", var_len))
+	{
 		return(ft_itoa(mini_call()->exit_status));
+	}
 	else
 		return (ft_strdup(""));
 }
