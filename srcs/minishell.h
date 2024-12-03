@@ -22,11 +22,12 @@
 /*-------------------*/
 typedef struct s_mini
 {
-	char	*input;
+	char			*input;
 	struct s_token	*token;
 	struct s_env	*env;
 	struct s_env	*export;
 	struct s_pipex	*pipex_list;
+	int				exit_status;
 
 }		t_mini;
 
@@ -321,6 +322,7 @@ void	close_fds(int *fds);
 void	spawn_child(t_pipex *p);
 void	process_handler(t_pipex *p);
 void	child_process_new(t_pipex	*p);
+void	ft_waitpid(int pid);
 /*-----------------------*/
 
 /*------------------*/
