@@ -6,11 +6,11 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/03 14:05:43 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:22:15 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static int count_env(t_env *env)
 {

@@ -1,4 +1,4 @@
-#include "../minishell.h"
+#include "../../minishell.h"
 
 /*
 this file need to be changed, input redirs are setup before the fork and dup2d after the fork.

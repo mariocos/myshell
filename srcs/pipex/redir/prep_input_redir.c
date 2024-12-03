@@ -1,4 +1,4 @@
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	read_into_pipe(char *eof, t_pipex *p)
 {

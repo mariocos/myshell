@@ -1,4 +1,4 @@
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	app_redir_out(char *str, t_pipex *p)
 {

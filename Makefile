@@ -11,6 +11,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/lib/print_utils.c \
 	   $(SRC_PATH)/lib/is.c \
 	   $(SRC_PATH)/lib/libft_utils.c \
+	   $(SRC_PATH)/lib/libft_utils_2.c \
 	   $(SRC_PATH)/lib/safe_malloc.c \
 	   $(SRC_PATH)/lib/itoa.c \
 	   $(SRC_PATH)/quotes/remove_quotes.c \

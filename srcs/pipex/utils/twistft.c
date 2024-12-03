@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   twistft.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 03:05:13 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/25 17:26:30 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:22:25 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*ft_strjointwist(char *path, char *cmd)
 {
