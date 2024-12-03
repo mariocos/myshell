@@ -27,7 +27,7 @@ typedef struct s_mini
 	struct s_env	*env;
 	struct s_env	*export;
 	struct s_pipex	*pipex_list;
-
+	int				exit_status;
 }		t_mini;
 
 typedef struct s_pipex
