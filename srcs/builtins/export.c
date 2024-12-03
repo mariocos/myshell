@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:02:27 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/26 12:35:42 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:38:18 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ static int	add_new_var(char *str, t_env *start, bool explicit_call)
 
 	new = init_var(str);
 	if (!new)
+	{
+		mini_call()->exit_status = 1;
 		return (1);
+	}
 	if (!explicit_call)
 		new->exported = (false);
 	var_add_back(start, new);
+	mini_call()->exit_status = 0;
 	return (0);
 }
 
@@ -87,7 +91,10 @@ int	export(char *str, t_env *start, bool explicit_call)
 	int		len;
 
 	if (!str || !start)
+	{
+		mini_call()->exit_status = 1;
 		return (1);
+	}
 	tmp = start;
 	len = 0;
 	while (str[len] != '=' && str[len])
@@ -96,11 +103,13 @@ int	export(char *str, t_env *start, bool explicit_call)
 	if (!valid_var(var))
 	{
 		free(var);
+		mini_call()->exit_status = 1;
 		return (1);
 	}
 	if (existing_var(tmp, var, str, len))
 	{
 		free(var);
+		mini_call()->exit_status = 0;
 		return (0);
 	}
 	free (var);
