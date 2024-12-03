@@ -6,6 +6,11 @@ void	mini_loop(char **envp)
 	while (1)
 	{
 		mini_call()->input = readline("mini>");
+		if (!mini_call()->input)
+		{
+			printf("exit\n");
+			break ;
+		}
 		if (mini_call()->input && !ft_strncmp(mini_call()->input, "exit\0", 5))//this is supposed to be a builtin:(
 			break ;
 		if (mini_call()->input && *mini_call()->input)

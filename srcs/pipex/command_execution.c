@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/29 10:08:50 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/02 23:40:21 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,31 @@ static bool	has_equal_sign(char *str)
 	return (false);
 }
 
+long	ft_atol(char *str)
+{
+	long	nbr;
+	int		parity;
+
+	nbr = 0;
+	parity = 0;
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	while (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			parity++;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		nbr = nbr * 10 + (*str - '0');
+		str++;
+	}
+	if (parity % 2 != 0)
+		return (-nbr);
+	return (nbr);
+}
+
 void	exec_if_builtin(t_pipex *process)
 {
 	char *cmd;
@@ -83,8 +108,8 @@ void	exec_if_builtin(t_pipex *process)
 		export(process->cmd[1], mini_call()->env, true);
 	else if (has_equal_sign(cmd))
 		export(process->cmd[0], mini_call()->env, false);
-	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)	//Needs to be a builtin exit takes params
-		exit(0);
+	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
+		exit_builtin(process->cmd[1]);
 	if (process->pid == 0)
 		exit(1);//just making sure we dont leave childs alive!
 }
