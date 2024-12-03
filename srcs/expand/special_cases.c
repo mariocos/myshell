@@ -14,7 +14,7 @@ int	is_special_expand(char *var_name)
 	if (!ft_strncmp(var_name, "$", var_len))
 		return (1);
 	else if (!ft_strncmp(var_name, "?", var_len))
-		return (2);
+		return (1);
 	else//add other special cases as i implement them
 		return (0);
 }

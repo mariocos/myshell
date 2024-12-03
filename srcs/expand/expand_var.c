@@ -52,7 +52,7 @@ void	expand_var(t_token *t, char *var)
 	var_i = 0;
 	new_i = 0;
 	t_i = 0;
-	new = safe_malloc(expanded_len(t, var) + 1);
+	new = safe_malloc(expanded_len(t, var));
 	while (t->token[t_i] != '$')
 		new[new_i++] = t->token[t_i++];
 	while (var[var_i] != '\0')
