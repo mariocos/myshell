@@ -37,7 +37,7 @@ static void	do_here_doc(char *str, t_pipex *p)
 	if (pid == 0)
 		read_into_pipe(str, p);
 	close(p->doc_pipe[1]);
-	waitpid(pid, NULL, 0);
+	ft_waitpid(pid);
 }
 
 static void	input_redir(char *str, t_pipex *p)//to be tested but pretty sure it still works

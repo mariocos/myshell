@@ -39,6 +39,33 @@ void	spawn_child(t_pipex *p)
 	close(p->pipe[1]);
 }
 
+void	ft_waitpid(int pid)
+{
+	int		status;
+	int		exit_code;
+	int		term_signal;
+	int		i;
+
+	i = 0;
+	mini_call()->exit_status = 0;
+	if (waitpid(pid, &status, 0) != -1)
+	{
+		if (WIFEXITED(status))
+		{
+			exit_code = WEXITSTATUS(status);
+			if (exit_code != 0)
+				mini_call()->exit_status = exit_code;
+		}
+	}
+	else if (WIFSIGNALED(status))
+	{
+		term_signal = WTERMSIG(status);
+		mini_call()->exit_status = 128 + term_signal;
+	}
+
+}
+
+
 void	process_handler(t_pipex *p)//TODO:function too large split between call with pipes and without!
 {
 	prep_input_redir(mini_call()->pipex_list);
@@ -55,7 +82,7 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 			p->pid = fork();
 			if (p->pid == 0)
 				child_process_new(p);
-			waitpid(p->pid, NULL, 0);
+			ft_waitpid(p->pid);
 		}
 	}
 	else
@@ -68,7 +95,7 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 		p = mini_call()->pipex_list;
 		while (p)
 		{
-			waitpid(p->pid, NULL, 0);
+			ft_waitpid(p->pid);
 			p = p->next;
 		}
 	}
