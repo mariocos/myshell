@@ -336,8 +336,8 @@ void	ft_waitpid(int pid);
 /*------------------*/
 void	do_input_redir(t_pipex *p);
 void	do_out_redir(t_pipex *p);
-void	prep_input_redir(t_pipex *p);
-void	prep_output_redir(t_pipex *p);
+int	prep_input_redir(t_pipex *p);
+int	prep_output_redir(t_pipex *p);
 void	if_close(int fd);
 /*----------------------------------*/
 

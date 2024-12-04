@@ -68,8 +68,12 @@ void	ft_waitpid(int pid)
 
 void	process_handler(t_pipex *p)//TODO:function too large split between call with pipes and without!
 {
-	prep_input_redir(mini_call()->pipex_list);
-	prep_output_redir(mini_call()->pipex_list);
+	if (prep_input_redir(mini_call()->pipex_list) < 0)
+		return ;
+	if (mini_call()->exit_status != 0 && p->has_doc)//basically if there was a heredoc wich is reset to zero after the comand is done
+		return ;
+	if (prep_output_redir(mini_call()->pipex_list) < 0)
+		return ;
 	//missing if statement for if redir prep was a fail!//TODO:
 	if (p->next == NULL)
 	{
