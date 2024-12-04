@@ -49,9 +49,9 @@ void	clean_comand(void)//doesnt free mini_call()->input
 	{
 		if (m->pipex_list->has_doc)
 			close_fds(m->pipex_list->doc_pipe);
+		if_close(m->pipex_list->in_fd);	
+		if_close(m->pipex_list->out_fd);
 		free_pipex_list(m->pipex_list);
 		m->pipex_list = NULL;
 	}
-	dup2(1,1);//just making sure no redirections from the previous command are still "open"
-	dup2(0,0);
 }
