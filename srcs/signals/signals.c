@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 20:33:01 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/11/24 22:03:44 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:12:41 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,29 @@ void	setup_signal_handlers(void)
 	sa.sa_flags = 0;
 	sigaction(SIGQUIT, &sa, NULL);
 }
- 
+
+void	setup_child_process_signal_handlers(void)
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = SIG_DFL;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+}
+
+void	handle_sigint_heredoc(int sig)
+{
+	(void)sig;
+	write(STDOUT_FILENO, "\n", 1);
+}
+
+void	setup_signal_handlers_heredoc(void)
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = handle_sigint_heredoc;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0; 
+	sigaction(SIGINT, &sa, NULL);
+}

@@ -41,28 +41,30 @@ void	spawn_child(t_pipex *p)
 
 void	ft_waitpid(int pid)
 {
-	int		status;
-	int		exit_code;
-	int		term_signal;
+	int	status;
+	int	term_signal;
 
-	mini_call()->exit_status = 0;
-	if (waitpid(pid, &status, 0) != -1)
+	while (waitpid(pid, &status, 0) == -1)
 	{
-		if (WIFEXITED(status))
+		if (errno == EINTR)
+			continue;
+		else
 		{
-			exit_code = WEXITSTATUS(status);
-			if (exit_code != 0)
-				mini_call()->exit_status = exit_code;
+			perror("waitpid");
+			mini_call()->exit_status = 1;
+			return ;
 		}
 	}
+	if (WIFEXITED(status))
+		mini_call()->exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 	{
 		term_signal = WTERMSIG(status);
 		mini_call()->exit_status = 128 + term_signal;
 	}
-
+	else
+		mini_call()->exit_status = 1;
 }
-
 
 void	process_handler(t_pipex *p)//TODO:function too large split between call with pipes and without!
 {

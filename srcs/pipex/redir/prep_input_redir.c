@@ -9,6 +9,8 @@ void	read_into_pipe(char *eof, t_pipex *p)
 	{
 		write(1, "pipe into doc>", 14);
 		str = get_next_line(0);//this might leak on ctrl-c
+		if (str == NULL)
+			break ;
 		if (!ft_strncmp(str, eof, ft_strlen(eof)))//might want to change because this might also catch if you write more than just the finissher
 		{
 			free(str);
@@ -20,13 +22,15 @@ void	read_into_pipe(char *eof, t_pipex *p)
 	exit(0);
 }
 
-
 static void	do_here_doc(char *str, t_pipex *p)
 {
 	int	pid;//change to struct???
 
 	if (pipe(p->doc_pipe) < 0)
+	{
 		printf("critical pipe erro\n");//handle error
+		return ;
+	}
 	pid = fork();
 	if (pid < 0)
 	{
@@ -35,9 +39,17 @@ static void	do_here_doc(char *str, t_pipex *p)
 		return ;
 	}
 	if (pid == 0)
+	{
+		setup_child_process_signal_handlers();
 		read_into_pipe(str, p);
-	close(p->doc_pipe[1]);
-	ft_waitpid(pid);
+	}
+	else
+	{
+		setup_signal_handlers_heredoc();
+		close(p->doc_pipe[1]);
+		ft_waitpid(pid);
+		setup_signal_handlers();
+	}
 }
 
 static void	input_redir(char *str, t_pipex *p)//to be tested but pretty sure it still works

@@ -16,6 +16,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>
+# include <errno.h>
 
 /*-------------------*/
 /*     structs       */
@@ -290,6 +291,11 @@ bool	is_builtin(t_pipex *p);
 /*------------------*/
 void	handle_sigint(int sig);
 void	setup_signal_handlers(void);
+void	handle_sigint_child(int	sig);
+void	setup_child_process_signal_handlers(void);
+
+void	handle_sigint_heredoc(int sig);
+void	setup_signal_handlers_heredoc(void);
 /*-------------------------*/
 
 
