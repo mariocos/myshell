@@ -37,10 +37,7 @@ void	do_expand(t_token *t)
 }
 
 /*
-copys whatever comes before the var then adds the var_value and then whatever was after the var
-
-not handling stand alone $ and not handling special expansions like $$ that should expand to pid
-
+this function is quite janky, maybe after delivery fix it :/
 */
 void	expand_var(t_token *t, char *var)
 {
@@ -57,7 +54,14 @@ void	expand_var(t_token *t, char *var)
 		new[new_i++] = t->token[t_i++];
 	while (var[var_i] != '\0')
 		new[new_i++] = var[var_i++];
-	t_i += var_name_len(t->token, t_i + 1) + 1;
+	t_i++;
+	if (t->token[t_i] == '?' || t->token[t_i] == '$')
+		t_i += 1;
+	else
+	{
+		t_i--;
+		t_i += var_name_len(t->token, t_i + 1) + 1;
+	}
 	while (t->token[t_i] != '\0')
 		new[new_i++] = t->token[t_i++];
 	new[new_i] = '\0';

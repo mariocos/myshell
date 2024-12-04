@@ -32,11 +32,15 @@ int	var_name_len(char *var_name, int i)//maybe change a bit to return accounting
 
 	len = 0;
 	if (is_special_expand(var_name + i))
+	{
+		printf("returning on special %d\n", is_special_expand(var_name + i));
 		return (is_special_expand(var_name + i));
+	}
 	if (ft_isdigit(var_name[i]) || (!ft_isalpha(var_name[i]) && var_name[i] != '_'))
 		return (0);
 	while (ft_isdigit(var_name[i + len]) || ft_isalpha(var_name[i + len]) || var_name[i + len] == '_')
 		len++;
+	printf("on return normal %d\n", len);
 	return (len);
 }
 
@@ -68,14 +72,18 @@ get_var_name and get_var_value always return a freeable str
 char	*get_var_name(t_token *t)
 {
 	int	i;
-	char *var_name;
 
 	i = 0;
 	while (t->token[i] != '$')
 		i++;
 	i++;
-	var_name = ft_substr(t->token, i, i + var_name_len(t->token, i));
-	return (var_name);
+	printf("token after dolla is %c\n", t->token[i]);
+	if (t->token[i] == '$' || t->token[i] == '?')
+	{
+		return (ft_substr(t->token, i, 1));
+	}
+	else
+		return (ft_substr(t->token, i, i + var_name_len(t->token, i)));
 }
 
 char	*get_var_value(t_env *env, char *var_name)
