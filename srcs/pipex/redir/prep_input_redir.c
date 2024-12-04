@@ -69,6 +69,7 @@ void	if_close(int fd)
 		close (fd);
 }
 
+
 void	prep_input_redir(t_pipex *p)
 {
 	int	i;

@@ -69,12 +69,12 @@ void	ft_waitpid(int pid)
 void	process_handler(t_pipex *p)//TODO:function too large split between call with pipes and without!
 {
 	prep_input_redir(mini_call()->pipex_list);
+	prep_output_redir(mini_call()->pipex_list);
+	//missing if statement for if redir prep was a fail!//TODO:
 	if (p->next == NULL)
 	{
 		if (is_builtin(p))//and not echo! echo is run in fork();
 		{
-			do_out_redir(p);//maybe change so its like prep input redir
-			do_input_redir(p);
 			exec_if_builtin(p);
 		}
 		else
