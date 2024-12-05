@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:17:24 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/05 21:33:55 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,15 @@ int	var_name_len(char *var_name, int i)
 	len = 0;
 	if (is_special_expand(var_name + i))
 	{
-		printf("returning on special %d\n", is_special_expand(var_name + i));
 		return (is_special_expand(var_name + i));
 	}
-	if (ft_isdigit(var_name[i])
-		|| (!ft_isalpha(var_name[i]) && var_name[i] != '_'))
+	if (ft_isdigit(var_name[i]))
+		return (1);
+	if (!ft_isalpha(var_name[i]) && var_name[i] != '_')
 		return (0);
 	while (ft_isdigit(var_name[i + len])
 		|| ft_isalpha(var_name[i + len]) || var_name[i + len] == '_')
 		len++;
-	printf("on return normal %d\n", len);
 	return (len);
 }
 
