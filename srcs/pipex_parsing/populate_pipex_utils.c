@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:53:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 19:53:54 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:58:22 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	free_double_char_array(char **words)
 }
 
 /*
-Add handler adds prefix to beggining of string before adding it to the char **words.
+	Add handler adds prefix to beggining
+of string before adding it to the char **words.
 */
 char	**add_handler(char **words, char *word, char *prefix)
 {
