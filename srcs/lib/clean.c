@@ -1,5 +1,16 @@
-#include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:06:59 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../minishell.h"
 
 void	clean_all(void)
 {
@@ -29,11 +40,11 @@ void	clean_all(void)
 		m->env = NULL;
 	}
 	clear_history();
-    rl_clear_signals();
-    rl_deprep_terminal(); 
+	rl_clear_signals();
+	rl_deprep_terminal(); 
 }
 
-void	clean_comand(void)//doesnt free mini_call()->input
+void	clean_comand(void)
 {
 	t_mini	*m;
 
@@ -49,7 +60,7 @@ void	clean_comand(void)//doesnt free mini_call()->input
 	{
 		if (m->pipex_list->has_doc)
 			close_fds(m->pipex_list->doc_pipe);
-		if_close(m->pipex_list->in_fd);	
+		if_close(m->pipex_list->in_fd);
 		if_close(m->pipex_list->out_fd);
 		free_pipex_list(m->pipex_list);
 		m->pipex_list = NULL;

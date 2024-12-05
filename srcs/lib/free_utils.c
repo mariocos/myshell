@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:04:49 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:05:08 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	free_token(t_token *t)
@@ -54,7 +66,8 @@ void	free_env_list(t_env *start)
 
 void	free_pipex_list(t_pipex *p)
 {
-	t_pipex *help;
+	t_pipex	*help;
+
 	while (p)
 	{
 		help = p->next;
