@@ -1,8 +1,8 @@
 #include "../minishell.h"
 
-
 /*
-called when a token has a token followed by another
+in case of operator preceding a word without a space
+it will extract the operator from the word splitting the token into two
 */
 t_token	*extract_operator(t_token *t)
 {
@@ -21,13 +21,16 @@ t_token	*extract_operator(t_token *t)
 	return (new_t);
 }
 
-
+/*
+in case of word preceding a operator without a space
+it will extract the word from the operator splitting the token into two
+*/
 t_token	*extract_word(t_token *token)
 {
 	t_token	*new_first;
 	t_token	*new_second;
 	char	*help;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (ft_isoperator(token->token, i) == 0
