@@ -34,6 +34,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
 	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \
+	   $(SRC_PATH)/pipex_parsing/add_to_double_char_array.c \
 	   $(SRC_PATH)/pipex/utils/twistft.c \
 	   $(SRC_PATH)/pipex/utils/twistsplit.c \
 	   $(SRC_PATH)/pipex/utils/pathsrch.c \

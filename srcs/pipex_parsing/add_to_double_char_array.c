@@ -6,16 +6,19 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:40:57 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 19:51:56 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:57:12 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	helper(char **ret, int i, char *word)
+static char	**helper(int i, char *word)
 {
+	char **ret;
+
 	ret = safe_malloc(sizeof(char **) * 2);
 	ret[i] = word;
+	return (ret);
 }
 
 char	**add_to_double_char_array(char **words, char *word)
@@ -25,12 +28,11 @@ char	**add_to_double_char_array(char **words, char *word)
 	int		i;
 
 	i = 0;
-	ret = NULL;
 	if (!word)
 		return (words);
 	word_count = array_word_counter(words);
 	if (!words)
-		helper(ret, i, word);
+		ret = helper(i, word);
 	else
 	{
 		ret = safe_malloc(sizeof(char *) * (word_count + 2));
@@ -41,7 +43,8 @@ char	**add_to_double_char_array(char **words, char *word)
 		}
 		ret[i] = word;
 	}
-	ret[++i] = NULL;
+	i++;
+	ret[i] = NULL;
 	if (words)
 		free_double_char_array(words);
 	return (ret);
