@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:40:57 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 19:57:12 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/05 20:00:35 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	**helper(int i, char *word)
 {
-	char **ret;
+	char	**ret;
 
 	ret = safe_malloc(sizeof(char **) * 2);
 	ret[i] = word;
