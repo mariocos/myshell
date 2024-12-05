@@ -116,7 +116,7 @@ int		advance_quotes(char *str, int i);
 bool	in_quote(const char *input, int index);
 int		remove_quote_len(char *str);
 bool	in_squote(const char *input, int index);
-
+char	*rem_quote(char *str);
 /*-------------------------------------------*/
 
 /*----------*/

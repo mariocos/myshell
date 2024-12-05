@@ -4,6 +4,8 @@ SRC_PATH = ./srcs
 OBJ_DIR = ./objs
 
 SRCS = $(SRC_PATH)/quotes/quote_parse.c \
+	   $(SRC_PATH)/quotes/remove_quotes.c \
+	   $(SRC_PATH)/quotes/remove_quotes_utils.c \
 	   $(SRC_PATH)/input_handle/first_parse.c \
 	   $(SRC_PATH)/input_handle/handle_input.c \
 	   $(SRC_PATH)/lib/free_utils.c \
@@ -14,7 +16,6 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/lib/libft_utils_2.c \
 	   $(SRC_PATH)/lib/safe_malloc.c \
 	   $(SRC_PATH)/lib/itoa.c \
-	   $(SRC_PATH)/quotes/remove_quotes.c \
 	   $(SRC_PATH)/token/tokenizer.c \
 	   $(SRC_PATH)/token/re_token_utils.c \
        $(SRC_PATH)/token/special_split.c \

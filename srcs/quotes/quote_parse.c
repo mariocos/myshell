@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quote_parse.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 18:20:49 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 18:21:43 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 bool	parse_quotes(const char *input)
@@ -12,21 +24,19 @@ bool	parse_quotes(const char *input)
 	while (input[i] != '\0')
 	{
 		if (input[i] == '\"' && !in_squote)
-			in_quote = !in_quote;//this reverses the bool
+			in_quote = !in_quote;
 		else if (input[i] == '\'' && !in_quote)
 			in_squote = !in_squote;
 		i++;
 	}
 	if (!in_quote && !in_squote)
 		return (true);
-//	syntax_error("please close your quotes");// mi but should update status to know to clean and print error
 	return (false);
 }
-//returns false if not in quote and true if in quote
 
 bool	in_quote(const char *input, int index)
 {
-	int	i;
+	int		i;
 	bool	q_flag;
 	bool	s_flag;
 
@@ -46,10 +56,9 @@ bool	in_quote(const char *input, int index)
 	return (true);
 }
 
-
 bool	in_squote(const char *input, int index)
 {
-	int	i;
+	int		i;
 	bool	q_flag;
 	bool	s_flag;
 
@@ -70,4 +79,3 @@ bool	in_squote(const char *input, int index)
 		return (true);
 	return (false);
 }
-
