@@ -22,7 +22,6 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		write(p->doc_pipe[1], str, ft_strlen(str));
 	}
 	close(p->doc_pipe[1]);
-	printf("should show up\n");
 	exit(0);
 }
 
