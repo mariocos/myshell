@@ -1,7 +1,22 @@
-#include "../minishell.h"
-/*so this part is called twice, firstly to do an initial tokenization and then again
-to separate operators*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 17:42:30 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 17:45:13 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../minishell.h"
+
+/*
+	this file contains the main tokenizer functions,
+they go from the char** from special split and create the intial
+token list.
+*/
 int	get_token_type(char *str)
 {
 	if (!str)
@@ -20,9 +35,6 @@ int	get_token_type(char *str)
 		return (WORD);
 }
 
-/*
-initializes token with str, token type and index.
-*/
 t_token	*init_token(char *str)
 {
 	t_token	*new_t;
@@ -41,7 +53,7 @@ t_token	*init_token(char *str)
 	ft_strlcpy(new_t->token, str, str_len + 1);
 	if (new_t->token)
 		new_t->token_type = get_token_type(str);
-	else//last chance to catch a problem with the token
+	else
 		new_t->token_type = -1;
 	new_t->index = -1;
 	new_t->next = NULL;
@@ -54,7 +66,7 @@ void	token_add_back(t_token *start, t_token *add)
 	t_token	*step;
 
 	step = start;
-	while(step->next != NULL)
+	while (step->next != NULL)
 		step = step->next;
 	add->previous = step;
 	step->next = add;
@@ -72,18 +84,17 @@ int	count_strs(char **words)
 	return (i);
 }
 
-
 t_token	*input_split_to_token(char **words)
 {
 	t_token	*start;
 	t_token	*add;
-	int	i;
+	int		i;
 
 	if (count_strs(words) == 0)
 		return (NULL);
 	start = init_token(words[0]);
 	i = 1;
-	while (words[i] != NULL)//might change to "> 1"
+	while (words[i] != NULL)
 	{
 		add = init_token(words[i]);
 		token_add_back(start, add);
