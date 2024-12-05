@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   first_parse.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:13:55 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:15:43 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-
-static bool	parse_pipe(t_token *t)//could already check for existence of words to left and right
+static bool	parse_pipe(t_token *t)
 {
 	if (!t->previous)
 		return (false);
@@ -30,16 +41,16 @@ bool	first_parse(t_token *start)
 	{
 		if (step->token_type == PIPE)
 		{
-			if(!parse_pipe(step))
+			if (!parse_pipe(step))
 				return (false);
 		}
-		else if (step->token_type == RED_APP || step->token_type == RED_IN ||
-				step->token_type == RED_OUT || step->token_type == HERE_DOC)
+		else if (step->token_type == RED_APP || step->token_type == RED_IN
+			|| step->token_type == RED_OUT || step->token_type == HERE_DOC)
 		{
-			if(!parse_red(step))
+			if (!parse_red(step))
 				return (false);
 		}
 		step = step->next;
 	}
 	return (true);
-} 
+}

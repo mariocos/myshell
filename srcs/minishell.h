@@ -95,6 +95,13 @@ typedef struct	s_history
 	struct s_hisory *previous;
 }		t_history;
 
+typedef struct s_index
+{
+	int	var_i;
+	int	new_i;
+	int	t_i;
+}	t_index;
+
 
 /*------------*/
 /*    gnl     */
