@@ -10,7 +10,10 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		write(1, "pipe into doc>", 14);
 		str = get_next_line(0);//this might leak on ctrl-c
 		if (str == NULL)
+		{
+			write (1, "\n", 1);
 			break ;
+		}
 		if (!ft_strncmp(str, eof, ft_strlen(eof)))//might want to change because this might also catch if you write more than just the finissher
 		{
 			free(str);

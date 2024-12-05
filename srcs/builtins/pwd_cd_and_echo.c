@@ -6,20 +6,21 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/03 16:11:31 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:51:47 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	pwd(void)
+void	pwd(int fd)
 {
 	char	*wd;
 
 	wd = getcwd(NULL, 0);
 	if (wd != NULL)
 	{
-		printf("%s\n", wd);
+		write(fd, wd, ft_strlen(wd));
+		write(fd, "\n", 1);
 		free(wd);
 		mini_call()->exit_status = 0;
 	}
@@ -69,7 +70,7 @@ static bool	check_flag(char *str)
 	return (str[i] == '\0');
 }
 
-void	echo(char **cmd)
+void	echo(char **cmd, int fd)
 {
 	int		i;
 	bool	flag;
@@ -81,14 +82,16 @@ void	echo(char **cmd)
 		flag = true;
 		i++;
 	}
+	while(cmd[i] && check_flag(cmd[i]))
+		i++;
 	while (cmd[i])
 	{
-		printf("%s", cmd[i]);
+		write (fd, cmd[i], ft_strlen(cmd[i]));
 		if (cmd[i + 1] != NULL)
-			printf(" ");
+			write (fd, " ", 1);
 		i++;
 	}
 	if (!flag)
-		printf("\n");
+			write (fd, "\n", 1);
 	mini_call()->exit_status = 0;
 }

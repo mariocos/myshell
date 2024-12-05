@@ -314,10 +314,10 @@ void	syntax_error(void);
 /*------------------*/
 int		export(char *str, t_env *start, bool explicit_call);
 void	unset(char *str, t_env **env);
-void	env(t_env *env);
-void	pwd(void);
+void	env(t_env *env, int fd);
+void	pwd(int fd);
 void	cd(const char *new_dir, t_env *env);
-void	echo(char **cmd);
+void	echo(char **cmd, int fd);
 void	exit_builtin(char *nbr);
 /*-----------------------*/
 

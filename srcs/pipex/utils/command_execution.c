@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/03 14:22:15 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:16:58 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,20 @@ void	exec_if_builtin(t_pipex *process)
 	if (!ft_strncmp(cmd, "cd", 2) && ft_strlen(cmd) == 2)
 		cd(process->cmd[1], mini_call()->env);
 	else if (!ft_strncmp(cmd, "pwd", 3)	&& ft_strlen(cmd) == 3)
-		pwd();
+		pwd(process->out_fd);
 	else if (!ft_strncmp(cmd, "env", 3)	&& ft_strlen(cmd) == 3)
-		env(mini_call()->env);
+		env(mini_call()->env, process->out_fd);
 	else if (!ft_strncmp(cmd, "echo", 4) && ft_strlen(cmd) == 4)
-		echo(process->cmd);
+		echo(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "unset", 5) && ft_strlen(cmd) == 5)
 		unset(process->cmd[1], &(mini_call()->env));
 	else if (!ft_strncmp(cmd, "export", 6) && ft_strlen(cmd) == 6)
 		export(process->cmd[1], mini_call()->env, true);
 	else if (has_equal_sign(cmd))
+	{
+		printf("I WILL DO SOMETHING\n");
 		export(process->cmd[0], mini_call()->env, false);
+	}
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
 		exit_builtin(process->cmd[1]);
 	if (process->pid == 0)
