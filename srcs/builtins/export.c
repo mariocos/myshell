@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:02:27 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/03 15:38:18 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:05:07 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,70 @@ int	export(char *str, t_env *start, bool explicit_call)
 	}
 	free (var);
 	return (add_new_var(str, start, explicit_call));
+}
+
+void	swap(t_env **stack)
+{
+	t_env	*first;
+	t_env	*second;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+
+	first = *stack;
+	second = first->next;
+
+	if (first->previous)
+		first->previous->next = second;
+
+	first->next = second->next;
+	second->next = first;
+
+	second->previous = first->previous;
+	first->previous = second;
+
+	if (first->next)
+		first->next->previous = first;
+		
+	*stack = second;
+}
+
+void	no_args_export(t_env *env, int fd)
+{
+	t_env *sorted_env;
+	t_env *current;
+	int		flag;
+
+	if (!env)
+		return ;
+	sorted_env = env_dup(env);
+	flag = 1;
+	while (flag)
+	{
+		flag = 0;
+		current = sorted_env;
+		while (current->next)
+		{
+			if (ft_strncmp(current->var_name, current->next->var_name,
+				ft_strlen(current->var_name)) > 0)
+			{
+				swap(&current);
+				flag = 1;
+			}
+			else
+				current = current->next;
+		}
+	}
+	current = sorted_env;
+	while (current)
+	{
+		write (fd, "declare -x ", 11);
+		write (fd, current->var_name, ft_strlen(current->var_name));
+		write (fd, "=\"", 2);
+		write (fd, current->var_value, ft_strlen(current->var_value));
+		write (fd, "\"\n", 2);
+		current = current->next;
+	}
+	free_env_list(sorted_env);
+	mini_call()->exit_status = 0;
 }

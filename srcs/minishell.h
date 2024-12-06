@@ -64,6 +64,7 @@ typedef struct s_env
 	char	*var_name;
 	char	*var_value;
 	bool	exported;
+	struct s_env	*previous;
 	struct s_env	*next;
 }	t_env;
 
@@ -208,6 +209,8 @@ t_env	*get_env(char **envp);
 void	var_add_back(t_env *start, t_env *add);
 t_env	*init_var(char *str);
 t_env	*init_minimal_env(void);
+
+t_env	*env_dup(t_env *env);
 /*-------------------------------------------*/
 
 
@@ -319,6 +322,10 @@ void	pwd(int fd);
 void	cd(const char *new_dir, t_env *env);
 void	echo(char **cmd, int fd);
 void	exit_builtin(char *nbr);
+
+void	swap(t_env **stack);
+void	no_args_export(t_env *env, int fd)
+;
 /*-----------------------*/
 
 /*------------------*/

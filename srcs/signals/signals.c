@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 20:33:01 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/04 13:12:41 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/06 00:08:28 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ void	setup_signal_handlers(void)
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
+
+static void	handle_sigquithd(int sig)
+{
+	if (sig == SIGQUIT)
+		return ;
+}
+
 void	setup_child_process_signal_handlers(void)
 {
 	struct sigaction	sa;
@@ -44,6 +51,11 @@ void	setup_child_process_signal_handlers(void)
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
+
+	sa.sa_handler = handle_sigquithd;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGQUIT, &sa, NULL);
 }
 
 void	handle_sigint_heredoc(int sig)

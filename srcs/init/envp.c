@@ -25,6 +25,7 @@ t_env	*init_var(char *str)
 		new->exported = false;
 	}
 	new->next = NULL;
+	new->previous = NULL;
 	return (new);
 }
 
@@ -39,6 +40,7 @@ void	var_add_back(t_env *start, t_env *add)
 	while (step->next != NULL)
 		step = step->next;
 	step->next = add;
+	step->previous = step;
 }
 
 /*
@@ -85,4 +87,24 @@ t_env	*get_env(char **envp)
 		i++;
 	}
 	return (start);
+}
+
+/*
+duplicates an enviroment list
+*/
+t_env	*env_dup(t_env *env)
+{
+	t_env	*new;
+	t_env	*step;
+
+	if (!env)
+		return (NULL);
+	new = init_var(env->var);
+	step = env->next;
+	while (step)
+	{
+		var_add_back(new, init_var(step->var));
+		step = step->next;
+	}
+	return (new);
 }
