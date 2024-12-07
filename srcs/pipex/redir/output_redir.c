@@ -2,9 +2,6 @@
 
 void	do_out_redir(t_pipex *p)
 {
-	int	i;
-
-	i = 0;
 	if (!p)
 		return ;
 	if (p->next != NULL)

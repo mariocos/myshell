@@ -3,7 +3,7 @@
 /*
 initializes a var node will be used for envp and export
 */
-t_env	*init_var(char *str)
+t_env	*init_var(char *str)//need to test but should work//TODO:
 {
 	t_env	*new;
 	int	i;
@@ -25,6 +25,7 @@ t_env	*init_var(char *str)
 		new->exported = false;
 	}
 	new->next = NULL;
+	new->previous = NULL;
 	return (new);
 }
 
@@ -39,6 +40,7 @@ void	var_add_back(t_env *start, t_env *add)
 	while (step->next != NULL)
 		step = step->next;
 	step->next = add;
+	add->previous = step;
 }
 
 /*

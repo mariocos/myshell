@@ -65,6 +65,7 @@ typedef struct s_env
 	char	*var_value;
 	bool	exported;
 	struct s_env	*next;
+	struct s_env	*previous;
 }	t_env;
 
 typedef enum e_t_types
@@ -216,6 +217,13 @@ void	var_add_back(t_env *start, t_env *add);
 t_env	*init_var(char *str);
 t_env	*init_minimal_env(void);
 /*-------------------------------------------*/
+
+
+/*----------*/
+/*  export  */
+/*----------*/
+void	ft_init_export_list(void);
+
 
 
 /*-------------*/
