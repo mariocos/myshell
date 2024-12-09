@@ -271,5 +271,6 @@ void	export(char **args, int fd)
 			set_var(args[i]);
 		else
 			prep_var(args[i]);
+		i++;
 	}
 }
