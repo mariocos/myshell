@@ -321,13 +321,27 @@ void	setup_signal_handlers_heredoc(void);
 void	syntax_error(void);
 /*-------------------------*/
 
-
-
+/*export*/
+void	prep_var(char *str);
+void	smart_add(t_env *start, t_env *new);
+void	set_var(char *str);
+void	replace_var(t_env *start, t_env *new);
+bool	var_exists(t_env *start, t_env *new);
+bool	has_equal(char *str);
+bool	invalid_export(char *str);
+void	ft_init_export_list(void);
+void	print_export(int fd);
+void	ft_put_str_fd(char *str, int fd);
+t_env	*get_export(t_env *env);
+t_env	*sort_export_list(t_env *start);
+void	swap(t_env *e1, t_env *e2);
+t_env	*get_head(t_env *e);
+int ft_strcmp(const char* s1, const char* s2);
 
 /*------------------*/
 /*     builtins	    */
 /*------------------*/
-int		export(char *str, t_env *start, bool explicit_call);
+void	export(char **args, int fd);
 void	unset(char *str, t_env **env);
 void	env(t_env *env);
 void	pwd(void);
