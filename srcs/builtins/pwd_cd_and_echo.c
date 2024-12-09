@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/09 15:03:46 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:23:21 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,33 @@ void	error_message(char *msg, int fd)
 	}
 	write (fd, "\n", 1);
 }
+
+/* void	cd(char **args, int fd)
+{
+	char	env_var[4128];
+	char	wd[4096];
+
+	if ((!ft_strncmp(args[1], "~/", ft_strlen("~/"))
+			&& ft_strlen(args[1]) == ft_strlen("~/"))
+		|| (args[1][0] == '~' && !args[1][1]))
+		args[1] = getenv("HOME");
+	if (chdir(args[1]))
+	{
+		error_message("minishell: cd", fd);
+		mini_call()->exit_status = 1;
+		return ;
+	}
+	if (getcwd(wd, sizeof(wd)) == NULL)
+	{
+		error_message("minishell: pwd: ", fd);
+		mini_call()->exit_status = 1;
+		return ;
+	}
+	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
+	ft_strlcat(env_var, wd, sizeof(env_var));
+	export((char *[]){"export", env_var, NULL}, fd);
+	mini_call()->exit_status = 0;
+} */
 
 void	cd(const char *new_dir, int fd)
 {

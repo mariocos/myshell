@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 23:24:25 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/02 23:30:13 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:44:51 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,25 @@ static int calculate_exit_code(long long value)
     return (exit_code);
 }
 
-void	exit_builtin(char *nbr)
+void	exit_builtin(char **args)
+{
+	long long	value;
+	int			exit_code;
+
+	write(1, "exit\n", 5);
+	if (!args[1])
+		exit(EXIT_SUCCESS);
+	if (!is_numeric(args[1]) || !is_in_long_long_range(args[1]))
+	{
+		printf("minishell: exit: %s: numeric argument required\n", args[1]);
+		exit(2);
+	}
+	value = ft_atoll(args[1]);
+	exit_code = calculate_exit_code (value);
+	exit(exit_code);
+}
+
+/* void	exit_builtin(char *nbr)
 {
 	long long	value;
 	int			exit_code;
@@ -103,4 +121,4 @@ void	exit_builtin(char *nbr)
 	value = ft_atoll(nbr);
 	exit_code = calculate_exit_code (value);
 	exit(exit_code);
-}
+} */
