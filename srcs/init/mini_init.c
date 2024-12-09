@@ -11,7 +11,7 @@ void	mini_init(char **env)
 	mini->token = NULL;
 	mini->env = get_env(env);
 	mini->export = NULL;
-	ft_init_export_list();
+//	ft_init_export_list();
 	mini->input = NULL;
 	mini->exit_status = 0;
 	

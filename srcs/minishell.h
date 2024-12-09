@@ -66,7 +66,6 @@ typedef struct s_env
 	bool	exported;
 	struct s_env	*previous;
 	struct s_env	*next;
-	struct s_env	*previous;
 }	t_env;
 
 typedef enum e_t_types
@@ -344,15 +343,17 @@ int ft_strcmp(const char* s1, const char* s2);
 /*------------------*/
 /*     builtins	    */
 /*------------------*/
+void	error_message(char *msg, int fd);
+
 void	export(char **args, int fd);
 void	unset(char *str, t_env **env);
 void	env(t_env *env, int fd);
 void	pwd(int fd);
-void	cd(const char *new_dir, t_env *env);
+void	cd(const char *new_dir, int fd);
 void	echo(char **cmd, int fd);
 void	exit_builtin(char *nbr);
 
-void	swap(t_env **stack);
+//void	swap(t_env **stack);
 void	no_args_export(t_env *env, int fd)
 ;
 /*-----------------------*/

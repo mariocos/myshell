@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/09 13:50:19 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:03:46 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,29 @@ void	pwd(int fd)
 	}
 	else
 	{
-		perror("minishell: pwd: ");
+		error_message("minishell: pwd", fd);
 		mini_call()->exit_status = 1;
 	}
 }
 
-void	cd(const char *new_dir, t_env *env, int fd)
+void	error_message(char *msg, int fd)
+{
+	char	*error;
+
+	if (msg && *msg)
+	{
+		write (fd, msg, ft_strlen(msg));\
+		write (fd, ": ", 2);
+	}
+	if (errno != 0)
+	{
+		error = strerror(errno);
+		write (fd, error, ft_strlen(error));
+	}
+	write (fd, "\n", 1);
+}
+
+void	cd(const char *new_dir, int fd)
 {
 	char	env_var[4128];
 	char	wd[4096];
@@ -42,13 +59,13 @@ void	cd(const char *new_dir, t_env *env, int fd)
 		new_dir = getenv("HOME");
 	if (chdir(new_dir))
 	{
-		perror("minishell: cd");
+		error_message("minishell: cd", fd);
 		mini_call()->exit_status = 1;
 		return ;
 	}
 	if (getcwd(wd, sizeof(wd)) == NULL)
 	{
-		perror("minishell: pwd: ");
+		error_message("minishell: pwd: ", fd);
 		mini_call()->exit_status = 1;
 		return ;
 	}
