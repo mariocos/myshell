@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/09 15:23:21 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:16:17 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,13 @@ void	pwd(int fd)
 	}
 	else
 	{
-		error_message("minishell: pwd", fd);
+		perror("minishell: pwd");
 		mini_call()->exit_status = 1;
 	}
 }
 
-void	error_message(char *msg, int fd)
-{
-	char	*error;
 
-	if (msg && *msg)
-	{
-		write (fd, msg, ft_strlen(msg));\
-		write (fd, ": ", 2);
-	}
-	if (errno != 0)
-	{
-		error = strerror(errno);
-		write (fd, error, ft_strlen(error));
-	}
-	write (fd, "\n", 1);
-}
-
-/* void	cd(char **args, int fd)
+void	cd(char **args, int fd)
 {
 	char	env_var[4128];
 	char	wd[4096];
@@ -59,13 +43,13 @@ void	error_message(char *msg, int fd)
 		args[1] = getenv("HOME");
 	if (chdir(args[1]))
 	{
-		error_message("minishell: cd", fd);
+		perror("minishell: cd");
 		mini_call()->exit_status = 1;
 		return ;
 	}
 	if (getcwd(wd, sizeof(wd)) == NULL)
 	{
-		error_message("minishell: pwd: ", fd);
+		perror("minishell: pwd: ");
 		mini_call()->exit_status = 1;
 		return ;
 	}
@@ -73,9 +57,9 @@ void	error_message(char *msg, int fd)
 	ft_strlcat(env_var, wd, sizeof(env_var));
 	export((char *[]){"export", env_var, NULL}, fd);
 	mini_call()->exit_status = 0;
-} */
+}
 
-void	cd(const char *new_dir, int fd)
+/* void	cd(const char *new_dir, int fd)
 {
 	char	env_var[4128];
 	char	wd[4096];
@@ -100,7 +84,7 @@ void	cd(const char *new_dir, int fd)
 	ft_strlcat(env_var, wd, sizeof(env_var));
 	export((char *[]){"export", env_var, NULL}, fd);
 	mini_call()->exit_status = 0;
-}
+} */
 
 static bool	check_flag(char *str)
 {

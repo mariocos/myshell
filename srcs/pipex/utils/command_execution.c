@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/09 16:38:35 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:51:29 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	exec_if_builtin(t_pipex *process)
 	printf("ENTERED BUILTIN EXECUTION\n");
 	cmd = process->cmd[0];
 	if (!ft_strncmp(cmd, "cd", 2) && ft_strlen(cmd) == 2)
-		cd(process->cmd[1], process->out_fd);
+		cd(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "pwd", 3)	&& ft_strlen(cmd) == 3)
 		pwd(process->out_fd);
 	else if (!ft_strncmp(cmd, "env", 3)	&& ft_strlen(cmd) == 3)
