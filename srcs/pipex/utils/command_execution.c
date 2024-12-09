@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/09 16:03:38 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:38:35 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	exec_if_builtin(t_pipex *process)
 		echo(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "unset", 5) && ft_strlen(cmd) == 5)
 		unset(process->cmd[1], &(mini_call()->env));
-	else if (!ft_strncmp(cmd, "export", 6) && ft_strlen(cmd) == 6 && process->cmd[1])
+	else if (!ft_strncmp(cmd, "export\0", 7))
 		export(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
 		exit_builtin(process->cmd);

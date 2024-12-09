@@ -30,20 +30,12 @@ t_env	*get_head(t_env *e)
 
 void	swap(t_env *e1, t_env *e2)
 {
-	if (e1->previous)
-	{
+	e2->previous = e1->previous;
+	if (e1->previous != NULL)
 		e1->previous->next = e2;
-		e2->previous = e1->previous;
-	}
-	if (!e1->previous)
-		e2->previous = NULL;
-	if (e2->next)
-	{
+	if (e2->next != NULL)
 		e2->next->previous = e1;
-		e1->next = e2->next;
-	}
-	if (!e2->next)
-		e1->next = NULL;
+	e1->next = e2->next;
 	e2->next = e1;
 	e1->previous = e2;
 }
@@ -254,6 +246,7 @@ void	prep_var(char *str)
 
 void	export(char **args, int fd)
 {
+	printf("heloo from export\n");
 	int	i;
 
 	i = 1;
