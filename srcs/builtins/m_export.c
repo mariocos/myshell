@@ -246,6 +246,7 @@ void	prep_var(char *str)
 
 void	export(char **args, int fd)
 {
+	printf("heloo from export\n");
 	int	i;
 
 	i = 1;
