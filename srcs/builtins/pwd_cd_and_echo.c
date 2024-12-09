@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cd_and_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/03 16:11:31 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:36:41 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	pwd(void)
 	}
 }
 
-void	cd(const char *new_dir, t_env *env)
+void	cd(const char *new_dir, t_env *env, int fd)
 {
 	char	env_var[4128];
 	char	wd[4096];
@@ -53,7 +53,7 @@ void	cd(const char *new_dir, t_env *env)
 	}
 	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
 	ft_strlcat(env_var, wd, sizeof(env_var));
-	export(env_var, env, true);
+	export((char *[]){"export", env_var, NULL}, fd);
 	mini_call()->exit_status = 0;
 }
 

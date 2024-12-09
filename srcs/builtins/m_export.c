@@ -121,7 +121,7 @@ void	print_export(int fd)
 	{
 		ft_put_str_fd("declare -x ", fd);
 		ft_put_str_fd(step->var_name, fd);
-		if (step->var_value)
+		if (step->var_value && step->exported)
 		{
 			ft_put_str_fd("=\"", fd);
 			ft_put_str_fd(step->var_value, fd);
@@ -228,7 +228,7 @@ void	smart_add(t_env *start, t_env *new)
 {
 	t_env	*step;
 
-	step = start;
+	step = start;//missing check if new should go on top of list
 	while (step && strcmp(new->var_name, step->var_name) > 0)
 		step = step->next;
 	if (!step)
