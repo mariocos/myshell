@@ -40,7 +40,7 @@ void	var_add_back(t_env *start, t_env *add)
 	while (step->next != NULL)
 		step = step->next;
 	step->next = add;
-	step->previous = step;
+	add->previous = step;
 }
 
 /*
