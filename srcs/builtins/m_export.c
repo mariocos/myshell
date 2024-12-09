@@ -6,15 +6,17 @@
 */
 
 
-int ft_strcmp(const char* s1, const char* s2)//needs stress testing but should work
+int ft_strcmp(const char *s1, const char *s2)//needs stress testing but should work
 {
-	if (!s1 || !s2)
+	if (s1 == NULL || s2 == NULL)
 	{
 		printf("calling strcmp with NULL pointers\n");
 		return (0);
 	}
     while(*s1 && *s2 && (*s1 == *s2))
     {
+		if (!*s1 || !*s2)
+			break ;
         s1++;
         s2++;
     }
@@ -95,9 +97,9 @@ void	ft_put_str_fd(char *str, int fd)
 	int	i;
 
 	i = 0;
-	if (!str)
+	if (str == NULL)
 		return ;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		write (fd, &str[i], 1);
 		i++;
@@ -109,10 +111,11 @@ void	print_export(int fd)
 	t_env	*step;
 
 	step = mini_call()->export;
-	while (step)
+	while (step != NULL)
 	{
 		ft_put_str_fd("declare -x ", fd);
-		ft_put_str_fd(step->var_name, fd);
+		if (step->var_name != NULL)
+			ft_put_str_fd(step->var_name, fd);
 		if (step->var_value && step->exported)
 		{
 			ft_put_str_fd("=\"", fd);
@@ -184,17 +187,19 @@ void	replace_var(t_env *start, t_env *new)
 	t_env	*step;
 
 	step = start;
-	while (step)
+	while (step != NULL)
 	{
+		printf("detected var is %s and replace is %s\n", step->var_name, new->var_name);
 		if (!ft_strcmp(step->var_name, new->var_name))
 			break ;
 		step = step->next;
 	}
 	if (!step)
 		printf("called replace var wrong, this var [%s] was not found", new->var_name);
-	if (step->previous)
+	printf("detected var is %s and replace is %s\n", step->var_name, new->var_name);
+	if (step->previous != NULL)
 		step->previous->next = new;
-	if (step->next)
+	if (step->next != NULL)
 		step->next->previous = new;
 	new->next = step->next;
 	new->previous = step->previous;
@@ -206,12 +211,20 @@ void	set_var(char *str)
 	t_env	*new;
 
 	new = init_var(str);
+	printf("new check %s %s %s\n", new->var, new->var_name, new->var_value);
 	if (var_exists(mini_call()->env, new))
+	{
+		printf("var detected going to replace\n");
 		replace_var(mini_call()->env, new);
+	}
 	else
 		var_add_back(mini_call()->env, new);
 	if (var_exists(mini_call()->export, new))
-		replace_var(mini_call()->env, new);
+	{
+		printf("on export detect\n");
+		replace_var(mini_call()->export, new);
+		printf("made it out of here\n");
+	}
 	else
 		smart_add(mini_call()->export, new);
 }
@@ -266,4 +279,19 @@ void	export(char **args, int fd)
 			prep_var(args[i]);
 		i++;
 	}
+}
+
+
+int main(int argc, char **argv, char **envp)
+{
+	(void)argc;
+	(void)argv;
+	(void)envp;
+	char **help = ft_split("a b c d e f g", ' ');
+
+	mini_call()->env = get_env(help);
+	mini_call()->export = get_export(mini_call()->env);
+	print_envp(mini_call()->export);
+	set_var(ft_strdup("a=1"));
+	print_export(1);
 }

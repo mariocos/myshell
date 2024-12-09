@@ -27,7 +27,7 @@ void	mini_loop(char **envp)
 	clean_all();
 }
 
-int main(int argc, char **argv, char **envp)
+/* int main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
@@ -51,7 +51,7 @@ int main(int argc, char **argv, char **envp)
 	}
 	return (0);
 }
-
+ */
 
 /* valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all  
  --suppressions=".valgrind.supp" ./minishell*/

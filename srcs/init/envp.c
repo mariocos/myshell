@@ -13,7 +13,7 @@ t_env	*init_var(char *str)//need to test but should work//TODO:
 	i = 0;
 	while(str[i] != '=' && str[i])
 		i++;
-	new->var_name = ft_substr(str, 0, i);
+	new->var_name = ft_substr(str, 0, i + 1);
 	if (str[i] == '=')
 	{
 		new->var_value = ft_substr(str, i + 1, ft_strlen(str));

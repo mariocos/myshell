@@ -48,7 +48,7 @@ void	print_envp(t_env *env)
 {
 	if (!env)
 		return ;
-	while (env)
+	while (env != NULL)
 	{
 //		printf("\npointer to var %p previos %p next %p\n", env, env->previous, env->next);
 		printf("var [%s], var name[%s], var value [%s]\n",env->var, env->var_name, env->var_value);
