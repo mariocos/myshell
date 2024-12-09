@@ -29,7 +29,6 @@ void	print_token_list(t_token *start)
 			printf("token content is missing\n");
 		else
 			printf("token content is [%s] and token type %d\n", start->token, start->token_type);
-//			printf("token content is [%s] and token type %d\ncurrent is [%p] next is [%p] and previous is[%p]\n\n", start->token, start->token_type, start, start->next, start->previous);
 		start = start->next;
 	}
 	printf("token content is [%s] and token type %d\n", start->token, start->token_type);
@@ -76,24 +75,6 @@ void	print_pipex_list(t_pipex *start)
 		printf("\nprinting comands\n");
 		print_double_array(start->cmd);
 		printf("\nprinting path\n");
-
-/*		// H - Changes
-		printf("THE COMMAND IS %s\n", start->cmd[0]);
-		exec_if_builtin(start);
-		Only for command execution testing
-		// char *path = path_search(start->cmd[0], mini_call()->env);
-		// if (*path)
-		// {
-		// 	printf("THE PATH IS %s\n", path);
-
-		// 	char **envp = env_to_double_chr_ptr(mini_call()->env);
-		// 	if (execve(path, start->cmd, envp)== -1)
-		// 		printf ("NOTHING HAPPENED\n");
-		// 	ft_free(envp);
-
-		// 	free(path);
-		// }
-*/
 		start = start->next;
 		i++;
 	}

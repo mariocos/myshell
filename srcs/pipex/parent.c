@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parent.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/09 13:03:18 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
@@ -70,10 +82,17 @@ void	process_handler(t_pipex *p)//TODO:function too large split between call wit
 {
 	if (prep_input_redir(mini_call()->pipex_list) < 0)
 		return ;
-	if (mini_call()->exit_status != 0 && p->has_doc)//basically if there was a heredoc wich is reset to zero after the comand is done
+	if (mini_call()->exit_status == 130 && p->has_doc)//basically if there was a heredoc wich is reset to zero after the comand is done
 		return ;
+	if (mini_call()->exit_status == 144 && p->has_doc)//basically if there was a heredoc wich is reset to zero after the comand is done
+	{
+		mini_call()->exit_status = 0;
+		return ;
+	}
+
 	if (prep_output_redir(mini_call()->pipex_list) < 0)
 		return ;
+	printf("exit status %d passed to exec\n", mini_call()->exit_status);
 	//missing if statement for if redir prep was a fail!//TODO:
 	if (p->next == NULL)
 	{

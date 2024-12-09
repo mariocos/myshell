@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   remove_quotes.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 18:21:52 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 18:38:18 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
 this file handles removing quotes from the pipex list things where it matters 
 e.g.
+[he""lo "heey" '"'] -> [helo heey "]
 */
-
-int	remove_quote_len(char *str)//working as intended
+int	remove_quote_len(char *str)
 {
 	int	len;
 	int	i;
@@ -18,14 +30,14 @@ int	remove_quote_len(char *str)//working as intended
 	{
 		if (ft_isquote(str[i]) > 0)
 		{
-			len -= 2;//take away the two quotes
+			len -= 2;
 			i += advance_quotes(str, i) - 1;
 		}
 	}
 	return (len);
 }
 
-int	advance_quotes(char *str, int i)//working as intended
+int	advance_quotes(char *str, int i)
 {
 	int	len;
 
@@ -35,7 +47,7 @@ int	advance_quotes(char *str, int i)//working as intended
 		len++;
 		while (str[len] != '"')
 			len++;
-		return (len + 1 - i);//adding one for the final quote 
+		return (len + 1 - i);
 	}
 	else if (str[len] == '\'')
 	{
@@ -49,61 +61,6 @@ int	advance_quotes(char *str, int i)//working as intended
 		printf("error in parsing quotes dude\n");
 		return (-1);
 	}
-}
-
-static void	copy_quote(char *dest, char *src)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (src[i] == '\'')
-	{
-		i++;
-		while (src[i] != '\'')
-			dest[j++] = src[i++];
-	}
-	else if (src[i] == '\"')
-	{
-		i++;
-		while (src[i] != '\"')
-			dest[j++] = src[i++];
-	}
-	else
-		printf("using copy quote wrong\n");
-}
-
-char	*rem_quote(char *str)//working
-{
-	char	*ret;
-	int	i;
-	int	ret_i;
-
-	i = -1;
-	ret_i = 0;
-	if ((int)ft_strlen(str) == remove_quote_len(str))
-		return (str);
-	ret = safe_malloc(remove_quote_len(str) + 1);
-	if (remove_quote_len(str) == 0)
-		ret[0] = '\0';
-	else
-	{
-		while (str[++i] != '\0')
-		{
-			if (ft_isquote(str[i]) > 0)
-			{
-				copy_quote(ret + ret_i, str + i);
-				ret_i += advance_quotes(str, i) - 2;
-				i += advance_quotes(str, i) - 1;//magic! it makes it so it doesnt eat the char ahead of the "
-			}
-			else
-				ret[ret_i++] = str[i];
-		}
-		ret[ret_i] = '\0';
-	}
-	free(str);
-	return (ret);
 }
 
 void	remove_pipex_quotes(t_pipex *p)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_to_pipe.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 19:59:29 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 19:59:30 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	count_pipes(t_token *t)
@@ -46,10 +58,10 @@ void	pipex_add_back(t_pipex *start, t_pipex *add)
 
 t_pipex	*get_pipex_list(t_token	*t)
 {
-	int	pipe_amount;
+	int		pipe_amount;
 	t_pipex	*start;
 	t_pipex	*step;
-	int	i;
+	int		i;
 
 	i = 0;
 	pipe_amount = count_pipes(t);

@@ -1,14 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   re_tokenize.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 17:37:04 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 17:39:20 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
-tokens have already been created and separated by spaces, now the operators need to be separated
+	tokens have already been created and separated by spaces,
+now the words and operators need to be separated
 */
 t_token	*re_tokenize(t_token *start)
 {
 	t_token	*step;
 
 	step = start;
- 	while (step->next != NULL || needs_retoken(step->token))
+	while (step->next != NULL || needs_retoken(step->token))
 	{
 		if (needs_retoken(step->token))
 			step = token_reasign(step);
@@ -55,10 +68,12 @@ bool	needs_retoken(char *str)
 }
 
 /*
-Receives a token that needs_retoken and identifies if it starts with a operator or word and
-promptly extracts it using the extract_word and extract_operator functions.
+	Receives a token that needs_retoken and
+identifies if it starts with a operator or word 
+and promptly extracts it using
+the extract_word and extract_operator functions.
 */
-t_token	*token_separate(t_token *token)//revisit in order to make it less than 25 lines
+t_token	*token_separate(t_token *token)
 {
 	t_token	*new_first;
 
@@ -67,7 +82,7 @@ t_token	*token_separate(t_token *token)//revisit in order to make it less than 2
 	{
 		new_first = extract_operator(token);
 	}
-	else//change to extract word
+	else
 	{
 		new_first = extract_word(token);
 	}

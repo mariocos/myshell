@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_input.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:11:52 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:40:10 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	finish_input(char *new_input)
@@ -16,7 +28,8 @@ int	input_handle(void)
 		syntax_error();
 		return (-1);
 	}
-	mini_call()->token = input_split_to_token(special_split(mini_call()->input));
+	mini_call()->token
+	= input_split_to_token(special_split(mini_call()->input));
 	mini_call()->token = re_tokenize(mini_call()->token);
 	expand_vars_loop(mini_call()->token);
 	tilde_loop(mini_call()->token);

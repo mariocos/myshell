@@ -24,22 +24,34 @@ Part 2
 token 1:[echo] token 2:["hey"hello], token 3:[>] token 4:[test.txt], token 5:[|], token 6:[cat], token 7:[test.txt]
 /*----------------------------*/
 
+/*--------------------*/
+/*  tokens to pipex   */
+/*--------------------*/
+	After tokenization the pipex list is created,
+this list contains the necessary information to execute a builtin or executable.
 
-/*--------*/
-/*  envp  */
-/*--------*/
-	The enviroment properties in this project are handled in a linked list with the full var,
-var name, and var value.
-get_env returns the linked list populated with the envp and free_env frees the said linked list.
-/*------------------------*/
+The main fields are:
+
+	Input_redirections and output_redirections.
+Theese are both char** and follow this structure [prefix][name], where prefix is the type of redirection being done (append, here_doc or standard)
+and the name is the file name to redirect to or the finisher in case of here_doc.
+
+	Commands and arguments.
+This is a char** where the first position is the command and the following positions its arguments.
+/*----------------------------------------------------------*/
 
 /*--------------*/
 /*  expansions  */
 /*--------------*/
 Expansions are implemented to substitute variables from envp or export into the comand line,
 the syntax is as follows $[NAME] and it will be fully replaced by the var value.
+
 A valid var name can only start with a letter or underscore,
 var names must only be composed of letters, numbers and underscores.
+An exception to this is that if a var name starts with a digit it can only have lenght one.(so this $4242 is basically ($4)242)
+
+special expansions: i only implemented two special expansions, $$ and $? expanding to process id and exit_status respectively.
+
 e.g.
 [$HOME] expands to [/home/user]
 In case there is no var set with the intended name the var will be expanded to "".
@@ -50,18 +62,21 @@ In case there is no var set with the intended name the var will be expanded to "
 /*------------*/
 index:
 1: redirection syntax.
-2:input redirections.
-3:output redirections.
+2:general way it works.
+3:input redirections.
+4:output redirections.
 
 1:	In this project redirections are implemented in a very simple way.
 you can redirect both stdin and stdout to a specified file, a space after the operator is optional.
 e.g.
 	>[outfile] , >>[outfile], <[infile] , <<[heredoc].
 
-2:	input redirections are handled in order from left to right each of them overwriting the other.
+2:	redirections are prepared previous to the comand execution and if any redirs fail the execution will be haulted.
+
+3:	input redirections are handled in order from left to right each of them overwriting the other.
 heredoc is supported but is overwritten if there is another heredoc after or a input redirection.
 
-3:	output redirections are also handled left to right and overwriting the last one.
+4:	output redirections are also handled left to right and overwriting the last one.
 
 redirections inside pipes takeover the stdin and stdout from the pipe.
 
@@ -81,8 +96,13 @@ If tilde is not used as stated before it will not be interpreted.
 E.g. [hello~hey], ["~"], ['~'], [~beans] will not be expanded.
 /*------------------------------------------*/
 
-
 /*-----------------*/
 /*   readline      */
 /*-----------------*/
-	The readline function gets is part of a library so i wont go into to much detail,
+i strongly dislike this function.
+/*-------------------------------*/
+
+
+tldr:
+if you actually read this, thanks for taking time to look at my code!
+The Documentation isnt really complete but it helps get a grasp of the project.

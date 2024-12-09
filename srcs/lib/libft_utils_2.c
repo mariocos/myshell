@@ -1,5 +1,16 @@
-#include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_utils_2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:01:53 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:02:20 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../minishell.h"
 
 char	*ft_strcat(char *dst, const char *src, char	*ret)
 {
@@ -27,10 +38,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	s1_len = ft_strlen((const char *)s1);
 	s2_len = ft_strlen((const char *)s2);
-	ret = safe_malloc(s1_len + s2_len + 2);//another magick number im not really sure why its needed but it makes the computer happy
+	ret = safe_malloc(s1_len + s2_len + 2);
 	if (ret == NULL)
 		return (NULL);
 	ret[0] = '\0';
 	ft_strcat((char *)s1, (char *)s2, ret);
 	return (ret);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

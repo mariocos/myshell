@@ -4,17 +4,19 @@ SRC_PATH = ./srcs
 OBJ_DIR = ./objs
 
 SRCS = $(SRC_PATH)/quotes/quote_parse.c \
+	   $(SRC_PATH)/quotes/remove_quotes.c \
+	   $(SRC_PATH)/quotes/remove_quotes_utils.c \
 	   $(SRC_PATH)/input_handle/first_parse.c \
 	   $(SRC_PATH)/input_handle/handle_input.c \
 	   $(SRC_PATH)/lib/free_utils.c \
 	   $(SRC_PATH)/lib/clean.c \
 	   $(SRC_PATH)/lib/print_utils.c \
 	   $(SRC_PATH)/lib/is.c \
+	   $(SRC_PATH)/lib/is_2.c \
 	   $(SRC_PATH)/lib/libft_utils.c \
 	   $(SRC_PATH)/lib/libft_utils_2.c \
 	   $(SRC_PATH)/lib/safe_malloc.c \
 	   $(SRC_PATH)/lib/itoa.c \
-	   $(SRC_PATH)/quotes/remove_quotes.c \
 	   $(SRC_PATH)/token/tokenizer.c \
 	   $(SRC_PATH)/token/re_token_utils.c \
        $(SRC_PATH)/token/special_split.c \
@@ -22,6 +24,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/init/envp.c \
 	   $(SRC_PATH)/init/mini_init.c \
 	   $(SRC_PATH)/builtins/export.c \
+	   $(SRC_PATH)/builtins/m_export.c \
 	   $(SRC_PATH)/builtins/unset_and_env.c \
 	   $(SRC_PATH)/builtins/pwd_cd_and_echo.c \
 	   $(SRC_PATH)/builtins/exit.c \
@@ -33,6 +36,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
 	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \
+	   $(SRC_PATH)/pipex_parsing/add_to_double_char_array.c \
 	   $(SRC_PATH)/pipex/utils/twistft.c \
 	   $(SRC_PATH)/pipex/utils/twistsplit.c \
 	   $(SRC_PATH)/pipex/utils/pathsrch.c \

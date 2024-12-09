@@ -11,8 +11,9 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		str = get_next_line(0);//this might leak on ctrl-c
 		if (str == NULL)
 		{
-			write (1, "\n", 1);
-			break ;
+			write(1, "\n", 1);
+			free (str);
+			exit (144);
 		}
 		if (!ft_strncmp(str, eof, ft_strlen(eof)))//might want to change because this might also catch if you write more than just the finissher
 		{

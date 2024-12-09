@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_var.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:17:52 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:24:08 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
-loop to go through token list looking for places that need expansion and performing them
+loop to go through token list looking
+for places that need expansion and performing them
 */
 void	expand_vars_loop(t_token *start)
 {
@@ -36,35 +49,38 @@ void	do_expand(t_token *t)
 	free(var_value);
 }
 
+static void	init_index(t_index *i)
+{
+	i->new_i = 0;
+	i->t_i = 0;
+	i->var_i = 0;
+}
+
 /*
 this function is quite janky, maybe after delivery fix it :/
 */
 void	expand_var(t_token *t, char *var)
 {
 	char	*new;
-	int		new_i;
-	int		t_i;
-	int		var_i;
+	t_index	i;
 
-	var_i = 0;
-	new_i = 0;
-	t_i = 0;
+	init_index(&i);
 	new = safe_malloc(expanded_len(t, var));
-	while (t->token[t_i] != '$')
-		new[new_i++] = t->token[t_i++];
-	while (var[var_i] != '\0')
-		new[new_i++] = var[var_i++];
-	t_i++;
-	if (t->token[t_i] == '?' || t->token[t_i] == '$')
-		t_i += 1;
+	while (t->token[i.t_i] != '$')
+		new[i.new_i++] = t->token[i.t_i++];
+	while (var[i.var_i] != '\0')
+		new[i.new_i++] = var[i.var_i++];
+	i.t_i++;
+	if (t->token[i.t_i] == '?' || t->token[i.t_i] == '$')
+		i.t_i += 1;
 	else
 	{
-		t_i--;
-		t_i += var_name_len(t->token, t_i + 1) + 1;
+		i.t_i--;
+		i.t_i += var_name_len(t->token, i.t_i + 1) + 1;
 	}
-	while (t->token[t_i] != '\0')
-		new[new_i++] = t->token[t_i++];
-	new[new_i] = '\0';
+	while (t->token[i.t_i] != '\0')
+		new[i.new_i++] = t->token[i.t_i++];
+	new[i.new_i] = '\0';
 	free(t->token);
 	t->token = new;
 }

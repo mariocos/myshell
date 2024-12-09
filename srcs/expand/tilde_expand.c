@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tilde_expand.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:26:19 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:27:23 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
 expands tilde to $HOME
 due to the necessites of tilde expansion (read README)
-since i split the tokens by spaces the only time theres gonna be a valid tilde to expand
+since i split the tokens by spaces the only time
+theres gonna be a valid tilde to expand
 is if its at the begining of the token
 */
 void	tilde_loop(t_token *t)

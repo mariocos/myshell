@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   safe_malloc.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 20:59:05 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 20:59:41 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 static void	*ft_memset(void *s, int c, size_t n)
@@ -17,8 +29,7 @@ static void	*ft_memset(void *s, int c, size_t n)
 }
 
 /*
-to be fully implemented but should signal that there was a critical error
-and sanitize and exit on error
+missing exit
 */
 void	*safe_malloc(size_t size)
 {
@@ -27,8 +38,6 @@ void	*safe_malloc(size_t size)
 	ret = malloc(size);
 	if (!ret)
 	{
-//		free_all();
-//		safe_exit();
 		printf("\nA CRITICAL ERROR HAS OCCURRED\n\n");
 		return (NULL);
 	}

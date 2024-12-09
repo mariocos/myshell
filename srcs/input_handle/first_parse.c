@@ -1,14 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   first_parse.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:13:55 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:42:58 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-
-static bool	parse_pipe(t_token *t)//could already check for existence of words to left and right
+static bool	parse_pipe(t_token *t)
 {
-	if (!t->previous)
+	if (t->previous == NULL)
 		return (false);
-	if (!t->next)
+	if (t->next == NULL)
 		return (false);
 	if (t->next->token_type == PIPE)
+	{
+		printf("caught\n");
 		return (false);
+	}
 	return (true);
 }
 
@@ -26,20 +40,20 @@ bool	first_parse(t_token *start)
 	t_token	*step;
 
 	step = start;
-	while (step->next != NULL)
+	while (step)
 	{
 		if (step->token_type == PIPE)
 		{
-			if(!parse_pipe(step))
+			if (!parse_pipe(step))
 				return (false);
 		}
-		else if (step->token_type == RED_APP || step->token_type == RED_IN ||
-				step->token_type == RED_OUT || step->token_type == HERE_DOC)
+		else if (step->token_type == RED_APP || step->token_type == RED_IN
+			|| step->token_type == RED_OUT || step->token_type == HERE_DOC)
 		{
-			if(!parse_red(step))
+			if (!parse_red(step))
 				return (false);
 		}
 		step = step->next;
 	}
 	return (true);
-} 
+}

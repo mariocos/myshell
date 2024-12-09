@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hide_dolla.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:24:35 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:48:52 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	hide_expand(char *str)
@@ -8,15 +20,11 @@ void	hide_expand(char *str)
 	while (str[++i] != '\0')
 	{
 		if (str[i] == '$' && in_quote(str, i) && str[i + 1] == '\"')
-		{
-			printf("hiding va1r\n");
 			str[i] = OP_VAR;
-		}
 		if (str[i] == '$' && in_squote(str, i))
-		{
-			printf("hide var2\n");
 			str[i] = OP_VAR;
-		}
+		if (str[i] == '$' && str[i + 1] == '\'' && in_quote(str, i + 1))
+			str[i] = OP_VAR;
 	}
 }
 

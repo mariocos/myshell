@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   populate_pipex_utils.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 19:53:23 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 19:59:05 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	array_word_counter(char	**words)
@@ -10,38 +22,6 @@ int	array_word_counter(char	**words)
 	while (words[i] != NULL)
 		i++;
 	return (i);
-}
-
-char	**add_to_double_char_array(char **words, char *word)
-{
-	int	word_count;
-	char	**ret;
-	int	i;
-
-	i = 0;
-	if (!word)
-		return (words);
-	word_count = array_word_counter(words);
-	if (!words)
-	{
-		ret = safe_malloc(sizeof(char **) * 2);
-		ret[i] = word;
-	}
-	else
-	{
-		ret = safe_malloc(sizeof(char *) * (word_count + 2));
-		while (i < word_count)
-		{
-			ret[i] = ft_strdup(words[i]);
-			i++;
-		}
-		ret[i] = word;
-	}
-	i++;//added to see if it changes later change back to ret[++i]
-	ret[i] = NULL;
-	if (words)
-		free_double_char_array(words);
-	return (ret);
 }
 
 void	free_double_char_array(char **words)
@@ -61,7 +41,8 @@ void	free_double_char_array(char **words)
 }
 
 /*
-Add handler adds prefix to beggining of string before adding it to the char **words.
+	Add handler adds prefix to beggining
+of string before adding it to the char **words.
 */
 char	**add_handler(char **words, char *word, char *prefix)
 {

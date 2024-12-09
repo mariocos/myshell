@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/05 15:51:47 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:50:19 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	pwd(int fd)
 	}
 }
 
-void	cd(const char *new_dir, t_env *env)
+void	cd(const char *new_dir, t_env *env, int fd)
 {
 	char	env_var[4128];
 	char	wd[4096];
@@ -54,7 +54,7 @@ void	cd(const char *new_dir, t_env *env)
 	}
 	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
 	ft_strlcat(env_var, wd, sizeof(env_var));
-	export(env_var, env, true);
+	export((char *[]){"export", env_var, NULL}, fd);
 	mini_call()->exit_status = 0;
 }
 

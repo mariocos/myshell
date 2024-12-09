@@ -1,8 +1,22 @@
-#include "../minishell.h"
-/*
-special split works as normal split but ignores spaces in quotes
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   special_split.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 17:41:18 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 17:42:23 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../minishell.h"
+
+/*
+	this function isnt in lib because its very specific
+to the tokenization process, it splits a string by spaces
+into a char**.
+*/
 int	count_words(char const *s)
 {
 	int	i;
@@ -15,7 +29,8 @@ int	count_words(char const *s)
 		if (!ft_isspace(s[i]) || (ft_isspace(s[i]) && in_quote(s, i)))
 		{
 			count++;
-			while ((!ft_isspace(s[i]) || (ft_isspace(s[i]) && in_quote(s, i))) && s[i] != '\0')
+			while ((!ft_isspace(s[i]) || (ft_isspace(s[i])
+						&& in_quote(s, i))) && s[i] != '\0')
 				i++;
 		}
 		if (ft_isspace(s[i]) && !in_quote(s, i))
@@ -29,7 +44,8 @@ int	wordlen(char *s)
 	int	i;
 
 	i = 0;
-	while ((!ft_isspace(s[i]) || (ft_isspace(s[i]) && in_quote(s, i))) && s[i] != '\0')
+	while ((!ft_isspace(s[i]) || (ft_isspace(s[i])
+				&& in_quote(s, i))) && s[i] != '\0')
 		i++;
 	return (i);
 }
@@ -59,18 +75,3 @@ char	**special_split(char const *s)
 	ret[i] = NULL;
 	return (ret);
 }
-
-
-/* int main() {
-	char *str = "      echo hello|<<EOF \"beans   \" \"\"";
-    char **words = ft_split(str);
-	int	i = 0;
-
-
-	while (words[i])
-	{
-		printf("[%s]\n",words[i]);
-		i++;
-	}
-    return 0;
-} */

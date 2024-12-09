@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
 /*   Updated: 2024/12/06 13:54:30 by hugo-mar         ###   ########.fr       */
+=======
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
+/*   Updated: 2024/12/07 18:56:38 by mario            ###   ########.fr       */
+>>>>>>> mario
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +109,13 @@ void	exec_if_builtin(t_pipex *process)
 	else if (!ft_strncmp(cmd, "env", 3)	&& ft_strlen(cmd) == 3)
 		env(mini_call()->env, process->out_fd);
 	else if (!ft_strncmp(cmd, "echo", 4) && ft_strlen(cmd) == 4)
-		echo(process->cmd, process->out_fd);
+		echo(process->cmd, process->out_fd);ccdcd
 	else if (!ft_strncmp(cmd, "unset", 5) && ft_strlen(cmd) == 5)
 		unset(process->cmd[1], &(mini_call()->env));
 	else if (!ft_strncmp(cmd, "export", 6) && ft_strlen(cmd) == 6 && process->cmd[1])
-		export(process->cmd[1], mini_call()->env, true);
-	else if (!ft_strncmp(cmd, "export", 6) && ft_strlen(cmd) == 6 && !process->cmd[1])
-		no_args_export(mini_call()->env, process->out_fd);
-	// else if (has_equal_sign(cmd))
-	// {
-	// 	printf("I WILL DO SOMETHING\n");
-	// 	export(process->cmd[0], mini_call()->env, false);
-	// }
+		export(process->cmd[1], mini_call()->env);
+	else if (has_equal_sign(cmd))
+		export(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
 		exit_builtin(process->cmd[1]);
 	if (process->pid == 0)

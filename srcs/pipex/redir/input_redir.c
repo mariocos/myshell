@@ -17,7 +17,6 @@ void	do_input_redir(t_pipex *p)//to be changed to just check if in_fd is 0, if n
 		return ;
 	else
 	{
-	//	printf("redirectin in\n");
 		if (p->has_doc)
 		{
 			dup2(p->doc_pipe[0], STDIN_FILENO);

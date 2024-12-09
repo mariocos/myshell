@@ -3,7 +3,7 @@
 /*
 initializes a var node will be used for envp and export
 */
-t_env	*init_var(char *str)
+t_env	*init_var(char *str)//need to test but should work//TODO:
 {
 	t_env	*new;
 	int	i;
@@ -19,7 +19,7 @@ t_env	*init_var(char *str)
 		new->var_value = ft_substr(str, i + 1, ft_strlen(str));
 		new->exported = true;
 	}
-	else
+	else//might want to change to NULL instead of '\0'
 	{
 		new->var_value = ft_strdup("");
 		new->exported = false;

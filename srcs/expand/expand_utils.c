@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/05 21:33:55 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
@@ -14,33 +26,33 @@ bool	needs_expand(t_token *t)
 		return (false);
 	while (t->token[i] != '\0')
 	{
-		if (t->token[i] == '$' && !in_squote(t->token, i))//needs to be changed to check if its in a special quote if not expand
+		if (t->token[i] == '$' && !in_squote(t->token, i))
 			return (true);
 		i++;
 	}
 	return (false);
 }
 
-
 /*
 returns len of the var name ignoring the $
 E.g. returns 4 for "$HOME"
 */
-int	var_name_len(char *var_name, int i)//maybe change a bit to return accounting for $
+int	var_name_len(char *var_name, int i)
 {
 	int	len;
 
 	len = 0;
 	if (is_special_expand(var_name + i))
 	{
-		printf("returning on special %d\n", is_special_expand(var_name + i));
 		return (is_special_expand(var_name + i));
 	}
-	if (ft_isdigit(var_name[i]) || (!ft_isalpha(var_name[i]) && var_name[i] != '_'))
+	if (ft_isdigit(var_name[i]))
+		return (1);
+	if (!ft_isalpha(var_name[i]) && var_name[i] != '_')
 		return (0);
-	while (ft_isdigit(var_name[i + len]) || ft_isalpha(var_name[i + len]) || var_name[i + len] == '_')
+	while (ft_isdigit(var_name[i + len])
+		|| ft_isalpha(var_name[i + len]) || var_name[i + len] == '_')
 		len++;
-	printf("on return normal %d\n", len);
 	return (len);
 }
 
