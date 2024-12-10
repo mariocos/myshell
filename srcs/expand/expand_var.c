@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:17:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 20:45:19 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/10 20:49:53 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ void	expand_var(t_token *t, char *var)
 		new[i.new_i++] = t->token[i.t_i++];
 	new[i.new_i] = '\0';
 	free(t->token);
-	printf("[%s]\n", new);
 	t->token = new;
 }
