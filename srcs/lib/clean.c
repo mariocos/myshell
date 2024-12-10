@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:51:42 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 20:48:52 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	clean_comand(void)
 	m = mini_call();
 	if (!m)
 		return ;
+	if (m->input)
+		free(m->input);
 	if (m->token)
 	{
 		free_token_list(m->token);

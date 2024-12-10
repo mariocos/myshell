@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:17:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:24:08 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 20:45:19 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	expand_var(t_token *t, char *var)
 	t_index	i;
 
 	init_index(&i);
-	new = safe_malloc(expanded_len(t, var));
+	new = safe_malloc(expanded_len(t, var) + 1);
 	while (t->token[i.t_i] != '$')
 		new[i.new_i++] = t->token[i.t_i++];
 	while (var[i.var_i] != '\0')
@@ -82,5 +82,6 @@ void	expand_var(t_token *t, char *var)
 		new[i.new_i++] = t->token[i.t_i++];
 	new[i.new_i] = '\0';
 	free(t->token);
+	printf("[%s]\n", new);
 	t->token = new;
 }
