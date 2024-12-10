@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathsrch.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 03:12:30 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/03 14:22:20 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:55:22 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static t_env	*find_path_node(t_env *env)
 	while (tmp)
 	{
 		if (!ft_strncmp(tmp->var_name, "PATH", 4)
-				&& ft_strlen(tmp->var_name) == 4)
-			return(tmp);
+			&& ft_strlen(tmp->var_name) == 4)
+			return (tmp);
 		tmp = tmp->next;
 	}
 	return (NULL);

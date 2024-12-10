@@ -6,15 +6,15 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/09 16:51:29 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:54:23 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int count_env(t_env *env)
+static int	count_env(t_env *env)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (env)
@@ -25,10 +25,9 @@ static int count_env(t_env *env)
 	return (count);
 }
 
-
-char **env_to_double_chr_ptr(t_env	*env)
+char	**env_to_double_chr_ptr(t_env	*env)
 {
-	char 	**env_chr_ptr;
+	char	**env_chr_ptr;
 	t_env	*tmp;
 	int		i;
 	int		j;
@@ -91,15 +90,14 @@ long	ft_atol(char *str)
 
 void	exec_if_builtin(t_pipex *process)
 {
-	char *cmd;
+	char	*cmd;
 
-	printf("ENTERED BUILTIN EXECUTION\n");
 	cmd = process->cmd[0];
 	if (!ft_strncmp(cmd, "cd", 2) && ft_strlen(cmd) == 2)
 		cd(process->cmd, process->out_fd);
-	else if (!ft_strncmp(cmd, "pwd", 3)	&& ft_strlen(cmd) == 3)
+	else if (!ft_strncmp(cmd, "pwd", 3) && ft_strlen(cmd) == 3)
 		pwd(process->out_fd);
-	else if (!ft_strncmp(cmd, "env", 3)	&& ft_strlen(cmd) == 3)
+	else if (!ft_strncmp(cmd, "env", 3) && ft_strlen(cmd) == 3)
 		env(mini_call()->env, process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "echo", 4) && ft_strlen(cmd) == 4)
 		echo(process->cmd, process->out_fd);
@@ -110,5 +108,5 @@ void	exec_if_builtin(t_pipex *process)
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
 		exit_builtin(process->cmd);
 	if (process->pid == 0)
-		exit(1);//just making sure we dont leave childs alive!
+		exit(1);
 }
