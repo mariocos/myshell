@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_helper.c                                     :+:      :+:    :+:   */
+/*   parent_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 14:47:44 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:04:28 by mariocos         ###   ########.fr       */
+/*   Created: 2024/12/10 16:09:22 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/10 16:40:44 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-int	here_pipe_error(void)
+int	pipe_error(void)
 {
-	ft_put_str_fd("crit error on pipe\n", 2);
+	ft_put_str_fd("critical error creating a pipe\n", 2);
 	mini_call()->exit_status = 1;
 	return (-1);
 }
 
-int	infile_error(void)
+int	fork_error(void)
 {
-	ft_put_str_fd("bad input redirection file\n", 2);
+	printf("a critical error has occured trying to fork\n");
 	mini_call()->exit_status = 1;
 	return (-1);
+}
+
+void	close_fds(int *fds)
+{
+	close(fds[0]);
+	close(fds[1]);
 }

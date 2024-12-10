@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 14:43:01 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:02:58 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,22 @@ void	do_input_redir(t_pipex *p)
 			close(p->in_fd);
 		}
 	}
+}
+
+void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i)
+{
+	if (p->has_doc)
+		close_fds(p->doc_pipe);
+	p->has_doc = 0;
+	if_close(p->in_fd);
+	if (input_redir(p->red_in[i] + 4, p) < 0)
+		*error_flag = i;
+}
+
+void	heredoc_helper(t_pipex *p)
+{
+	if_close(p->in_fd);
+	if (p->has_doc)
+		close_fds(p->doc_pipe);
+	p->has_doc = 1;
 }

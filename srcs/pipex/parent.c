@@ -6,113 +6,72 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/09 13:03:18 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:37:38 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/*
-the parent proccess should be called with a t_pipex struct wich allows it to execute a comand
-*/
-void	pipe_error(void)
-{
-	printf("\n\na critical error has ocurred when creating a pipe\n\n");
-	perror("pipe");
-	exit(EXIT_FAILURE);
-}
-
-void	fork_error(void)
-{
-	printf("a critical error has occured trying to fork\n");
-	perror("fork");
-	exit(EXIT_FAILURE);
-}
-
-void	close_fds(int *fds)
-{
-	close(fds[0]);
-	close(fds[1]);
-}
-
-void	spawn_child(t_pipex *p)
+int	spawn_child(t_pipex *p)
 {
 	if (!p)
-		return ;
+		return (-1);
 	if (pipe(p->pipe) < 0)
-		pipe_error();
+		return (pipe_error());
 	p->pid = fork();
 	if (p->pid < 0)
-		fork_error();
+		return (fork_error());
 	if (p->pid == 0)
 		child_process_new(p);
 	if (p->previous)
 		close(p->previous->pipe[0]);
 	close(p->pipe[1]);
+	return (1);
 }
 
-void	ft_waitpid(int pid)
-{
-	int	status;
-	int	term_signal;
-
-	while (waitpid(pid, &status, 0) == -1)
-	{
-		if (errno == EINTR)
-			continue;
-		else
-		{
-			perror("waitpid");
-			mini_call()->exit_status = 1;
-			return ;
-		}
-	}
-	if (WIFEXITED(status))
-		mini_call()->exit_status = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
-	{
-		term_signal = WTERMSIG(status);
-		mini_call()->exit_status = 128 + term_signal;
-	}
-	else
-		mini_call()->exit_status = 1;
-}
-
-void	process_handler(t_pipex *p)//TODO:function too large split between call with pipes and without!
+int	prep_redir(t_pipex *p)
 {
 	if (prep_input_redir(mini_call()->pipex_list) < 0)
-		return ;
-	if (mini_call()->exit_status == 130 && p->has_doc)//basically if there was a heredoc wich is reset to zero after the comand is done
-		return ;
-	if (mini_call()->exit_status == 144 && p->has_doc)//basically if there was a heredoc wich is reset to zero after the comand is done
+		return (-1);
+	if (mini_call()->exit_status == 130 && p->has_doc)
+		return (-1);
+	if (mini_call()->exit_status == 144 && p->has_doc)
 	{
 		mini_call()->exit_status = 0;
-		return ;
+		return (-1);
 	}
-
 	if (prep_output_redir(mini_call()->pipex_list) < 0)
-		return ;
-	printf("exit status %d passed to exec\n", mini_call()->exit_status);
-	//missing if statement for if redir prep was a fail!//TODO:
-	if (p->next == NULL)
+		return (-1);
+	return (1);
+}
+
+void	exec_single_comand(t_pipex *p)
+{
+	if (is_builtin(p))
 	{
-		if (is_builtin(p))//and not echo! echo is run in fork();
-		{
-			exec_if_builtin(p);
-		}
-		else
-		{
-			p->pid = fork();
-			if (p->pid == 0)
-				child_process_new(p);
-			ft_waitpid(p->pid);
-		}
+		exec_if_builtin(p);
 	}
 	else
 	{
-		while(p != NULL)
+		p->pid = fork();
+		if (p->pid == 0)
+			child_process_new(p);
+		ft_waitpid(p->pid);
+	}
+}
+
+void	process_handler(t_pipex *p)
+{
+	if (prep_redir(p) < 0)
+		return ;
+	if (p->next == NULL)
+		exec_single_comand(p);
+	else
+	{
+		while (p != NULL)
 		{
-			spawn_child(p);
+			if (spawn_child(p) < 0)
+				return ;
 			p = p->next;
 		}
 		p = mini_call()->pipex_list;

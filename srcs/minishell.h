@@ -370,8 +370,11 @@ void	no_args_export(t_env *env, int fd)
 /*------------------*/
 /*     pipex	    */
 /*------------------*/
+int	pipe_error(void);
+int	fork_error(void);
 void	close_fds(int *fds);
-void	spawn_child(t_pipex *p);
+void	close_fds(int *fds);
+int		spawn_child(t_pipex *p);
 void	process_handler(t_pipex *p);
 void	child_process_new(t_pipex	*p);
 void	ft_waitpid(int pid);
@@ -385,6 +388,9 @@ void	do_out_redir(t_pipex *p);
 int	prep_input_redir(t_pipex *p);
 int	prep_output_redir(t_pipex *p);
 void	if_close(int fd);
+int	input_redir(char *str, t_pipex *p);
+void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i);
+void	heredoc_helper(t_pipex *p);
 /*----------------------------------*/
 
 
