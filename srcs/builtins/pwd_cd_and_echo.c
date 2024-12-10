@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cd_and_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 14:16:38 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:46:25 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,40 @@ void	pwd(int fd)
 	}
 	else
 	{
-		error_message("minishell: pwd", fd);
+		perror("minishell: pwd");
 		mini_call()->exit_status = 1;
 	}
 }
 
-void	error_message(char *msg, int fd)
-{
-	char	*error;
 
-	if (msg && *msg)
+void	cd(char **args, int fd)
+{
+	char	env_var[4128];
+	char	wd[4096];
+
+	if (!args[1] || (!ft_strncmp(args[1], "~/", ft_strlen("~/"))
+			&& ft_strlen(args[1]) == ft_strlen("~/"))
+		|| (args[1][0] == '~' && !args[1][1]))
+		args[1] = get_var_value(mini_call()->env, "HOME");
+	if (chdir(args[1]))
 	{
-		write (fd, msg, ft_strlen(msg));\
-		write (fd, ": ", 2);
+		perror("minishell: cd");
+		mini_call()->exit_status = 1;
+		return ;
 	}
-	if (errno != 0)
+	if (getcwd(wd, sizeof(wd)) == NULL)
 	{
-		error = strerror(errno);
-		write (fd, error, ft_strlen(error));
+		perror("minishell: pwd: ");
+		mini_call()->exit_status = 1;
+		return ;
 	}
-	write (fd, "\n", 1);
+	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
+	ft_strlcat(env_var, wd, sizeof(env_var));
+	export((char *[]){"export", env_var, NULL}, fd);
+	mini_call()->exit_status = 0;
 }
 
-void	cd(const char *new_dir, int fd)
+/* void	cd(const char *new_dir, int fd)
 {
 	char	env_var[4128];
 	char	wd[4096];
@@ -74,7 +85,7 @@ void	cd(const char *new_dir, int fd)
 	ft_strlcat(env_var, wd, sizeof(env_var));
 	export((char *[]){"export", env_var, NULL}, fd);
 	mini_call()->exit_status = 0;
-}
+} */
 
 static bool	check_flag(char *str)
 {

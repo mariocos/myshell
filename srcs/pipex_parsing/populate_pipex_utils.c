@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   populate_pipex_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:53:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 19:59:05 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:28:26 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ char	**add_handler(char **words, char *word, char *prefix)
 	if (prefix)
 		new_add = ft_strjoin(prefix, word);
 	else
+	{
+		printf("duping well\n");	
 		new_add = ft_strdup(word);
+	}
 	ret = add_to_double_char_array(words, new_add);
 	return (ret);
 }
