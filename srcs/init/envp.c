@@ -1,26 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   envp.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 16:53:29 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/10 16:54:53 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
 initializes a var node will be used for envp and export
 */
-t_env	*init_var(char *str)//need to test but should work//TODO:
+t_env	*init_var(char *str)
 {
 	t_env	*new;
-	int	i;
+	int		i;
 
 	new = (t_env *)safe_malloc(sizeof(t_env));
 	new->var = ft_strdup(str);
 	i = 0;
-	while(str[i] != '=' && str[i])
+	while (str[i] != '=' && str[i])
 		i++;
 	new->var_name = ft_substr(str, 0, i);
-	printf("in init var name [%s] and size %ld\n", new->var_name, sizeof(new->var_name));
 	if (str[i] == '=')
 	{
 		new->var_value = ft_substr(str, i + 1, ft_strlen(str));
 		new->exported = true;
 	}
-	else//might want to change to NULL instead of '\0'
+	else
 	{
 		new->var_value = ft_strdup("");
 		new->exported = false;
@@ -67,7 +78,7 @@ t_env	*init_minimal_env(void)
 	t_env	*start;
 	char	cwd[4096];
 
-	if(getcwd(cwd, sizeof(cwd)) == NULL)
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
 		perror("getcwd");
 		exit(1);
@@ -82,7 +93,6 @@ t_env	*init_minimal_env(void)
 	return (start);
 }
 
-
 /*
 populates list with envp
 */
@@ -90,10 +100,10 @@ t_env	*get_env(char **envp)
 {
 	t_env	*new;
 	t_env	*start;
-	int	i;
+	int		i;
 
 	if (count_strs(envp) == 0)
-		return(init_minimal_env());
+		return (init_minimal_env());
 	start = init_var(envp[0]);
 	i = 1;
 	while (envp[i] != NULL)

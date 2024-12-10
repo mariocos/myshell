@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 14:24:39 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:51:42 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	clean_all(void)
 		free_env_list(m->env);
 	clear_history();
 	rl_clear_signals();
-	rl_deprep_terminal(); 
+	rl_deprep_terminal();
 }
 
 void	clean_comand(void)
