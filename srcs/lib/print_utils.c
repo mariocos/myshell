@@ -14,6 +14,7 @@ void	print_double_array(char **words)
 	{
 		printf("ind %d [%s]\n", i,  words[i]);
 	}
+	printf("last part is [%p]\n", words[i]);
 }
 
 void	print_token_list(t_token *start)

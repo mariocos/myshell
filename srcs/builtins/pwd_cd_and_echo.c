@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 14:29:12 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:46:25 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	cd(char **args, int fd)
 	char	env_var[4128];
 	char	wd[4096];
 
-	if ((!ft_strncmp(args[1], "~/", ft_strlen("~/"))
+	if (!args[1] || (!ft_strncmp(args[1], "~/", ft_strlen("~/"))
 			&& ft_strlen(args[1]) == ft_strlen("~/"))
 		|| (args[1][0] == '~' && !args[1][1]))
-		args[1] = getenv("HOME");
+		args[1] = get_var_value(mini_call()->env, "HOME");
 	if (chdir(args[1]))
 	{
 		perror("minishell: cd");
