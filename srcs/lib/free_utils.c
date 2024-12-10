@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:04:49 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 17:58:26 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:37:14 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	free_pipex_list(t_pipex *p)
 	while (p)
 	{
 		help = p->next;
+		//close_fds(p->pipe);
 		if (p->cmd)
 			free_double_char_array(p->cmd);
 		if (p->red_in)

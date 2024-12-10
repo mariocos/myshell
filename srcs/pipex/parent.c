@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:37:38 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:36:58 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	spawn_child(t_pipex *p)
 	if (p->previous)
 		close(p->previous->pipe[0]);
 	close(p->pipe[1]);
+	if (!p->next)
+		close(p->pipe[0]);
 	return (1);
 }
 
