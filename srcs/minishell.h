@@ -328,6 +328,8 @@ void	setup_signal_handlers_heredoc(void);
 /* errores     */
 /*-------------*/
 void	syntax_error(void);
+int	here_pipe_error(void);
+int	infile_error(char *error_msg);
 /*-------------------------*/
 
 /*export*/

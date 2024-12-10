@@ -1,10 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_redir.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/10 14:43:01 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
-/*
-this file need to be changed, input redirs are setup before the fork and dup2d after the fork.
-*/
-
-void	do_input_redir(t_pipex *p)//to be changed to just check if in_fd is 0, if not dup with in_fd.
+void	do_input_redir(t_pipex *p)
 {
 	if (!p)
 		return ;
@@ -21,7 +29,6 @@ void	do_input_redir(t_pipex *p)//to be changed to just check if in_fd is 0, if n
 		{
 			dup2(p->doc_pipe[0], STDIN_FILENO);
 			close(p->doc_pipe[0]);
-
 		}
 		else
 		{

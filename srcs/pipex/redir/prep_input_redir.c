@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prep_input_redir.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/10 14:50:43 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 void	read_into_pipe(char *eof, t_pipex *p)
 {
 	char *str;
 
-	close(p->doc_pipe[0]);//this line breaks heredocs and idk why
+	close(p->doc_pipe[0]);
 	while (1)
 	{
 		write(1, "pipe into doc>", 14);
-		str = get_next_line(0);//this might leak on ctrl-c
+		str = get_next_line(0);
 		if (str == NULL)
 		{
 			write(1, "\n", 1);
 			free (str);
 			exit (144);
 		}
-		if (!ft_strncmp(str, eof, ft_strlen(eof)))//might want to change because this might also catch if you write more than just the finissher
+		if (!ft_strncmp(str, eof, ft_strlen(eof)))
 		{
 			free(str);
 			break ;
@@ -28,13 +40,10 @@ void	read_into_pipe(char *eof, t_pipex *p)
 
 static int	do_here_doc(char *str, t_pipex *p)
 {
-	int	pid;//change to struct???
+	int	pid;
 
 	if (pipe(p->doc_pipe) < 0)
-	{
-		printf("critical pipe erro\n");//handle error
-		return (0);
-	}
+		return (here_pipe_error());
 	pid = fork();
 	if (pid < 0)
 	{
@@ -56,9 +65,8 @@ static int	do_here_doc(char *str, t_pipex *p)
 	return (1);
 }
 
-static int	input_redir(char *str, t_pipex *p)//to be tested but pretty sure it still works
+static int	input_redir(char *str, t_pipex *p)
 {
-	//check file perms
 	if (access(str, F_OK) == -1 || access(str, R_OK) == -1)
 	{
 		return (-1);
@@ -71,12 +79,6 @@ void	if_close(int fd)
 {
 	if (fd > 2)
 		close (fd);
-}
-
-int	infile_error(char *error_msg)
-{
-	printf("bad infile %s\n", error_msg);
-	return (-1);
 }
 
 int	prep_input_redir(t_pipex *p)
@@ -93,7 +95,7 @@ int	prep_input_redir(t_pipex *p)
 		i = 0;
 		while (p->red_in && p->red_in[i])
 		{
-			if (!ft_strncmp(p->red_in[i], "STD:", 4) && error_flag == -1)//change has_doc to zero and close doc pipe
+			if (!ft_strncmp(p->red_in[i], "STD:", 4) && error_flag == -1)
 			{
 				if (p->has_doc)
 					close_fds(p->doc_pipe);
