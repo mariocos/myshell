@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 17:57:49 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:58:31 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	child_process_new(t_pipex	*p)
 		return ;
 	do_input_redir(p);
 	do_out_redir(p);
+	close_fds(p->pipe);
 	if (is_builtin(p))
 		exec_if_builtin(p);
 	else
