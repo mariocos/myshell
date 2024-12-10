@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
+/*   Updated: 2024/12/10 17:42:41 by hugo-mar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
- 
+
 void	mini_loop(char **envp)
 {
 	mini_init(envp);
@@ -14,24 +26,18 @@ void	mini_loop(char **envp)
 		if (mini_call()->input && *mini_call()->input)
 		{
 			if (input_handle() == 1)
-			{
-//				print_token_list(mini_call()->token);
-//				print_pipex_list(mini_call()->pipex_list);
 				process_handler(mini_call()->pipex_list);
-			}
 		}
 		clean_comand();
 	}
 	clean_all();
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	
+	char	*str;
 
+	(void)argv;
 	if (argc == 1)
 	{
 		setup_signal_handlers();
@@ -39,7 +45,7 @@ int main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		char *str = ft_strdup("$$");
+		str = ft_strdup("$$");
 		mini_init(envp);
 		mini_call()->input = str;
 		input_handle();
@@ -49,7 +55,3 @@ int main(int argc, char **argv, char **envp)
 	}
 	return (0);
 }
-
-
-/* valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all  
- --suppressions=".valgrind.supp" ./minishell*/
