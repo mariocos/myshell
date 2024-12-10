@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:44:32 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 17:14:35 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:17:30 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	remove_var(char *str)
 {
 	t_env	*step;
-	
+
 	if (!str || !mini_call()->env)
 		return ;
 	step = mini_call()->env;
@@ -49,7 +49,7 @@ void	unset(char **str, t_env *env)
 	while (str[i] != NULL)
 	{
 		remove_var(str[i]);
-		i++;	
+		i++;
 	}
 	mini_call()->exit_status = 0;
 }
@@ -67,7 +67,7 @@ void	env(t_env *env, char **args, int fd)
 		write(fd, args[1], ft_strlen(args[1]));
 		write(fd, "': No such file or directory\n", 29);
 		mini_call()->exit_status = 127;
-		return ;	
+		return ;
 	}
 	while (env != NULL)
 	{
