@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:26:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:27:23 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:26:43 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	expand_tilde(t_token *t)
 	ret_i = 0;
 	t_i = 1;
 	exp_i = 0;
-	expand = get_var_value(mini_call()->env, "HOME");
+	expand = ft_strdup(mini_call()->home);
 	ret = safe_malloc(ft_strlen(expand) + ft_strlen(t->token) + 1);
 	while (expand[exp_i] != '\0')
 		ret[ret_i++] = expand[exp_i++];
