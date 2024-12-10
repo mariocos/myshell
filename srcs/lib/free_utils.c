@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:04:49 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:51:49 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:58:26 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ void	free_pipex_list(t_pipex *p)
 	{
 		help = p->next;
 		if (p->cmd)
-		{
-			printf("\ncalled free\n");
 			free_double_char_array(p->cmd);
-		}
 		if (p->red_in)
 			free_double_char_array(p->red_in);
 		if (p->red_out)
