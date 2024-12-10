@@ -14,6 +14,7 @@ t_env	*init_var(char *str)//need to test but should work//TODO:
 	while(str[i] != '=' && str[i])
 		i++;
 	new->var_name = ft_substr(str, 0, i);
+	printf("in init var name [%s] and size %ld\n", new->var_name, sizeof(new->var_name));
 	if (str[i] == '=')
 	{
 		new->var_value = ft_substr(str, i + 1, ft_strlen(str));
@@ -35,12 +36,27 @@ simple list add back
 void	var_add_back(t_env *start, t_env *add)
 {
 	t_env	*step;
+	t_env	*end;
 
 	step = start;
-	while (step->next != NULL)
+	while (step != NULL)
+	{
+		if (!ft_strcmp(step->var_name, add->var_name))
+		{
+			free (step->var_value);
+			step->var_value = ft_strdup(add->var_value);
+			step->exported = true;
+			free_var(add);
+			return ;
+		}
+		end = step;
 		step = step->next;
-	step->next = add;
-	add->previous = step;
+	}
+	if (end)
+	{
+		end->next = add;
+		add->previous = end;
+	}
 }
 
 /*

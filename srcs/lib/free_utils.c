@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:04:49 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:05:08 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:32:29 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	free_var(t_env *var)
 {
 	if (!var)
 		return ;
-	if (var->var)
+	if (var->var != NULL)
 		free (var->var);
-	if (var->var_name)
+	if (var->var_name != NULL)
 		free (var->var_name);
-	if (var->var_value)
+	if (var->var_value != NULL)
 		free (var->var_value);
 	free (var);
 }

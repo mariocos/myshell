@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:06:59 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:42:56 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	clean_comand(void)
 	}
 	if (m->pipex_list)
 	{
-		if (m->pipex_list->has_doc)
+		if (m->pipex_list->has_doc == 1)
 			close_fds(m->pipex_list->doc_pipe);
 		if_close(m->pipex_list->in_fd);
 		if_close(m->pipex_list->out_fd);

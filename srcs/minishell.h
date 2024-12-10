@@ -26,7 +26,6 @@ typedef struct s_mini
 	char			*input;
 	struct s_token	*token;
 	struct s_env	*env;
-	struct s_env	*export;
 	struct s_pipex	*pipex_list;
 	int				exit_status;
 
@@ -79,6 +78,12 @@ typedef enum e_t_types
 	ARG,
 	WORD,
 }		t_e_types;
+
+typedef enum e_var
+{
+	ENV = -1,
+	EXPORT = -2,
+}		t_var;
 
 typedef enum e_rev_op
 {
