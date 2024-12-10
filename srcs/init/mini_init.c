@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 16:55:25 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/10 16:55:32 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /*
@@ -42,7 +54,7 @@ char	*get_home(void)
 			break ;
 		i++;
 	}
-	ret = safe_malloc(i + 1);//should already account for \0
+	ret = safe_malloc(i + 1);
 	ret[i] = '\0';
 	while (--i >= 0)
 		ret[i] = wd[i];
