@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:37:38 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:11:17 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	prep_redir(t_pipex *p)
 		return (-1);
 	}
 	if (prep_output_redir(mini_call()->pipex_list) < 0)
+		return (-1);
+	if (!p->cmd)
 		return (-1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:33:55 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:11:43 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	*get_var_name(t_token *t)
 	while (t->token[i] != '$')
 		i++;
 	i++;
-	printf("token after dolla is %c\n", t->token[i]);
 	if (t->token[i] == '$' || t->token[i] == '?')
 	{
 		return (ft_substr(t->token, i, 1));
