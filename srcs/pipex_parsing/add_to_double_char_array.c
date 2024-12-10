@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_double_char_array.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:40:57 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 15:29:11 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:32:04 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ char	**add_to_double_char_array(char **words, char *word)
 		return (words);
 	word_count = array_word_counter(words);
 	if (!words)
-	{
-		printf("going to create char**\n");
 		ret = helper(i, word);
-	}
 	else
 	{
 		ret = safe_malloc(sizeof(char *) * (word_count + 2));
