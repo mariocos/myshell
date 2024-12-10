@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cd_and_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 15:59:20 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:04:28 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	pwd(int fd)
 		mini_call()->exit_status = 1;
 	}
 }
-
 
 void	cd(char **args, int fd)
 {
@@ -60,33 +59,6 @@ void	cd(char **args, int fd)
 	mini_call()->exit_status = 0;
 }
 
-/* void	cd(const char *new_dir, int fd)
-{
-	char	env_var[4128];
-	char	wd[4096];
-
-	if ((!ft_strncmp(new_dir, "~/", ft_strlen("~/"))
-			&& ft_strlen(new_dir) == ft_strlen("~/"))
-		|| (new_dir[0] == '~' && !new_dir[1]))
-		new_dir = getenv("HOME");
-	if (chdir(new_dir))
-	{
-		error_message("minishell: cd", fd);
-		mini_call()->exit_status = 1;
-		return ;
-	}
-	if (getcwd(wd, sizeof(wd)) == NULL)
-	{
-		error_message("minishell: pwd: ", fd);
-		mini_call()->exit_status = 1;
-		return ;
-	}
-	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
-	ft_strlcat(env_var, wd, sizeof(env_var));
-	export((char *[]){"export", env_var, NULL}, fd);
-	mini_call()->exit_status = 0;
-} */
-
 static bool	check_flag(char *str)
 {
 	int	i;
@@ -111,7 +83,7 @@ void	echo(char **cmd, int fd)
 		flag = true;
 		i++;
 	}
-	while(cmd[i] && check_flag(cmd[i]))
+	while (cmd[i] && check_flag(cmd[i]))
 		i++;
 	while (cmd[i])
 	{
@@ -121,6 +93,6 @@ void	echo(char **cmd, int fd)
 		i++;
 	}
 	if (!flag)
-			write (fd, "\n", 1);
+		write (fd, "\n", 1);
 	mini_call()->exit_status = 0;
 }

@@ -34,36 +34,36 @@ typedef struct s_mini
 
 typedef struct s_pipex
 {
-	int		pid;//TODO:var not yet in init!
-	int		pipe[2];
-	int		has_doc;//maybe bool
-	int		doc_pipe[2];
-	int		out_fd;
-	int		in_fd;
-	bool	last_child;
-	char	*path;
-	char	**red_out;
-	char	**red_in;
-	char	**cmd;
+	int				pid;
+	int				pipe[2];
+	int				has_doc;
+	int				doc_pipe[2];
+	int				out_fd;
+	int				in_fd;
+	bool			last_child;
+	char			*path;
+	char			**red_out;
+	char			**red_in;
+	char			**cmd;
 	struct s_pipex	*next;
-	struct s_pipex *previous;
+	struct s_pipex	*previous;
 }			t_pipex;
 
 typedef struct s_token
 {
-	int		token_type;
-	char	*token;
-	int		index;
-	struct s_token *previous;
-	struct s_token *next;
+	int				token_type;
+	char			*token;
+	int				index;
+	struct s_token	*previous;
+	struct s_token	*next;
 }			t_token;
 
 typedef struct s_env
 {
-	char	*var;
-	char	*var_name;
-	char	*var_value;
-	bool	exported;
+	char			*var;
+	char			*var_name;
+	char			*var_value;
+	bool			exported;
 	struct s_env	*previous;
 	struct s_env	*next;
 }	t_env;
@@ -94,12 +94,12 @@ typedef enum e_rev_op
 	OP_VAR = -4,
 }		t_rev_op;
 
-typedef struct	s_history
+typedef struct s_history
 {
 	int				index;
 	char			*input;
-	struct s_hisory *next;
-	struct s_hisory *previous;
+	struct s_hisory	*next;
+	struct s_hisory	*previous;
 }		t_history;
 
 typedef struct s_index
@@ -108,7 +108,6 @@ typedef struct s_index
 	int	new_i;
 	int	t_i;
 }	t_index;
-
 
 /*------------*/
 /*    gnl     */
@@ -120,7 +119,7 @@ char	*get_next_line(int fd);
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
-#endif
+# endif
 /*-----------------------------------------------------------*/
 
 /*----------*/
@@ -141,7 +140,6 @@ int		wordlen(char *s);
 char	**special_split(char const *s);
 /*-----------------------------------*/
 
-
 /*----------*/
 /*   is     */
 /*----------*/
@@ -152,7 +150,6 @@ int		ft_isdigit(char c);
 int		ft_isquote(char c);
 bool	is_builtin(t_pipex *p);
 /*-------------------*/
-
 
 /*----------*/
 /*  libft   */
@@ -167,7 +164,6 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	*ft_itoa(int n);
 /*--------------------------------------------------------------*/
-
 
 /* malloc */
 void	*safe_malloc(size_t size);
@@ -214,7 +210,6 @@ bool	first_parse(t_token *start);
 bool	parse_quotes(const char *input);
 /*---------------------*/
 
-
 /*---------*/
 /*  envp   */
 /*---------*/
@@ -226,13 +221,10 @@ t_env	*init_minimal_env(void);
 t_env	*env_dup(t_env *env);
 /*-------------------------------------------*/
 
-
 /*----------*/
 /*  export  */
 /*----------*/
 void	ft_init_export_list(void);
-
-
 
 /*-------------*/
 /*   variables */
@@ -246,7 +238,7 @@ void	do_expand(t_token *t);
 void	expand_var(t_token *t, char *var);
 void	expand_vars_loop(t_token *start);
 char	*get_special_var(char *var_name);
-int	is_special_expand(char *var_name);
+int		is_special_expand(char *var_name);
 void	unhide_expand(char *str);
 void	hide_expand(char *str);
 /*---------------------------------*/
@@ -269,7 +261,6 @@ void	mini_init(char **env);
 char	*get_home(void);
 /*-----------------------*/
 
-
 /*-----------*/
 /*   tilde   */
 /*-----------*/
@@ -280,7 +271,7 @@ void	tilde_loop(t_token *t);
 /*-------------*/
 /*   input     */
 /*-------------*/
-int	input_handle(void);
+int		input_handle(void);
 /*-----------------------*/
 
 /*------------------*/
@@ -295,8 +286,9 @@ void	populate_pipex(t_token *t, t_pipex *start);
 char	**add_handler(char **words, char *word, char *prefix);
 void	remove_pipex_quotes(t_pipex *p);
 
-
-//Command execution
+/*---------------------*/
+/*  command execution  */
+/*---------------------*/
 char	*path_search(char *command, t_env *env);
 char	*ft_strjointwist(char *path, char *cmd);
 void	ft_free(char **argv);
@@ -309,23 +301,19 @@ void	exec_if_builtin(t_pipex *process);
 bool	is_builtin(t_pipex *p);
 /*-----------------------------------*/
 
-
 /*------------------*/
 /*     signals	    */
 /*------------------*/
 void	handle_sigint(int sig);
 void	setup_signal_handlers(void);
-void	handle_sigint_child(int	sig);
+void	handle_sigint_child(int sig);
 void	setup_child_process_signal_handlers(void);
-
 void	handle_sigint_heredoc(int sig);
 void	setup_signal_handlers_heredoc(void);
 /*-------------------------*/
 
-
-
 /*-------------*/
-/* errores     */
+/*  errors     */
 /*-------------*/
 void	syntax_error(void);
 int		here_pipe_error(void);
@@ -347,7 +335,7 @@ t_env	*get_export(t_env *env);
 t_env	*sort_export_list(t_env *start);
 void	swap(t_env *e1, t_env *e2);
 t_env	*get_head(t_env *e);
-int ft_strcmp(const char* s1, const char* s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 /*------------------*/
 /*     builtins	    */
@@ -358,20 +346,15 @@ void	echo(char **cmd, int fd);
 void	env(t_env *env, char **args, int fd);
 void	cd(char **args, int fd);
 void	pwd(int fd);
-
 void	export(char **args, int fd);
 void	unset(char **str, t_env *env);
-
-//void	swap(t_env **stack);
-void	no_args_export(t_env *env, int fd)
-;
 /*-----------------------*/
 
 /*------------------*/
 /*     pipex	    */
 /*------------------*/
-int	pipe_error(void);
-int	fork_error(void);
+int		pipe_error(void);
+int		fork_error(void);
 void	close_fds(int *fds);
 void	close_fds(int *fds);
 int		spawn_child(t_pipex *p);
@@ -385,23 +368,12 @@ void	ft_waitpid(int pid);
 /*------------------*/
 void	do_input_redir(t_pipex *p);
 void	do_out_redir(t_pipex *p);
-int	prep_input_redir(t_pipex *p);
-int	prep_output_redir(t_pipex *p);
+int		prep_input_redir(t_pipex *p);
+int		prep_output_redir(t_pipex *p);
 void	if_close(int fd);
-int	input_redir(char *str, t_pipex *p);
+int		input_redir(char *str, t_pipex *p);
 void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i);
 void	heredoc_helper(t_pipex *p);
 /*----------------------------------*/
-
-
-
-
-/*----------------------*/
-/*   unused functions   */
-/*----------------------*/
-// void	chk_env_var(char *str, t_env *start);
-// void	chk_not_exported(t_env *start);
-// void	echo(char *str, bool n_flag);
-/*-----------------------*/
 
 #endif
