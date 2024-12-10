@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:55:25 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:55:32 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:59:04 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ file that initializes the minishell struct
 */
 void	mini_init(char **env)
 {
-	t_mini *mini;
+	t_mini	*mini;
 
 	mini = mini_call();
 	mini->token = NULL;
@@ -25,7 +25,6 @@ void	mini_init(char **env)
 	mini->input = NULL;
 	mini->home = get_home();
 	mini->exit_status = 0;
-	
 }
 
 t_mini	*mini_call(void)
@@ -39,8 +38,8 @@ char	*get_home(void)
 {
 	char	*wd;
 	char	*ret;
-	int	i;
-	int	count_slash;
+	int		i;
+	int		count_slash;
 
 	i = 0;
 	count_slash = 0;

@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:01:53 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:02:20 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:05:35 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,18 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+void	ft_put_str_fd(char *str, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return ;
+	while (str[i])
+	{
+		write (fd, &str[i], 1);
+		i++;
+	}
 }

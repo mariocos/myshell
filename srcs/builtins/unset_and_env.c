@@ -6,43 +6,50 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:44:32 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 15:56:27 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:14:35 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	unset(char *str, t_env **env)
+void	remove_var(char *str)
 {
-	t_env	*tmp;
-	t_env	*tmp_prev;
+	t_env	*step;
+	
+	if (!str || !mini_call()->env)
+		return ;
+	step = mini_call()->env;
+	while (step)
+	{
+		if (!ft_strcmp(step->var_name, str))
+		{
+			if (step->previous)
+				step->previous->next = step->next;
+			if (step->next)
+				step->next->previous = step->previous;
+			free_var(step);
+			break ;
+		}
+		step = step->next;
+	}
+}
 
-	if (!env || !*env || !str)
+void	unset(char **str, t_env *env)
+{
+	int	i;
+
+	i = 1;
+	if (!env || !env || !str)
 	{
 		mini_call()->exit_status = 1;
 		return ;
 	}
-	tmp = *env;
-	if (!ft_strncmp(tmp->var_name, str, ft_strlen(str))
-		&& ft_strlen(str) == ft_strlen(tmp->var_name))
-	{
-		*env = tmp->next;
-		free_var(tmp);
-		mini_call()->exit_status = 0;
+	if (str[i] == NULL)
 		return ;
-	}
-	while (tmp != NULL)
+	while (str[i] != NULL)
 	{
-		tmp_prev = tmp;
-		tmp = tmp->next;
-		if (tmp && !ft_strcmp(tmp->var_name, str)
-			&& ft_strlen(str) == ft_strlen(tmp->var_name))
-		{
-			tmp_prev->next = tmp->next;
-			free_var(tmp);
-			mini_call()->exit_status = 0;
-			return ;
-		}
+		remove_var(str[i]);
+		i++;	
 	}
 	mini_call()->exit_status = 0;
 }

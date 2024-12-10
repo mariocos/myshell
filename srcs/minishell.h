@@ -360,7 +360,7 @@ void	cd(char **args, int fd);
 void	pwd(int fd);
 
 void	export(char **args, int fd);
-void	unset(char *str, t_env **env);
+void	unset(char **str, t_env *env);
 
 //void	swap(t_env **stack);
 void	no_args_export(t_env *env, int fd)

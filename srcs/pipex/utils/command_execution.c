@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 16:54:23 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:15:16 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	exec_if_builtin(t_pipex *process)
 	else if (!ft_strncmp(cmd, "echo", 4) && ft_strlen(cmd) == 4)
 		echo(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "unset", 5) && ft_strlen(cmd) == 5)
-		unset(process->cmd[1], &(mini_call()->env));
+		unset(process->cmd, mini_call()->env);
 	else if (!ft_strncmp(cmd, "export\0", 7))
 		export(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
