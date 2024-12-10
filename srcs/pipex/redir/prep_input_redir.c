@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 14:50:43 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:02:22 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	read_into_pipe(char *eof, t_pipex *p)
 {
-	char *str;
+	char	*str;
 
 	close(p->doc_pipe[0]);
 	while (1)
@@ -81,6 +81,16 @@ void	if_close(int fd)
 		close (fd);
 }
 
+void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i)
+{
+	if (p->has_doc)
+		close_fds(p->doc_pipe);
+	p->has_doc = 0;
+	if_close(p->in_fd);
+	if (input_redir(p->red_in[i] + 4, p) < 0)
+		*error_flag = i;
+}
+
 int	prep_input_redir(t_pipex *p)
 {
 	int	i;
@@ -96,28 +106,21 @@ int	prep_input_redir(t_pipex *p)
 		while (p->red_in && p->red_in[i])
 		{
 			if (!ft_strncmp(p->red_in[i], "STD:", 4) && error_flag == -1)
-			{
-				if (p->has_doc)
-					close_fds(p->doc_pipe);
-				p->has_doc = 0;
-				if_close(p->in_fd);
-				if (input_redir(p->red_in[i] + 4, p) < 0)
-					error_flag = i;
-			}
+				prep_helper_file_opener(p, &error_flag, i);
 			else if (!ft_strncmp(p->red_in[i], "APP:", 4))
-			{			
+			{
 				if_close(p->in_fd);
 				if (p->has_doc)
 					close_fds(p->doc_pipe);
 				p->has_doc = 1;
 				if (do_here_doc(p->red_in[i] + 4, p) < 0)
 					break ;
-			} 
+			}
 			i++;
 		}
 		p = p->next;
 	}
 	if (error_flag != -1)
-		return (infile_error(p->red_in[error_flag]));
+		return (infile_error());
 	return (1);
 }
