@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_and_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:44:32 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 15:56:27 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:02:29 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,6 @@ void	env(t_env *env, char **args, int fd)
 		write(fd, args[1], ft_strlen(args[1]));
 		write(fd, "': No such file or directory\n", 29);
 		mini_call()->exit_status = 127;
-		return ;	
-	}
-	while (env != NULL)
-	{
-		if (env->exported)
-		{
-			write(fd, env->var_name, ft_strlen(env->var_name));
-			write(fd, "=", 1);
-			write(fd, env->var_value, ft_strlen(env->var_value));
-			write(fd, "\n", 1);
-		}
-		env = env->next;
-	}
-	mini_call()->exit_status = 0;
-}
-/* void	env(t_env *env, int fd)
-{
-	if (!env)
-	{
-		mini_call()->exit_status = 1;
 		return ;
 	}
 	while (env != NULL)
@@ -94,4 +74,4 @@ void	env(t_env *env, char **args, int fd)
 		env = env->next;
 	}
 	mini_call()->exit_status = 0;
-} */
+}

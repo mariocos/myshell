@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 23:24:25 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/09 15:44:51 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:06:51 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static bool	is_numeric(const char *str)
 		if (!ft_isdigit(*str))
 			return (false);
 		str++;
-    }
+	}
 	return (true);
 }
 
@@ -81,12 +81,12 @@ static bool	is_in_long_long_range(char *str)
 	return (true);
 }
 
-static int calculate_exit_code(long long value)
+static int	calculate_exit_code(long long value)
 {
-    int	exit_code;
+	int	exit_code;
 
 	exit_code = (unsigned long long)value % 256;
-    return (exit_code);
+	return (exit_code);
 }
 
 void	exit_builtin(char **args)
@@ -106,19 +106,3 @@ void	exit_builtin(char **args)
 	exit_code = calculate_exit_code (value);
 	exit(exit_code);
 }
-
-/* void	exit_builtin(char *nbr)
-{
-	long long	value;
-	int			exit_code;
-
-	printf("exit\n");
-	if (!is_numeric(nbr) || !is_in_long_long_range(nbr))
-	{
-		printf("minishell: exit: %s: numeric argument required\n", nbr);
-		exit(2);
-	}
-	value = ft_atoll(nbr);
-	exit_code = calculate_exit_code (value);
-	exit(exit_code);
-} */
