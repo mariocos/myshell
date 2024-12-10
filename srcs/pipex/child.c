@@ -1,31 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   child.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
+/*   Updated: 2024/12/10 16:50:16 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	child_process_new(t_pipex	*p)
 {
+	char	**envp;
+	char	*path;
+
 	if (!p)
 		return ;
-	/* do redirections! */
 	do_input_redir(p);
 	do_out_redir(p);
-
-	/*catch builtins here*/
 	if (is_builtin(p))
 		exec_if_builtin(p);
 	else
 	{
-		char *path = path_search(p->cmd[0], mini_call()->env);
+		path = path_search(p->cmd[0], mini_call()->env);
 		printf("PATH - %s\n", path);
-		char **envp = env_to_double_chr_ptr(mini_call()->env);//if theese are neeeded they need to be added to the p struct to be freed
-/* 		if (!envp || !envp[0])
-		{
-    		static char *empty_env[] = {NULL};
-    		envp = empty_env; // Um ambiente vazio válido
-		} */
+		envp = env_to_double_chr_ptr(mini_call()->env);
 		printf("execing in fork\n");
 		if (execve(path, p->cmd, envp) == -1)
-	 		printf ("EXECVE - NOTHING HAPPENED\n");
-		// free(path);
-		// ft_free(envp);
+			printf("EXECVE - NOTHING HAPPENED\n");
 		perror("execve");
 	}
 	exit(127);
