@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:53:29 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:55:16 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:35:04 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ t_env	*init_minimal_env(void)
 	start->var_value = ft_strdup(cwd);
 	var_add_back(start, init_var("LS_COLORS="));
 	var_add_back(start, init_var("SHLVL=1"));
-	var_add_back(start, init_var("PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"));
+	var_add_back(start, init_var("PATH=/usr/local/bin:"
+			"/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"));
 	var_add_back(start, init_var("_=/usr/bin/env"));
 	return (start);
 }

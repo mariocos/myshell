@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   better_wait.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:19:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:19:46 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:32:38 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_waitpid(int pid)
 	while (waitpid(pid, &status, 0) == -1)
 	{
 		if (errno == EINTR)
-			continue;
+			continue ;
 		else
 		{
 			perror("waitpid");
