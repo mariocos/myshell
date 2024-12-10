@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:33:55 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 21:00:46 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	*get_var_name(t_token *t)
 	while (t->token[i] != '$')
 		i++;
 	i++;
-	printf("token after dolla is %c\n", t->token[i]);
 	if (t->token[i] == '$' || t->token[i] == '?')
 	{
 		return (ft_substr(t->token, i, 1));
