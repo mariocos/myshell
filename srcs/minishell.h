@@ -26,6 +26,7 @@ typedef struct s_mini
 	char			*input;
 	struct s_token	*token;
 	struct s_env	*env;
+	char			*home;
 	struct s_pipex	*pipex_list;
 	int				exit_status;
 
@@ -265,6 +266,7 @@ void	print_pipex_list(t_pipex *start);
 /*----------*/
 t_mini	*mini_call(void);
 void	mini_init(char **env);
+char	*get_home(void);
 /*-----------------------*/
 
 

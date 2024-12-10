@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/09 21:42:56 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/10 14:24:39 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,16 @@ void	clean_all(void)
 	m = mini_call();
 	if (!m)
 		return ;
+	if (m->home)
+		free(m->home);
 	if (m->input)
-	{
 		free (m->input);
-		m->input = NULL;
-	}
 	if (m->token)
-	{
 		free_token_list(m->token);
-		m->token = NULL;
-	}
 	if (m->pipex_list)
-	{
 		free_pipex_list(m->pipex_list);
-		m->pipex_list = NULL;
-	}
 	if (m->env)
-	{
 		free_env_list(m->env);
-		m->env = NULL;
-	}
 	clear_history();
 	rl_clear_signals();
 	rl_deprep_terminal(); 
