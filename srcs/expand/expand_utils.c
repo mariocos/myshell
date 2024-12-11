@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 21:00:46 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/11 22:56:37 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ char	*get_var_value(t_env *env, char *var_name)
 {
 	if (!env || !var_name)
 		return (NULL);
-	while (env->next != NULL)
+	while (env != NULL)
 	{
-		if (!ft_strncmp(var_name, env->var_name, ft_strlen(env->var_name)))
+		if (!ft_strcmp(var_name, env->var_name))
 			return (ft_strdup(env->var_value));
 		env = env->next;
 	}
