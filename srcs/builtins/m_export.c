@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:01:11 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 18:13:36 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:58:29 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool	invalid_export(char *str)
 	i = 0;
 	if (!str)
 		return (false);
-	if (str[0] == '=')
+	if (str[0] == '=' || ft_isdigit(str[0]))
 		return (true);
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 		return (false);
