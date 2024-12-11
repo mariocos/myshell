@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 12:21:13 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:18:50 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	set_sig_default(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+}
 
 int	spawn_child(t_pipex *p)
 {
@@ -18,12 +24,15 @@ int	spawn_child(t_pipex *p)
 		return (-1);
 	if (pipe(p->pipe) < 0)
 		return (pipe_error());
-	printf("should show %d\n", getpid());
+	setup_signal_handlers_heredoc();
 	p->pid = fork();
 	if (p->pid < 0)
 		return (fork_error());
 	if (p->pid == 0)
+	{
+		set_sig_default();
 		child_process_new(p);
+	}
 	if (p->previous)
 		close(p->previous->pipe[0]);
 	close(p->pipe[1]);
@@ -56,9 +65,13 @@ void	exec_single_comand(t_pipex *p)
 	}
 	else
 	{
+		setup_signal_handlers_heredoc();
 		p->pid = fork();
 		if (p->pid == 0)
+		{
+			set_sig_default();
 			child_process_new(p);
+		}
 		ft_waitpid(p->pid);
 	}
 }
@@ -84,4 +97,5 @@ void	process_handler(t_pipex *p)
 			p = p->next;
 		}
 	}
+	setup_signal_handlers();
 }
