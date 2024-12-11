@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_input_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 16:13:59 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:14:41 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	do_here_doc(char *str, t_pipex *p)
 	if (pid < 0)
 	{
 		close_fds(p->doc_pipe);
-		printf("crit error on fork\n");
+		ft_put_str_fd("crit error on fork\n", 2);
 		return (-1);
 	}
 	if (pid == 0)

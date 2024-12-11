@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:21:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 18:38:18 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:15:03 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ int	advance_quotes(char *str, int i)
 		return (len + 1 - i);
 	}
 	else
-	{
-		printf("error in parsing quotes dude\n");
 		return (-1);
-	}
 }
 
 void	remove_pipex_quotes(t_pipex *p)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:01:11 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 20:59:52 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:13:36 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	if (s1 == NULL || s2 == NULL)
-	{
-		printf("calling strcmp with NULL pointers\n");
 		return (0);
-	}
 	while (*s1 && *s2 && (*s1 == *s2))
 	{
 		if (!*s1 || !*s2)

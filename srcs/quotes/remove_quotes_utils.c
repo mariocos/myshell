@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:24:09 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 18:38:13 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:14:53 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static void	copy_quote(char *dest, char *src)
 		while (src[i] != '\"')
 			dest[j++] = src[i++];
 	}
-	else
-		printf("using copy quote wrong\n");
 }
 
 static void	rem_quote_helper(int i, int ret_i, char *str, char *ret)

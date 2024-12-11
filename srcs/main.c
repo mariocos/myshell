@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 16:34:01 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:08:15 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	mini_loop(char **envp)
 		mini_call()->input = readline("mini>");
 		if (!mini_call()->input)
 		{
-			printf("exit\n");
+			ft_put_str_fd("exit\n", 2);
 			break ;
 		}
 		if (mini_call()->input && *mini_call()->input)

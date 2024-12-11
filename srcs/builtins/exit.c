@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 23:24:25 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 16:41:45 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:12:50 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,19 @@ void	exit_builtin(char **args)
 	long long	value;
 	int			exit_code;
 
-	write(1, "exit\n", 5);
+	write(2, "exit\n", 5);
 	if (!args[1])
 		ft_exit(EXIT_SUCCESS);
 	if (args[2] && is_numeric(args[1]))
 	{
-		printf("minishell: exit: too many arguments\n");
+		ft_put_str_fd("minishell: exit: too many arguments\n", 2);
 		return ;
 	}
 	if (!is_numeric(args[1]) || !is_in_long_long_range(args[1]))
 	{
-		printf("minishell: exit: %s: numeric argument required\n", args[1]);
+		ft_put_str_fd("minishell: exit: ", 2);
+		ft_put_str_fd(args[1], 2);
+		ft_put_str_fd(": numeric argument required\n", 2);
 		ft_exit(2);
 	}
 	value = ft_atoll(args[1]);
