@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 15:11:43 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:29:09 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	child_process_new(t_pipex	*p)
 		else
 			path = p->cmd[0];
 		envp = env_to_double_chr_ptr(mini_call()->env);
-		if (execve(path, p->cmd, envp) == -1)
-			printf("EXECVE - NOTHING HAPPENED\n");
+		execve(path, p->cmd, envp);
 		perror("execve");
 	}
 	exit(127);
