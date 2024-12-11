@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:01:11 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 17:04:55 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/10 20:59:52 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ bool	invalid_export(char *str)
 	i = 0;
 	if (!str)
 		return (false);
+	if (str[0] == '=')
+		return (true);
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 		return (false);
 	while (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_')
@@ -96,7 +98,10 @@ void	export(char **args, int fd)
 	while (args[i] != NULL)
 	{
 		if (invalid_export(args[i]))
+		{
+			ft_put_str_fd("cant export var\n", 2);
 			mini_call()->exit_status = 1;
+		}
 		else
 			var_add_back(mini_call()->env, init_var(args[i]));
 		i++;

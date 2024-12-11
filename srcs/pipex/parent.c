@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 19:59:47 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/11 12:21:13 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	spawn_child(t_pipex *p)
 		return (-1);
 	if (pipe(p->pipe) < 0)
 		return (pipe_error());
+	printf("should show %d\n", getpid());
 	p->pid = fork();
 	if (p->pid < 0)
 		return (fork_error());
