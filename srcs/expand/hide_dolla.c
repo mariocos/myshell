@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:24:35 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:48:52 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:37:49 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	hide_expand(char *str)
 		if (str[i] == '$' && in_squote(str, i))
 			str[i] = OP_VAR;
 		if (str[i] == '$' && str[i + 1] == '\'' && in_quote(str, i + 1))
+			str[i] = OP_VAR;
+		if (str[i] == '$' && str[i + 1] == '\0' && i != 0 && str[i - 1] != '$')
 			str[i] = OP_VAR;
 	}
 }
