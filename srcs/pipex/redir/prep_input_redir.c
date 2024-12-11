@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_input_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 13:58:23 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:58:06 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,27 @@
 void	read_into_pipe(char *eof, t_pipex *p)
 {
 	char	*str;
+	char	*help;
 
 	if_close(p->doc_pipe[0]);
 	while (1)
 	{
-		str = readline("> ");
-		if (str == NULL)
+		help = readline("> ");
+		if (help == NULL)
 		{
 			write(1, "\n", 1);
-			free (str);
+			free (help);
 			exit (144);
 		}
-		if (!ft_strncmp(str, eof, ft_strlen(eof)))
+		if (!ft_strcmp(help, eof))
 		{
-			free(str);
+			free(help);
 			break ;
 		}
+		str = ft_strjoin(help, "\n");
 		write(p->doc_pipe[1], str, ft_strlen(str));
+		free(help);
+		free(str);
 	}
 	if_close(p->doc_pipe[1]);
 	exit(0);
