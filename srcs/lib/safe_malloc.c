@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:59:05 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 20:59:41 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:04:46 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	*safe_malloc(size_t size)
 	ret = malloc(size);
 	if (!ret)
 	{
-		printf("\nA CRITICAL ERROR HAS OCCURRED\n\n");
-		return (NULL);
+		printf("\nA CRITICAL MALLOC ERROR HAS OCCURRED\n\n");
+		clean_all();
+		exit(1);
 	}
 	ft_memset(ret, '\0', size);
 	return (ret);
