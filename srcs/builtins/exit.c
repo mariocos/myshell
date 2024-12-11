@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 23:24:25 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 17:06:51 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/11 06:53:22 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,11 @@ void	exit_builtin(char **args)
 	write(1, "exit\n", 5);
 	if (!args[1])
 		exit(EXIT_SUCCESS);
+	if (args[2] && is_numeric(args[1]))
+	{
+		printf("minishell: exit: too many arguments\n");
+		return ;
+	}
 	if (!is_numeric(args[1]) || !is_in_long_long_range(args[1]))
 	{
 		printf("minishell: exit: %s: numeric argument required\n", args[1]);
