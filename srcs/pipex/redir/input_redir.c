@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 12:01:04 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:16:36 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	do_input_redir(t_pipex *p)
 {
 	if (!p)
 		return ;
-	if (p->previous)
+	if (p->previous != NULL)
 	{
 		dup2(p->previous->pipe[0], STDIN_FILENO);
 		if_close(p->previous->pipe[0]);

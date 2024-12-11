@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:18 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 12:01:18 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:17:38 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	do_out_redir(t_pipex *p)
 		dup2(p->pipe[1], STDOUT_FILENO);
 		if_close(p->pipe[1]);
 	}
-	if (!p->red_out)
+	if (p->red_out == NULL)
 		return ;
 	dup2(p->out_fd, STDOUT_FILENO);
 }
