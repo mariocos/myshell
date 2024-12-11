@@ -50,7 +50,6 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex/parent_utils.c \
 	   $(SRC_PATH)/pipex/better_wait.c \
 	   $(SRC_PATH)/error_exit/error.c \
-	   $(SRC_PATH)/gnl/gnl.c \
 	   $(SRC_PATH)/signals/signals.c \
 	   $(SRC_PATH)/main.c \
 

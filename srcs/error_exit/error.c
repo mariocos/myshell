@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:27:38 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:27:40 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:50:53 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	ft_perror(char *err_msg)
 
 void	syntax_error(void)
 {
-	printf("\na syntax error has ocurred :(\n\n");
+	ft_put_str_fd("\na syntax error has ocurred :(\n\n", 2);
 }

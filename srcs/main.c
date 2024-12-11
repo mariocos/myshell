@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 16:28:31 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:34:01 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	mini_loop(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*str;
-
 	(void)argv;
 	if (argc == 1)
 	{

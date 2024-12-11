@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 23:24:25 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 06:53:22 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:41:45 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	exit_builtin(char **args)
 
 	write(1, "exit\n", 5);
 	if (!args[1])
-		exit(EXIT_SUCCESS);
+		ft_exit(EXIT_SUCCESS);
 	if (args[2] && is_numeric(args[1]))
 	{
 		printf("minishell: exit: too many arguments\n");
@@ -105,9 +105,9 @@ void	exit_builtin(char **args)
 	if (!is_numeric(args[1]) || !is_in_long_long_range(args[1]))
 	{
 		printf("minishell: exit: %s: numeric argument required\n", args[1]);
-		exit(2);
+		ft_exit(2);
 	}
 	value = ft_atoll(args[1]);
 	exit_code = calculate_exit_code (value);
-	exit(exit_code);
+	ft_exit(exit_code);
 }

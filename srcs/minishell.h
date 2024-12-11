@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 15:35:21 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:43:11 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,19 +121,6 @@ typedef struct s_index
 	int	t_i;
 }	t_index;
 
-/*------------*/
-/*    gnl     */
-/*------------*/
-int		ft_linelen(char *str);
-void	ft_buffer_shift_left(char *Buffer, int move_size);
-char	*ft_special_join(char *str, char *Buffer);
-char	*get_next_line(int fd);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-/*-----------------------------------------------------------*/
-
 /*----------*/
 /*  quotes  */
 /*----------*/
@@ -214,6 +201,7 @@ void	free_double_char_array(char **words);
 void	free_pipex_list(t_pipex *p);
 void	clean_all(void);
 void	clean_comand(void);
+void	ft_exit(int exit_code);
 /*---------------------------*/
 
 /*-----------*/

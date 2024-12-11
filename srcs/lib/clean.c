@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 20:49:47 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/11 16:45:28 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	clean_all(void)
 	if (m->env)
 		free_env_list(m->env);
 	clear_history();
-	rl_clear_signals();
-	rl_deprep_terminal();
 }
 
 void	clean_comand(void)
@@ -57,4 +55,10 @@ void	clean_comand(void)
 		free_pipex_list(m->pipex_list);
 		m->pipex_list = NULL;
 	}
+}
+
+void	ft_exit(int exit_code)
+{
+	clean_all();
+	exit(exit_code);
 }
