@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 20:33:01 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 14:15:39 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/11 23:37:45 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	handle_sigint(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	mini_call()->exit_status = 130;
 }
 
 void	setup_signal_handlers(void)
