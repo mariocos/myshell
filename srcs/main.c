@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 17:42:41 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:28:31 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		setup_signal_handlers();
 		mini_loop(envp);
-	}
-	else
-	{
-		str = ft_strdup("$$");
-		mini_init(envp);
-		mini_call()->input = str;
-		input_handle();
-		print_token_list(mini_call()->token);
-		print_pipex_list(mini_call()->pipex_list);
-		clean_all();
 	}
 	return (0);
 }
