@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 22:57:49 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/11 23:00:16 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ bool	needs_expand(t_token *t)
 		return (false);
 	while (t->token[i] != '\0')
 	{
+		if (t->previous && t->previous->token_type == HERE_DOC)
+			return (false);
 		if (t->token[i] == '$' && !in_squote(t->token, i))
 			return (true);
 		i++;
