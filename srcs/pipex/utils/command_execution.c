@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 17:15:16 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:36:38 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,47 +53,13 @@ char	**env_to_double_chr_ptr(t_env	*env)
 	return (env_chr_ptr);
 }
 
-// static bool	has_equal_sign(char *str)
-// {
-// 	if (!str)
-// 		return (false);
-// 	while (*str)
-// 		if (*str++ == '=')
-// 			return (true);
-// 	return (false);
-// }
-
-long	ft_atol(char *str)
-{
-	long	nbr;
-	int		parity;
-
-	nbr = 0;
-	parity = 0;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str++;
-	while (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			parity++;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		nbr = nbr * 10 + (*str - '0');
-		str++;
-	}
-	if (parity % 2 != 0)
-		return (-nbr);
-	return (nbr);
-}
-
 void	exec_if_builtin(t_pipex *process)
 {
 	char	*cmd;
 
 	cmd = process->cmd[0];
-	if (!ft_strncmp(cmd, "cd", 2) && ft_strlen(cmd) == 2)
+	if (!ft_strncmp(cmd, "cd", 2)
+		&& ft_strlen(cmd) == 2 && process->pid != 0)
 		cd(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "pwd", 3) && ft_strlen(cmd) == 3)
 		pwd(process->out_fd);

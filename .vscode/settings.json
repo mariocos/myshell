@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"token_to_pipe": "cpp"
+		"token_to_pipe": "cpp",
+		"minishell.h": "c"
 	}
 }

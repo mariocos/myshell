@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 03:07:52 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/03 14:22:30 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:39:19 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_free(char **argv)
 	size_t	i;
 
 	i = 0;
+	if (!argv)
+		return ;
 	while (argv[i])
 		i++;
 	while (i > 0)

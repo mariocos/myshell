@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:13:55 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:42:58 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:15:13 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ static bool	parse_pipe(t_token *t)
 	if (t->next == NULL)
 		return (false);
 	if (t->next->token_type == PIPE)
-	{
-		printf("caught\n");
 		return (false);
-	}
 	return (true);
 }
 
