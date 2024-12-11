@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:47:32 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:01:35 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	read_into_pipe(char *eof, t_pipex *p)
 {
 	char	*str;
 
-	close(p->doc_pipe[0]);
+	if_close(p->doc_pipe[0]);
 	while (1)
 	{
 		str = readline(">");
@@ -33,7 +33,7 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		}
 		write(p->doc_pipe[1], str, ft_strlen(str));
 	}
-	close(p->doc_pipe[1]);
+	if_close(p->doc_pipe[1]);
 	exit(0);
 }
 
@@ -57,7 +57,7 @@ static int	do_here_doc(char *str, t_pipex *p)
 		read_into_pipe(str, p);
 	}
 	setup_signal_handlers_heredoc();
-	close(p->doc_pipe[1]);
+	if_close(p->doc_pipe[1]);
 	ft_waitpid(pid);
 	setup_signal_handlers();
 	if (p->has_doc && mini_call()->exit_status != 0)

@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:09:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 16:40:44 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:00:47 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	fork_error(void)
 
 void	close_fds(int *fds)
 {
-	close(fds[0]);
+	if_close(fds[0]);
 	close(fds[1]);
 }
