@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:17:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 15:37:47 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:46:26 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,7 @@ void	expand_var(t_token *t, char *var)
 	if (t->token[i.t_i] == '?' || t->token[i.t_i] == '$')
 		i.t_i += 1;
 	else
-	{
-		i.t_i--;
-		i.t_i += var_name_len(t->token, i.t_i + 1) + 1;
-	}
+		i.t_i += var_name_len(t->token, i.t_i) + 1;
 	while (t->token[i.t_i] != '\0')
 		new[i.new_i++] = t->token[i.t_i++];
 	new[i.new_i] = '\0';
