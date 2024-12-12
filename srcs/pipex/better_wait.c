@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:19:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 18:26:02 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/12 18:27:31 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_waitpid(int pid)
 {
 	int	status;
-	int	term_signal;
 
 	while (waitpid(pid, &status, 0) == -1)
 	{
@@ -36,8 +35,7 @@ void	ft_waitpid(int pid)
 			write(1, "\n", 1);
 		else if (WTERMSIG(status) == 3)
 			write(1, "SEGFAULT CORE DUMPED(you asked for this)\n", 41);
-		term_signal = WTERMSIG(status);
-		mini_call()->exit_status = 128 + term_signal;
+		mini_call()->exit_status = 128 + WTERMSIG(status);
 	}
 	else
 		mini_call()->exit_status = 1;
