@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:01:11 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 13:13:45 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:17:08 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
 }
-
-/* void	print_export(int fd)
-{
-	t_env	*step;
-
-	step = mini_call()->env;
-	while (step != NULL)
-	{
-		ft_put_str_fd("declare -x ", fd);
-		ft_put_str_fd(step->var_name, fd);
-		if (step->var_value && step->exported)
-		{
-			ft_put_str_fd("=\"", fd);
-			ft_put_str_fd(step->var_value, fd);
-			ft_put_str_fd("\"", fd);
-		}
-		ft_put_str_fd("\n", fd);
-		step = step->next;
-	}
-} */
 
 bool	invalid_export(char *str)
 {

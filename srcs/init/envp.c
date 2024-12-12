@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:53:29 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 17:35:04 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:17:58 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	var_add_back(t_env *start, t_env *add)
 	t_env	*end;
 
 	step = start;
+	if (add->exported == false && var_exists(start, add))
+		return ;
 	while (step != NULL)
 	{
 		if (!ft_strcmp(step->var_name, add->var_name))
