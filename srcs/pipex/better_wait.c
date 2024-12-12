@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   better_wait.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:19:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 12:50:02 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:26:02 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	ft_waitpid(int pid)
 		mini_call()->exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 	{
+		if (status == 2)
+			write(1, "\n", 1);
+		else if (WTERMSIG(status) == 3)
+			write(1, "SEGFAULT CORE DUMPED(you asked for this)\n", 41);
 		term_signal = WTERMSIG(status);
 		mini_call()->exit_status = 128 + term_signal;
 	}
