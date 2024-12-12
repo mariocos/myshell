@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:42 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 20:23:02 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/12 20:26:19 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	app_redir_out(char *str, t_pipex *p)
 	if (!*str)
 	{
 		ft_put_str_fd("please use valide outfiles\n", 2);
-		return (0);
+		mini_call()->exit_status = 1;
+		return (-1);
 	}
 	if (access(str, F_OK) != -1 && access(str, W_OK) == -1)
 	{
@@ -35,6 +36,12 @@ static int	redir_out(char *str, t_pipex *p)
 {
 	if (!str)
 		return (0);
+	if (!*str)
+	{
+		ft_put_str_fd("please use valide outfiles\n", 2);
+		mini_call()->exit_status = 1;
+		return (-1);
+	}
 	if (access(str, F_OK) != -1 && access(str, W_OK) == -1)
 	{
 		ft_put_str_fd("please use valid outfiles\n", 2);
