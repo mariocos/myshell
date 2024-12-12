@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 18:37:48 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/12 20:14:34 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	var_name_len(char *var_name, int i)
 	if (!ft_isalpha(var_name[i]) && var_name[i] != '_')
 		return (0);
 	while (var_name[i + len] != OP_VAR && (ft_isdigit(var_name[i + len])
-		|| ft_isalpha(var_name[i + len]) || var_name[i + len] == '_'))
+			|| ft_isalpha(var_name[i + len]) || var_name[i + len] == '_'))
 		len++;
 	return (len - 1);
 }

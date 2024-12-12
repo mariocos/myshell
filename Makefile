@@ -46,6 +46,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex/redir/output_redir.c \
 	   $(SRC_PATH)/pipex/redir/prep_out_redir.c \
 	   $(SRC_PATH)/pipex/redir/prep_input_redir.c \
+	   $(SRC_PATH)/pipex/redir/here_doc_helper.c \
 	   $(SRC_PATH)/pipex/parent.c \
 	   $(SRC_PATH)/pipex/child.c \
 	   $(SRC_PATH)/pipex/parent_utils.c \
