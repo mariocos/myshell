@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:01:11 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 22:59:14 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/12 13:13:45 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
 }
 
-void	print_export(int fd)
+/* void	print_export(int fd)
 {
 	t_env	*step;
 
@@ -47,7 +47,7 @@ void	print_export(int fd)
 		ft_put_str_fd("\n", fd);
 		step = step->next;
 	}
-}
+} */
 
 bool	invalid_export(char *str)
 {
