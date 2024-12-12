@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 16:43:11 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/12 00:29:40 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_mini
 	struct s_token	*token;
 	struct s_env	*env;
 	char			*home;
+	char			*pwd;
 	struct s_pipex	*pipex_list;
 	int				exit_status;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cd_and_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 17:04:28 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/12 00:36:41 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	pwd(int fd)
 
 	wd = NULL;
 	wd = getcwd(NULL, 0);
+	if (!wd)
+		wd = ft_strdup(mini_call()->pwd);
 	if (wd != NULL)
 	{
 		write(fd, wd, ft_strlen(wd));
@@ -29,6 +31,19 @@ void	pwd(int fd)
 	{
 		perror("minishell: pwd");
 		mini_call()->exit_status = 1;
+	}
+}
+
+static void	update_pwd(void)
+{
+	char	*help;
+
+	help = NULL;
+	help = getcwd(NULL, 0);
+	if (help)
+	{
+		free(mini_call()->pwd);
+		mini_call()->pwd = help;
 	}
 }
 
@@ -55,6 +70,7 @@ void	cd(char **args, int fd)
 	}
 	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
 	ft_strlcat(env_var, wd, sizeof(env_var));
+	update_pwd();
 	export((char *[]){"export", env_var, NULL}, fd);
 	mini_call()->exit_status = 0;
 }

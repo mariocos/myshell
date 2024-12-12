@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 16:45:28 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/12 00:37:31 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	clean_all(void)
 	m = mini_call();
 	if (!m)
 		return ;
+	if (m->pwd)
+		free(m->pwd);
 	if (m->home)
 		free(m->home);
 	if (m->input)
