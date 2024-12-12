@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 14:18:50 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:15:05 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	exec_single_comand(t_pipex *p)
 	}
 	else
 	{
-		setup_signal_handlers_heredoc();
+		setup_signal_handlers_spec();
 		p->pid = fork();
 		if (p->pid == 0)
 		{

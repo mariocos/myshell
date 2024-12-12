@@ -24,6 +24,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/init/envp.c \
 	   $(SRC_PATH)/init/mini_init.c \
 	   $(SRC_PATH)/builtins/m_export.c \
+	   $(SRC_PATH)/builtins/export_print.c \
 	   $(SRC_PATH)/builtins/unset_and_env.c \
 	   $(SRC_PATH)/builtins/pwd_cd_and_echo.c \
 	   $(SRC_PATH)/builtins/exit.c \
@@ -51,6 +52,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex/better_wait.c \
 	   $(SRC_PATH)/error_exit/error.c \
 	   $(SRC_PATH)/signals/signals.c \
+	   $(SRC_PATH)/signals/signals_2.c \
 	   $(SRC_PATH)/main.c \
 
 OBJ = $(SRCS:$(SRC_PATH)/%.c=$(OBJ_DIR)/%.o)
