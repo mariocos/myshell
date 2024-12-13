@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/12 20:17:31 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/13 12:15:58 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_mini
 	char			*pwd;
 	struct s_pipex	*pipex_list;
 	int				exit_status;
+	int				line_nbr;
 
 }		t_mini;
 
@@ -121,8 +122,6 @@ typedef struct s_index
 	int	new_i;
 	int	t_i;
 }	t_index;
-
-void	setup_signal_handlers_spec(void);
 
 /*----------*/
 /*  quotes  */
@@ -314,6 +313,7 @@ void	handle_sigint_child(int sig);
 void	setup_child_process_signal_handlers(void);
 void	handle_sigint_heredoc(int sig);
 void	setup_signal_handlers_heredoc(void);
+void	setup_signal_handlers_spec(void);
 /*-------------------------*/
 
 /*-------------*/
@@ -380,6 +380,8 @@ void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i);
 void	heredoc_helper(t_pipex *p);
 void	help_free(char *s1, char *s2);
 char	*here_doc_expand(char *str);
+int		ft_count_digits(int n);
+void	print_ctrl_d_msg(char *eof);
 /*----------------------------------*/
 
 #endif

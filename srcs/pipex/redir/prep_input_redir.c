@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_input_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 20:16:35 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/13 12:16:40 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		help = readline("> ");
 		if (help == NULL)
 		{
-			write(2, "warning: here-document delimited by end-of-file\n", 48);
+			print_ctrl_d_msg(eof);
 			free (help);
 			exit (144);
 		}

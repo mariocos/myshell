@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:55:25 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 00:31:56 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/13 11:34:43 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	mini_init(char **env)
 	mini->pwd = getcwd(NULL, 0);
 	mini->home = get_home();
 	mini->exit_status = 0;
+	mini->line_nbr = 0;
 }
 
 t_mini	*mini_call(void)
