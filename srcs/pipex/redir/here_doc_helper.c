@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_helper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:16:09 by mario             #+#    #+#             */
-/*   Updated: 2024/12/14 00:28:11 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:44:08 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,13 @@ Prints a warning for HEREDOC terminated by end-of-file (Ctrl+d)
 */
 void	print_ctrl_d_msg(char *eof)
 {
+	char	*str;
+
+	str = ft_itoa(mini_call()->line_nbr);
 	write(2, "minishell: warning: here-document at line ", 42);
-	write(2, ft_itoa(mini_call()->line_nbr),
-		ft_count_digits(mini_call()->line_nbr));
+	write(2, str,
+		ft_strlen(str));
+	free(str);
 	write(2, " delimited by end-of-file (wanted '", 35);
 	write(2, eof, ft_strlen(eof));
 	write(2, "')\n", 3);
