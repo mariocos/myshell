@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:01:53 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/10 17:05:35 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:51:43 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ char	*ft_strcat(char *dst, const char *src, char	*ret)
 
 	i = 0;
 	j = 0;
-	while (dst[i] != '\0')
+	while (dst && dst[i] != '\0')
 	{
 		ret[i] = dst[i];
 		i++;
 	}
-	while (src[j] != '\0')
+	while (src && src[j] != '\0')
 		ret[i++] = src[j++];
 	ret[i] = '\0';
 	return (ret);

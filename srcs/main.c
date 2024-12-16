@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/13 17:35:20 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:55:32 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ void	mini_loop(char **envp)
 			ft_put_str_fd("exit\n", 2);
 			break ;
 		}
-		mini_call()->line_nbr++;
 		if (mini_call()->input && *mini_call()->input)
 		{
+			mini_call()->line_nbr++;
+			add_history(mini_call()->input);
 			if (input_handle() == 1)
 				process_handler(mini_call()->pipex_list);
 		}

@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:11:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 17:19:15 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:55:10 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	finish_input(char *new_input)
 {
 	if (!new_input)
 		return ;
-	add_history(new_input);
 	free(new_input);
 	mini_call()->input = NULL;
 }
