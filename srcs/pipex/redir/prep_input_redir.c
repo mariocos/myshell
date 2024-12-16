@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 21:26:54 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 22:06:29 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		if (!ft_strcmp(help, eof))
 		{
 			free(help);
+			if_close(p->doc_pipe[1]);
 			break ;
 		}
 		str = here_doc_expand(help);
