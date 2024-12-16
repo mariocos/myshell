@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:17:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 20:14:18 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/16 12:16:59 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	init_index(t_index *i)
 }
 
 /*
-this function is quite janky, maybe after delivery fix it :/
+i love ducks
 */
 void	expand_var(t_token *t, char *var)
 {
