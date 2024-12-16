@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 21:12:12 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:26:18 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	spawn_child(t_pipex *p)
 {
 	if (!p)
 		return (-1);
-	if (pipe(p->pipe) < 0)
+	if (p->next != NULL && pipe(p->pipe) < 0)
 		return (pipe_error());
 	setup_signal_handlers_heredoc();
 	p->pid = fork();

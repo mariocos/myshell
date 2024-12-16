@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:09:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/14 00:42:10 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:27:12 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ Closes both file descriptors in a given array, handling the first
 void	close_fds(int *fds)
 {
 	if_close(fds[0]);
-	close(fds[1]);
+	if_close(fds[1]);
 }
