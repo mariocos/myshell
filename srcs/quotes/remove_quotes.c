@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:21:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 18:15:03 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:57:45 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int	advance_quotes(char *str, int i)
 	if (str[len] == '"')
 	{
 		len++;
-		while (str[len] != '"')
+		while (str[len] != '"' && str[len] != '\0')
 			len++;
 		return (len + 1 - i);
 	}
 	else if (str[len] == '\'')
 	{
 		len++;
-		while (str[len] != '\'')
+		while (str[len] != '\'' && str[len] != '\0')
 			len++;
 		return (len + 1 - i);
 	}

@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:24:09 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 18:14:53 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:01:15 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static void	copy_quote(char *dest, char *src)
 	if (src[i] == '\'')
 	{
 		i++;
-		while (src[i] != '\'')
+		while (src[i] != '\'' && src[i] != '\0')
 			dest[j++] = src[i++];
 	}
 	else if (src[i] == '\"')
 	{
 		i++;
-		while (src[i] != '\"')
+		while (src[i] != '\"' && src[i] != '\0')
 			dest[j++] = src[i++];
 	}
 }
@@ -59,7 +59,7 @@ char	*rem_quote(char *str)
 	ret_i = 0;
 	if ((int)ft_strlen(str) == remove_quote_len(str))
 		return (str);
-	ret = safe_malloc(remove_quote_len(str) + 1);
+	ret = safe_malloc(remove_quote_len(str) + 2);
 	if (remove_quote_len(str) == 0)
 		ret[0] = '\0';
 	else

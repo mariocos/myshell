@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:00:54 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 21:01:35 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:01:50 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	str_len = ft_strlen(s) + 1;
-	dest = safe_malloc(str_len);
+	dest = safe_malloc(str_len + 1);
 	while (s && s[i] != '\0')
 	{
 		dest[i] = s[i];
