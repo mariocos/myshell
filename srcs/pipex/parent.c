@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/13 23:50:44 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:06:41 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	spawn_child(t_pipex *p)
 	if (p->previous)
 		close(p->previous->pipe[0]);
 	close(p->pipe[1]);
+	if (p->has_doc)
+		close_fds(p->doc_pipe);
 	if (!p->next)
 		close(p->pipe[0]);
 	return (1);

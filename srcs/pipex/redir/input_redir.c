@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   input_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 00:17:11 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:06:11 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	close_docs(void)
+{
+	t_pipex *p;
+
+	p = mini_call()->pipex_list;
+	while (p)
+	{
+		if (p->has_doc)
+			close_fds(p->doc_pipe);
+		p = p->next;
+	}
+}
 
 /*
 Sets up stdin redirection from pipes, HEREDOC, or input files
@@ -26,7 +39,10 @@ void	do_input_redir(t_pipex *p)
 		if_close(p->previous->pipe[0]);
 	}
 	if (!p->red_in)
+	{
+		close_docs();
 		return ;
+	}
 	else
 	{
 		if (p->has_doc)
@@ -40,6 +56,7 @@ void	do_input_redir(t_pipex *p)
 			if_close(p->in_fd);
 		}
 	}
+	close_docs();
 }
 
 /*
