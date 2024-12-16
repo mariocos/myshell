@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 21:26:18 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:50:44 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	spawn_child(t_pipex *p)
 {
 	if (!p)
 		return (-1);
-	if (p->next != NULL && pipe(p->pipe) < 0)
+	if (pipe(p->pipe) < 0)
 		return (pipe_error());
 	setup_signal_handlers_heredoc();
 	p->pid = fork();
@@ -41,12 +41,10 @@ int	spawn_child(t_pipex *p)
 		child_process_new(p);
 	}
 	if (p->previous)
-		if_close(p->previous->pipe[0]);
-	if_close(p->pipe[1]);
-	if (p->has_doc)
-		close_fds(p->doc_pipe);
+		close(p->previous->pipe[0]);
+	close(p->pipe[1]);
 	if (!p->next)
-		if_close(p->pipe[0]);
+		close(p->pipe[0]);
 	return (1);
 }
 

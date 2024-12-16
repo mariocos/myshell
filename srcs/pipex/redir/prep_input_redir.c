@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_input_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 22:06:29 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:59:50 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		{
 			print_ctrl_d_msg(eof);
 			free (help);
-			if_close(p->doc_pipe[1]);
 			exit (144);
 		}
 		if (!ft_strcmp(help, eof))
 		{
 			free(help);
-			if_close(p->doc_pipe[1]);
 			break ;
 		}
 		str = here_doc_expand(help);
@@ -71,6 +69,7 @@ static int	do_here_doc(char *str, t_pipex *p)
 		read_into_pipe(str, p);
 	}
 	setup_signal_handlers_heredoc();
+	if_close(p->doc_pipe[1]);
 	ft_waitpid(pid);
 	setup_signal_handlers();
 	if (p->has_doc && mini_call()->exit_status != 0)
