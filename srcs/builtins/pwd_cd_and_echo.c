@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cd_and_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/12 00:36:41 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/16 21:11:51 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	echo(char **cmd, int fd)
 		i++;
 	while (cmd[i])
 	{
-		write (fd, cmd[i], ft_strlen(cmd[i]));
+		ft_put_str_fd(cmd[i], fd);
 		if (cmd[i + 1] != NULL)
 			write (fd, " ", 1);
 		i++;
