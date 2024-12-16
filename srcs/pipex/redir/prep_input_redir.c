@@ -6,12 +6,16 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/13 12:16:40 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:59:50 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+/*
+Handles HEREDOC input, expands variables, writes to a pipe,
+and exits on completion
+*/
 void	read_into_pipe(char *eof, t_pipex *p)
 {
 	char	*str;
@@ -41,6 +45,10 @@ void	read_into_pipe(char *eof, t_pipex *p)
 	exit(0);
 }
 
+/*
+Handles HEREDOC by creating pipes, managing child process input, and
+synchronizing with the parent with signal and error handling
+*/
 static int	do_here_doc(char *str, t_pipex *p)
 {
 	int	pid;
@@ -52,7 +60,7 @@ static int	do_here_doc(char *str, t_pipex *p)
 	if (pid < 0)
 	{
 		close_fds(p->doc_pipe);
-		ft_put_str_fd("crit error on fork\n", 2);
+		perror("fork");
 		return (-1);
 	}
 	if (pid == 0)
@@ -69,22 +77,32 @@ static int	do_here_doc(char *str, t_pipex *p)
 	return (1);
 }
 
+/*
+Handles input redirection by validating and opening the specified file
+*/
 int	input_redir(char *str, t_pipex *p)
 {
-	if (access(str, F_OK) == -1 || access(str, R_OK) == -1)
+	p->in_fd = open(str, O_RDONLY);
+	if (p->in_fd == -1)
 	{
+		perror(str);
 		return (-1);
 	}
-	p->in_fd = open(str, O_RDONLY);
 	return (1);
 }
 
+/*
+Closes file descriptor if it's greater than standard streams
+*/
 void	if_close(int fd)
 {
 	if (fd > 2)
 		close (fd);
 }
 
+/*
+Processes input redirections and HEREDOC for all pipeline commands
+*/
 int	prep_input_redir(t_pipex *p)
 {
 	int	i;

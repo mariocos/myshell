@@ -3,21 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 15:15:05 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:50:44 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/*
+Sets signal handling to its default state
+*/
 static void	set_sig_default(void)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 }
 
+/*
+Spawns a child process for the given command,
+setting up signals, pipes and executing it
+*/
 int	spawn_child(t_pipex *p)
 {
 	if (!p)
@@ -41,6 +48,10 @@ int	spawn_child(t_pipex *p)
 	return (1);
 }
 
+/*
+Prepares input and output redirections,
+handling file openings and special cases before command execution
+*/
 int	prep_redir(t_pipex *p)
 {
 	if (prep_input_redir(mini_call()->pipex_list) < 0)
@@ -57,6 +68,9 @@ int	prep_redir(t_pipex *p)
 	return (1);
 }
 
+/*
+Executes a single command without piping and waits for its completion
+*/
 void	exec_single_comand(t_pipex *p)
 {
 	if (is_builtin(p))
@@ -67,6 +81,12 @@ void	exec_single_comand(t_pipex *p)
 	{
 		setup_signal_handlers_spec();
 		p->pid = fork();
+		if (p->pid == -1)
+		{
+			perror("fork");
+			mini_call()->exit_status = 1;
+			return ;
+		}
 		if (p->pid == 0)
 		{
 			set_sig_default();
@@ -76,15 +96,19 @@ void	exec_single_comand(t_pipex *p)
 	}
 }
 
+/*
+Coordinates command execution by setting up redirections,
+running single or piped commands, and waiting for their completion
+*/
 void	process_handler(t_pipex *p)
 {
 	if (prep_redir(p) < 0)
 		return ;
-	if (p->next == NULL)
+	if (!p->next)
 		exec_single_comand(p);
 	else
 	{
-		while (p != NULL)
+		while (p)
 		{
 			if (spawn_child(p) < 0)
 				return ;

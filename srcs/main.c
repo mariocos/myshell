@@ -6,12 +6,17 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/13 11:36:53 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:35:20 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+initializes minishell core struct (t_mini), continuously reads user input,
+processes and executes commands, handles cleanup, and manages the shell's state
+until the user exits
+*/
 void	mini_loop(char **envp)
 {
 	mini_init(envp);

@@ -6,12 +6,15 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:16:09 by mario             #+#    #+#             */
-/*   Updated: 2024/12/13 12:18:56 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/14 00:28:11 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+/*
+Expands variables in a string for HEREDOC processing
+*/
 char	*here_doc_expand(char *str)
 {
 	t_token	*t_help;
@@ -27,6 +30,9 @@ char	*here_doc_expand(char *str)
 	return (ret);
 }
 
+/*
+Frees two strings if they are not NULL
+*/
 void	help_free(char *s1, char *s2)
 {
 	if (s1)
@@ -35,6 +41,9 @@ void	help_free(char *s1, char *s2)
 		free(s2);
 }
 
+/*
+Counts the number of digits in an integer
+*/
 int	ft_count_digits(int n)
 {
 	int		count;
@@ -54,6 +63,9 @@ int	ft_count_digits(int n)
 	return (count);
 }
 
+/*
+Prints a warning for HEREDOC terminated by end-of-file (Ctrl+d)
+*/
 void	print_ctrl_d_msg(char *eof)
 {
 	write(2, "minishell: warning: here-document at line ", 42);

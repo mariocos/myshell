@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   better_wait.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:19:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 18:31:53 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/14 19:55:08 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/*
+Waits for a child process, handles signals, and updates the global exit status
+*/
 void	ft_waitpid(int pid)
 {
 	int	status;
@@ -40,20 +43,3 @@ void	ft_waitpid(int pid)
 	else
 		mini_call()->exit_status = 1;
 }
-
-/* void	ft_waitpid(int pid)
-{
-	int	status;
-
-	while (waitpid(-1, &status, 0) > 0)
-	{
-		if (WIFEXITED(status))
-			mini_call()->exit_status = WIFEXITED(status);
-		else if (WIFSIGNALED(status))
-			mini_call()->exit_status = 128 + WTERMSIG(status);
-	}
-	if (mini_call()->exit_status == 130)
-		write (2, "\n", 1);
-	else if (mini_call()->exit_status == 131)
-		ft_put_str_fd("core dumped\n", 2);
-} */

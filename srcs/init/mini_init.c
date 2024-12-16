@@ -6,14 +6,14 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:55:25 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/13 11:34:43 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/13 18:05:52 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /*
-file that initializes the minishell struct
+Initializes the minishell global structure
 */
 void	mini_init(char **env)
 {
@@ -30,6 +30,10 @@ void	mini_init(char **env)
 	mini->line_nbr = 0;
 }
 
+/*
+Implements a singleton, returning a pointer to the single, persistent instance
+of the t_mini structure used to manage the minishell's global state
+*/
 t_mini	*mini_call(void)
 {
 	static t_mini	mini;
@@ -37,6 +41,10 @@ t_mini	*mini_call(void)
 	return (&mini);
 }
 
+/*
+retrieves the root user's home directory path
+by truncating the current working directory
+*/
 char	*get_home(void)
 {
 	char	*wd;

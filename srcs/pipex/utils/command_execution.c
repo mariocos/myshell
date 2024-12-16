@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/11 17:36:38 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:31:16 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+/*
+Counts the number of variables in the environment linked list
+*/
 static int	count_env(t_env *env)
 {
 	int	count;
@@ -25,6 +28,9 @@ static int	count_env(t_env *env)
 	return (count);
 }
 
+/*
+Converts the environment linked list into a null-terminated array of strings
+*/
 char	**env_to_double_chr_ptr(t_env	*env)
 {
 	char	**env_chr_ptr;
@@ -53,6 +59,10 @@ char	**env_to_double_chr_ptr(t_env	*env)
 	return (env_chr_ptr);
 }
 
+/*
+Executes shell built-in commands like cd,
+pwd, env, echo, unset, export, and exit
+*/
 void	exec_if_builtin(t_pipex *process)
 {
 	char	*cmd;

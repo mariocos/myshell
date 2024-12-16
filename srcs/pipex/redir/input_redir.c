@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   input_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 12:16:36 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/16 00:17:11 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+/*
+Sets up stdin redirection from pipes, HEREDOC, or input files
+for the current command
+*/
 void	do_input_redir(t_pipex *p)
 {
 	if (!p)
@@ -38,6 +42,10 @@ void	do_input_redir(t_pipex *p)
 	}
 }
 
+/*
+Manages input redirection by closing existing descriptors
+and opening a specified file
+*/
 void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i)
 {
 	if (p->has_doc)
@@ -48,6 +56,9 @@ void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i)
 		*error_flag = i;
 }
 
+/*
+Closes old input descriptors and marks the presence of a new HEREDOC
+*/
 void	heredoc_helper(t_pipex *p)
 {
 	if_close(p->in_fd);
