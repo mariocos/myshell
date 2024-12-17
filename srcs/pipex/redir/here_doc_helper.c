@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:16:09 by mario             #+#    #+#             */
-/*   Updated: 2024/12/16 12:44:08 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:20:04 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ char	*here_doc_expand(char *str)
 	char	*ret;
 
 	if (!str || !*str)
+	{
 		return (NULL);
+	}
 	t_help = init_token(str);
 	expand_vars_loop(t_help);
 	ret = ft_strdup(t_help->token);

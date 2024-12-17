@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 19:32:55 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:48:33 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	read_into_pipe(char *eof, t_pipex *p)
 		help = readline("> ");
 		if (help == NULL)
 		{
+			close(p->doc_pipe[1]);
 			print_ctrl_d_msg(eof);
 			free (help);
 			exit (144);
@@ -36,12 +37,15 @@ void	read_into_pipe(char *eof, t_pipex *p)
 			free(help);
 			break ;
 		}
-		str = here_doc_expand(help);
+		if (*help)
+			str = here_doc_expand(help);
+		else
+			str = help;
 		help = ft_strjoin(str, "\n");
 		write(p->doc_pipe[1], help, ft_strlen(help));
 		help_free(help, str);
 	}
-	if_close(p->doc_pipe[1]);
+	close(p->doc_pipe[1]);
 	exit(0);
 }
 
@@ -53,6 +57,7 @@ static int	do_here_doc(char *str, t_pipex *p)
 {
 	int	pid;
 
+	//should be closing previous pipe
 	p->has_doc = 1;
 	if (pipe(p->doc_pipe) < 0)
 		return (here_pipe_error());

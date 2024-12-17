@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:42 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 20:37:24 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:53:59 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	prep_output_redir(t_pipex *p)
 			}
 			else if (!ft_strncmp(p->red_out[i], "APP:", 4))
 			{
-				if_close(p->in_fd);
+				if_close(p->out_fd);
 				if (app_redir_out(p->red_out[i] + 4, p) < 0)
 				{
 					p->bad_command = true;

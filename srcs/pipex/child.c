@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 20:10:33 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:48:40 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,40 @@ void	close_other_docs(t_pipex *p)
 	step = p->next;
 	while (step != NULL)
 	{
+		printf("im not here\n");
 		if (step->has_doc)
-			if_close(step->doc_pipe[0]);
+			close(step->doc_pipe[0]);
 		step = step->next;
 	}
 	step = step->previous;
 	while (step != NULL)
 	{
+		printf("heyyooooo\n");
 		if (step->has_doc)
-			if_close(step->doc_pipe[0]);
+		{
+			printf("close the doc\n");
+			close(step->doc_pipe[0]);
+		}
 		step = step->previous;
 	}
 }
+
+void	close_cmd_fds(t_pipex *p)
+{
+	if (!p)
+		return ;
+	if (p->has_doc)
+		close(p->doc_pipe[0]);//unsure if this is even possible
+	if (p->previous)
+		close(p->previous->pipe[0]);
+	if (p->next != NULL)
+	{
+		close(p->pipe[1]);
+		close(p->pipe[0]);
+	}
+	
+}
+
 
 /*
 Manages redirections, executes builtins, or
@@ -62,10 +84,13 @@ void	child_process_new(t_pipex	*p)
 	char	*path;
 
 	if (!p || p->bad_command)
+	{
+		close_cmd_fds(p);
 		exit (1);
+	}
 	do_input_redir(p);
 	do_out_redir(p);
-//	close_other_docs(p);
+	//close_other_docs(p);
 	if (p->next != NULL || p->previous != NULL)
 		close_fds(p->pipe);
 	if (!p->cmd)

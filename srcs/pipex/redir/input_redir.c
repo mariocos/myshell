@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 19:35:57 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:53:43 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,30 @@ void	do_input_redir(t_pipex *p)
 		return ;
 	if (p->previous != NULL)
 	{
-		dup2(p->previous->pipe[0], STDIN_FILENO);
-		if_close(p->previous->pipe[0]);
+		if (p->red_in == NULL)
+		{
+			printf("piping\n");
+			dup2(p->previous->pipe[0], STDIN_FILENO);
+		}
+		close(p->previous->pipe[0]);
 	}
 	if (p->red_in != NULL)
 	{
-		if (p->has_doc)
+		if (p->has_doc == 1)
 		{
-			dup2(p->doc_pipe[0], STDIN_FILENO);
-			if_close(p->doc_pipe[0]);
+			printf("im doc\n");
+			if (p->doc_pipe[0] != 0)
+			{
+				printf("doccing succesfully\n");
+				dup2(p->doc_pipe[0], STDIN_FILENO);
+			}
+			close(p->doc_pipe[0]);
 		}
 		else
 		{
-			dup2(p->in_fd, STDIN_FILENO);
+			printf("not good to show\n");
+			if (p->in_fd != 0)
+				dup2(p->in_fd, STDIN_FILENO);
 			if_close(p->in_fd);
 		}
 	}

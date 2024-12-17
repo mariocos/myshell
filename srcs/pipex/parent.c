@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 20:36:04 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:56:40 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	spawn_child(t_pipex *p)
 		close(p->previous->pipe[0]);
 	if (p->has_doc)
 		close(p->doc_pipe[0]);
-	close(p->pipe[1]);
+	if (p->next)
+		close(p->pipe[1]);
 	if (!p->next)
 		close(p->pipe[0]);
 	return (1);
