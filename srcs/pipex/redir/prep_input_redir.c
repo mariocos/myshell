@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 21:48:33 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 22:04:30 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static int	do_here_doc(char *str, t_pipex *p)
 {
 	int	pid;
 
-	//should be closing previous pipe
+	if (p->has_doc == 1)
+		close(p->doc_pipe[0]);
 	p->has_doc = 1;
 	if (pipe(p->doc_pipe) < 0)
 		return (here_pipe_error());
