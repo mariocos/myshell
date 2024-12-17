@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:17:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 12:16:59 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:34:31 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ void	expand_var(t_token *t, char *var)
 	char	*new;
 	t_index	i;
 
+	printf("var is [%s]\n", t->token);
 	init_index(&i);
 	new = safe_malloc(expanded_len(t, var) + 1);
 	while (t->token[i.t_i] != '$')
 		new[i.new_i++] = t->token[i.t_i++];
 	while (var[i.var_i] != '\0')
 		new[i.new_i++] = var[i.var_i++];
-	i.t_i++;
-	if (t->token[i.t_i] == '?' || t->token[i.t_i] == '$')
-		i.t_i += 1;
+	if (t->token[i.t_i + 1] == '?' || t->token[i.t_i + 1] == '$')
+		i.t_i += 2;
 	else
-		i.t_i += var_name_len(t->token, i.t_i) + 1;
+		i.t_i += var_name_len(t->token, i.t_i + 1) + 1;
 	while (t->token[i.t_i] != '\0')
 		new[i.new_i++] = t->token[i.t_i++];
 	new[i.new_i] = '\0';

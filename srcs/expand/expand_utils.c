@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 12:16:09 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:33:33 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	var_name_len(char *var_name, int i)
 		return (0);
 	while (var_name[i + len] != OP_VAR && (ft_isdigit(var_name[i + len])
 			|| ft_isalpha(var_name[i + len]) || var_name[i + len] == '_')
-		&& var_name[i + len] != '\0' && var_name[i + len] != '$')
+		&& var_name[i + len] != '\0' && var_name[i + len] != '$' && !ft_isquote(var_name[i + len]))
 		len++;
-	return (len - 1);
+	return (len);
 }
 
 /*
