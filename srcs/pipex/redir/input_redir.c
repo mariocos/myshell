@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 00:17:11 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/17 01:02:07 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	do_input_redir(t_pipex *p)
 		dup2(p->previous->pipe[0], STDIN_FILENO);
 		if_close(p->previous->pipe[0]);
 	}
-	if (!p->red_in)
-		return ;
-	else
+	if (p->red_in != NULL)
 	{
 		if (p->has_doc)
 		{
