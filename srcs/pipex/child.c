@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 00:21:15 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:22:48 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
+void	close_other_docs(t_pipex *p)
+{
+	t_pipex	*step;
+
+	step = p->next;
+	while (step != NULL)
+	{
+		if (step->has_doc)
+			if_close(step->doc_pipe[0]);
+		step = step->next;
+	}
+	step = step->previous;
+	while (step != NULL)
+	{
+		if (step->has_doc)
+			if_close(step->doc_pipe[0]);
+		step = step->previous;
+	}
+}
+
 /*
 Manages redirections, executes builtins, or
 runs external commands in a child process
@@ -45,6 +65,7 @@ void	child_process_new(t_pipex	*p)
 		return ;
 	do_input_redir(p);
 	do_out_redir(p);
+//	close_other_docs(p);
 	if (p->next != NULL || p->previous != NULL)
 		close_fds(p->pipe);
 	if (!p->cmd)
