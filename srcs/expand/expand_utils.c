@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 14:39:30 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 22:15:03 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ char	*get_var_value(t_env *env, char *var_name)
 {
 	if (!env || !var_name)
 		return (NULL);
-	printf("in get var value var name is [%s]\n", var_name);
 	if (!*var_name)
 		return (ft_strdup(""));
 	while (env != NULL)

@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 21:48:40 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 22:15:38 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	close_other_docs(t_pipex *p)
 	step = p->next;
 	while (step != NULL)
 	{
-		printf("im not here\n");
 		if (step->has_doc)
 			close(step->doc_pipe[0]);
 		step = step->next;
@@ -47,12 +46,8 @@ void	close_other_docs(t_pipex *p)
 	step = step->previous;
 	while (step != NULL)
 	{
-		printf("heyyooooo\n");
 		if (step->has_doc)
-		{
-			printf("close the doc\n");
 			close(step->doc_pipe[0]);
-		}
 		step = step->previous;
 	}
 }
@@ -104,7 +99,6 @@ void	child_process_new(t_pipex	*p)
 		else
 			path = p->cmd[0];
 		envp = env_to_double_chr_ptr(mini_call()->env);
-		printf("going to exec cmd [%s]", p->cmd[0]);
 		execve(path, p->cmd, envp);
 		perror(p->cmd[0]);
 	}
