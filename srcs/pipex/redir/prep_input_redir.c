@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_input_redir.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/14 19:59:50 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:32:55 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ int	prep_input_redir(t_pipex *p)
 			else if (!ft_strncmp(p->red_in[i], "APP:", 4))
 			{
 				if (do_here_doc(p->red_in[i] + 4, p) < 0)
+				{
+					p->bad_command = true;
 					break ;
+				}
 			}
 		}
 		p = p->next;

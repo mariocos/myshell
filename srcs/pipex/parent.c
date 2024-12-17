@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 15:17:19 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 20:13:40 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int	spawn_child(t_pipex *p)
 		return (pipe_error());
 	setup_signal_handlers_heredoc();
 	p->pid = fork();
-	if (p->pid < 0)
-		return (fork_error());
+	if (!p->bad_command)
+	{
+		if (p->pid < 0)
+			return (fork_error());
+	}
 	if (p->pid == 0)
 	{
 		set_sig_default();
@@ -63,7 +66,7 @@ int	prep_redir(t_pipex *p)
 	if (mini_call()->exit_status == 144 && p->has_doc)
 	{
 		mini_call()->exit_status = 0;
-		return (-1);
+		return (1);
 	}
 	if (prep_output_redir(mini_call()->pipex_list) < 0)
 		return (-1);

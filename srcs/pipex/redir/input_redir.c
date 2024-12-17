@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 01:03:10 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/17 19:35:57 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i)
 	p->has_doc = 0;
 	if_close(p->in_fd);
 	if (input_redir(p->red_in[i] + 4, p) < 0)
+	{
+		p->bad_command = true;
 		*error_flag = i;
+	}
 }
 
 /*

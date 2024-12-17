@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/16 15:56:46 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:32:07 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ until the user exits
 */
 void	mini_loop(char **envp)
 {
+	printf("parent %d\n", getpid());
 	mini_init(envp);
 	while (1)
 	{

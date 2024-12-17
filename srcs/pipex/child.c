@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 15:22:48 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 20:10:33 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	child_process_new(t_pipex	*p)
 	char	**envp;
 	char	*path;
 
-	if (!p)
-		return ;
+	if (!p || p->bad_command)
+		exit (1);
 	do_input_redir(p);
 	do_out_redir(p);
 //	close_other_docs(p);
@@ -79,6 +79,7 @@ void	child_process_new(t_pipex	*p)
 		else
 			path = p->cmd[0];
 		envp = env_to_double_chr_ptr(mini_call()->env);
+		printf("going to exec cmd [%s]", p->cmd[0]);
 		execve(path, p->cmd, envp);
 		perror(p->cmd[0]);
 	}

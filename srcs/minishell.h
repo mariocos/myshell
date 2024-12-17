@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/13 13:54:57 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:33:44 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_pipex
 	int				out_fd;
 	int				in_fd;
 	bool			last_child;
+	bool			bad_command;
 	char			*path;
 	char			**red_out;
 	char			**red_in;
