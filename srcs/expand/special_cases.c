@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:25:00 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 12:43:58 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:40:49 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	is_special_expand(char *var_name)
 {
 	int	var_len;
 
+	if (!*var_name)
+		return (0);
 	var_len = ft_strlen(var_name);
 	if (!ft_strncmp(var_name, "$", var_len))
 		return (1);

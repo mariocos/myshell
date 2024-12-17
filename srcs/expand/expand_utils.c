@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 14:33:33 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:39:30 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,16 @@ char	*get_var_name(t_token *t)
 		return (ft_substr(t->token, i, 1));
 	}
 	else
-		return (ft_substr(t->token, i, var_name_len(t->token, i) + 1));
+		return (ft_substr(t->token, i, var_name_len(t->token, i)));
 }
 
 char	*get_var_value(t_env *env, char *var_name)
 {
 	if (!env || !var_name)
 		return (NULL);
+	printf("in get var value var name is [%s]\n", var_name);
+	if (!*var_name)
+		return (ft_strdup(""));
 	while (env != NULL)
 	{
 		if (!ft_strcmp(var_name, env->var_name))

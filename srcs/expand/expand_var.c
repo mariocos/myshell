@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:17:52 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 14:34:31 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:37:28 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	do_expand(t_token *t)
 	char	*var_value;
 
 	var_name = get_var_name(t);
+	printf("var name is [%s]\n", var_name);
 	if (is_special_expand(var_name))
 		var_value = get_special_var(var_name);
 	else
 		var_value = get_var_value(mini_call()->env, var_name);
+	printf("var value get is [%s]\n", var_value);
 	expand_var(t, var_value);
 	free(var_name);
 	free(var_value);
