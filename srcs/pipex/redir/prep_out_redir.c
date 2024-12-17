@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_out_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:42 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/16 00:21:46 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/17 20:37:24 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,19 @@ int	prep_output_redir(t_pipex *p)
 			{
 				if_close(p->out_fd);
 				if (redir_out(p->red_out[i] + 4, p) < 0)
-					return (-1);
+				{
+					p->bad_command = true;
+					break ;
+				}
 			}
 			else if (!ft_strncmp(p->red_out[i], "APP:", 4))
 			{
 				if_close(p->in_fd);
 				if (app_redir_out(p->red_out[i] + 4, p) < 0)
-					return (-1);
+				{
+					p->bad_command = true;
+					break ;
+				}
 			}
 		}
 		p = p->next;
