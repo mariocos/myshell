@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/17 19:33:44 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/18 23:16:20 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,6 +378,7 @@ void	if_close(int fd);
 int		input_redir(char *str, t_pipex *p);
 void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i);
 void	heredoc_helper(t_pipex *p);
+int		do_here_doc(char *str, t_pipex *p);
 void	help_free(char *s1, char *s2);
 char	*here_doc_expand(char *str);
 int		ft_count_digits(int n);
