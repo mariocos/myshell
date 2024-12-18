@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 22:15:38 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:45:12 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	close_cmd_fds(t_pipex *p)
 	if (!p)
 		return ;
 	if (p->has_doc)
-		close(p->doc_pipe[0]);//unsure if this is even possible
+		close(p->doc_pipe[0]);
 	if (p->previous)
 		close(p->previous->pipe[0]);
 	if (p->next != NULL)
@@ -65,9 +65,8 @@ void	close_cmd_fds(t_pipex *p)
 		close(p->pipe[1]);
 		close(p->pipe[0]);
 	}
-	
+	exit(1);
 }
-
 
 /*
 Manages redirections, executes builtins, or
@@ -79,13 +78,9 @@ void	child_process_new(t_pipex	*p)
 	char	*path;
 
 	if (!p || p->bad_command)
-	{
 		close_cmd_fds(p);
-		exit (1);
-	}
 	do_input_redir(p);
 	do_out_redir(p);
-	//close_other_docs(p);
 	if (p->next != NULL || p->previous != NULL)
 		close_fds(p->pipe);
 	if (!p->cmd)

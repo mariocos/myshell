@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 22:15:03 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:43:29 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	var_name_len(char *var_name, int i)
 		return (0);
 	while (var_name[i + len] != OP_VAR && (ft_isdigit(var_name[i + len])
 			|| ft_isalpha(var_name[i + len]) || var_name[i + len] == '_')
-		&& var_name[i + len] != '\0' && var_name[i + len] != '$' && !ft_isquote(var_name[i + len]))
+		&& var_name[i + len] != '\0'
+		&& var_name[i + len] != '$' && !ft_isquote(var_name[i + len]))
 		len++;
 	return (len);
 }
