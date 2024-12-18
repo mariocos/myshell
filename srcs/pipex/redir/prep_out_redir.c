@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_out_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:42 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 21:53:59 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:18:01 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,28 @@ static int	redir_out(char *str, t_pipex *p)
 	return (1);
 }
 
+static int	prep_std_out_helper(t_pipex *p, int i)
+{
+	if_close(p->out_fd);
+	if (redir_out(p->red_out[i] + 4, p) < 0)
+	{
+		p->bad_command = true;
+		return (-1);
+	}
+	return (1);
+}
+
+static int	prep_app_out_helper(t_pipex *p, int i)
+{
+	if_close(p->out_fd);
+	if (app_redir_out(p->red_out[i] + 4, p) < 0)
+	{
+		p->bad_command = true;
+		return (-1);
+	}
+	return (1);
+}
+
 /*
 Processes output redirections for all pipeline commands,
 handling file creation, truncation, or append
@@ -75,22 +97,12 @@ int	prep_output_redir(t_pipex *p)
 		{
 			if (!ft_strncmp(p->red_out[i], "STD:", 4))
 			{
-				if_close(p->out_fd);
-				if (redir_out(p->red_out[i] + 4, p) < 0)
-				{
-					p->bad_command = true;
+				if (prep_std_out_helper(p, i) < 0)
 					break ;
-				}
 			}
 			else if (!ft_strncmp(p->red_out[i], "APP:", 4))
-			{
-				if_close(p->out_fd);
-				if (app_redir_out(p->red_out[i] + 4, p) < 0)
-				{
-					p->bad_command = true;
+				if (prep_app_out_helper(p, i) < 0)
 					break ;
-				}
-			}
 		}
 		p = p->next;
 	}
