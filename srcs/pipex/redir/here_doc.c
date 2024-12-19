@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 23:10:51 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/18 23:16:26 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:54:03 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	do_here_doc(char *str, t_pipex *p)
 	if (pid < 0)
 	{
 		close_fds(p->doc_pipe);
+		write (2, "minishell: ", 11);
 		perror("fork");
 		return (-1);
 	}

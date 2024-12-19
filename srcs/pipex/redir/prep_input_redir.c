@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:43:47 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/18 23:12:16 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:53:14 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	input_redir(char *str, t_pipex *p)
 	p->in_fd = open(str, O_RDONLY);
 	if (p->in_fd == -1)
 	{
+		write (2, "minishell: ", 11);
 		perror(str);
 		return (-1);
 	}

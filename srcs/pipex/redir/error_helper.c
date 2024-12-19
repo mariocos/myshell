@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:47:44 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 20:04:50 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:54:54 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ Handles and reports errors when creating a HEREDOC pipe
 */
 int	here_pipe_error(void)
 {
+	write (2, "minishell: ", 11);
 	perror("pipe");
 	mini_call()->exit_status = 1;
 	return (-1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_out_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:42 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/18 18:18:01 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/19 17:52:25 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	app_redir_out(char *str, t_pipex *p)
 	p->out_fd = open(str, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (p->out_fd == -1)
 	{
+		write (2, "minishell: ", 11);
 		perror(str);
 		mini_call()->exit_status = 1;
 		return (-1);
@@ -51,6 +52,7 @@ static int	redir_out(char *str, t_pipex *p)
 	p->out_fd = open(str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (p->out_fd == -1)
 	{
+		write (2, "minishell: ", 11);
 		perror(str);
 		mini_call()->exit_status = 1;
 		return (-1);
