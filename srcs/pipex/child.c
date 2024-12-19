@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/18 17:45:12 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/19 14:51:02 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	child_process_new(t_pipex	*p)
 			path = p->cmd[0];
 		envp = env_to_double_chr_ptr(mini_call()->env);
 		execve(path, p->cmd, envp);
+		write (2, "minishell: ", 11);
 		perror(p->cmd[0]);
 	}
 	exit(127);
