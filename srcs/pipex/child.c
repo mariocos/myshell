@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/19 14:51:02 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:44:28 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ void	close_cmd_fds(t_pipex *p)
 	exit(1);
 }
 
+static void	prt_execve_error_msg(char *command)
+{
+	write(2, "minishell: ", 11);
+	write(2, command, ft_strlen(command));
+	write(2, ": command not found\n", 20);
+}
+
 /*
 Manages redirections, executes builtins, or
 runs external commands in a child process
@@ -95,8 +102,7 @@ void	child_process_new(t_pipex	*p)
 			path = p->cmd[0];
 		envp = env_to_double_chr_ptr(mini_call()->env);
 		execve(path, p->cmd, envp);
-		write (2, "minishell: ", 11);
-		perror(p->cmd[0]);
+		prt_execve_error_msg(p->cmd[0]);
 	}
 	exit(127);
 }
