@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:01:11 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 18:17:08 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/20 20:06:15 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void	export(char **args, int fd)
 	{
 		if (invalid_export(args[i]))
 		{
-			ft_put_str_fd("cant export var\n", 2);
-			mini_call()->exit_status = 1;
+			write(2, "minishell: export: \"", 21);
+			write(2, args[i], ft_strlen(args[i]));
+			write(2, "\": not a valid identifier\n", 26);			mini_call()->exit_status = 1;
 		}
 		else
 			var_add_back(mini_call()->env, init_var(args[i]));
