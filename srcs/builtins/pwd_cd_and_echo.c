@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cd_and_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/16 21:11:51 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:47:12 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	cd(char **args, int fd)
 		args[1] = get_var_value(mini_call()->env, "HOME");
 	if (chdir(args[1]))
 	{
-		perror("minishell: cd");
+		write(2, "minishell: cd: ", 15);
+		perror(args[1]);
 		mini_call()->exit_status = 1;
 		return ;
 	}
