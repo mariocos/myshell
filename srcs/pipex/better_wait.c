@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:19:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/30 13:00:09 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/30 14:20:40 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ Auxiliar function for ft_waitpid
 */
 static void	handle_signaled(int status)
 {
-	if (status == 2 && !mini_call()->signaled)
+	if (WTERMSIG(status) == 2 && !mini_call()->signaled)
 	{
 		write(1, "\n", 1);
 		mini_call()->signaled = true;
 	}
-	else if (WTERMSIG(status) == 3)
+	else if (WTERMSIG(status) == 3 && !mini_call()->signaled)
+	{
 		write(1, "Quit (core dump - you asked for this)\n", 38);
+		mini_call()->signaled = true;
+	}
 	mini_call()->exit_status = 128 + WTERMSIG(status);
 }
 
