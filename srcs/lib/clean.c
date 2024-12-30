@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:05:23 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/12 00:37:31 by mario            ###   ########.fr       */
+/*   Updated: 2024/12/30 12:36:55 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	clean_comand(void)
 		free_pipex_list(m->pipex_list);
 		m->pipex_list = NULL;
 	}
+	m->signaled = false;
 }
 
 void	ft_exit(int exit_code)

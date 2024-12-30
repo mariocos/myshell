@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 20:33:01 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/17 19:26:09 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:38:16 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	setup_child_process_signal_handlers(void)
 void	handle_sigint_heredoc(int sig)
 {
 	(void)sig;
-	write(STDOUT_FILENO, "\n", 1);
 }
 
 void	setup_signal_handlers_heredoc(void)

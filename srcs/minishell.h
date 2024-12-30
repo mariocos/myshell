@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/18 23:16:20 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:38:27 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_mini
 	struct s_pipex	*pipex_list;
 	int				exit_status;
 	int				line_nbr;
+	bool			signaled;
 }		t_mini;
 
 typedef struct s_pipex

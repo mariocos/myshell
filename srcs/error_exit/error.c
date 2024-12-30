@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:27:38 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 16:50:53 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:02:30 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	ft_perror(char *err_msg)
 
 void	syntax_error(void)
 {
-	ft_put_str_fd("\na syntax error has ocurred :(\n\n", 2);
+	ft_put_str_fd("a syntax error has ocurred :(\n", 2);
 }

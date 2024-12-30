@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:55:25 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/13 18:05:52 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:22:30 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	mini_init(char **env)
 	mini->home = get_home();
 	mini->exit_status = 0;
 	mini->line_nbr = 0;
+	mini->signaled = false;
 }
 
 /*
