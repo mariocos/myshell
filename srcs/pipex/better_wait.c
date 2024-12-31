@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:19:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/30 14:20:40 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:48:53 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	handle_signaled(int status)
 	}
 	else if (WTERMSIG(status) == 3 && !mini_call()->signaled)
 	{
-		write(1, "Quit (core dump - you asked for this)\n", 38);
+		write(1, "Quit (no core dump)\n", 20);
 		mini_call()->signaled = true;
 	}
 	mini_call()->exit_status = 128 + WTERMSIG(status);

@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/30 12:38:27 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:36:16 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,13 +308,10 @@ bool	is_builtin(t_pipex *p);
 /*------------------*/
 /*     signals	    */
 /*------------------*/
-void	handle_sigint(int sig);
-void	setup_signal_handlers(void);
-void	handle_sigint_child(int sig);
-void	setup_child_process_signal_handlers(void);
-void	handle_sigint_heredoc(int sig);
-void	setup_signal_handlers_heredoc(void);
-void	setup_signal_handlers_spec(void);
+void	set_main_signals(void);
+void	set_parent_signals(void);
+void	set_signals_to_ignore(void);
+void	set_signals_to_default(void);
 /*-------------------------*/
 
 /*-------------*/

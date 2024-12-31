@@ -6,13 +6,13 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 20:33:01 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/30 12:38:16 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:35:55 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	handle_sigint(int sig)
+static void	handle_sigint(int sig)
 {
 	(void)sig;
 	write(STDOUT_FILENO, "\n", 1);
@@ -22,7 +22,7 @@ void	handle_sigint(int sig)
 	mini_call()->exit_status = 130;
 }
 
-void	setup_signal_handlers(void)
+void	set_main_signals(void)
 {
 	struct sigaction	sa;
 
@@ -36,27 +36,19 @@ void	setup_signal_handlers(void)
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
-void	setup_child_process_signal_handlers(void)
+void	set_parent_signals(void)
 {
-	struct sigaction	sa;
-
-	sa.sa_handler = SIG_DFL;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
+	signal(SIGINT, SIG_IGN);
 }
 
-void	handle_sigint_heredoc(int sig)
+void	set_signals_to_ignore(void)
 {
-	(void)sig;
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
-void	setup_signal_handlers_heredoc(void)
+void	set_signals_to_default(void)
 {
-	struct sigaction	sa;
-
-	sa.sa_handler = handle_sigint_heredoc;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }

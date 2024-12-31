@@ -54,7 +54,6 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex/better_wait.c \
 	   $(SRC_PATH)/error_exit/error.c \
 	   $(SRC_PATH)/signals/signals.c \
-	   $(SRC_PATH)/signals/signals_2.c \
 	   $(SRC_PATH)/main.c \
 
 OBJ = $(SRCS:$(SRC_PATH)/%.c=$(OBJ_DIR)/%.o)

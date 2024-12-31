@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 23:10:51 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/19 17:54:03 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/31 11:29:47 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	read_into_pipe(char *eof, t_pipex *p)
 
 static void	wait_and_restore_signal_handlers(int pid, t_pipex *p)
 {
-	setup_signal_handlers_heredoc();
+	set_parent_signals();
 	if_close(p->doc_pipe[1]);
 	ft_waitpid(pid);
-	setup_signal_handlers();
+	set_main_signals();
 }
 
 /*
@@ -86,7 +86,7 @@ int	do_here_doc(char *str, t_pipex *p)
 	}
 	if (pid == 0)
 	{
-		setup_child_process_signal_handlers();
+		signal(SIGINT, SIG_DFL);
 		read_into_pipe(str, p);
 	}
 	wait_and_restore_signal_handlers(pid, p);
