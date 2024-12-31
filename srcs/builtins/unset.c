@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset_and_env.c                                    :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:44:32 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/10 17:28:10 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/31 18:04:19 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,6 @@ void	unset(char **str, t_env *env)
 	{
 		remove_var(str[i]);
 		i++;
-	}
-	mini_call()->exit_status = 0;
-}
-
-void	env(t_env *env, char **args, int fd)
-{
-	if (!env)
-	{
-		mini_call()->exit_status = 1;
-		return ;
-	}
-	if (args[1])
-	{
-		write(fd, "env: '", 6);
-		write(fd, args[1], ft_strlen(args[1]));
-		write(fd, "': No such file or directory\n", 29);
-		mini_call()->exit_status = 127;
-		return ;
-	}
-	while (env != NULL)
-	{
-		if (env->exported)
-		{
-			write(fd, env->var_name, ft_strlen(env->var_name));
-			write(fd, "=", 1);
-			write(fd, env->var_value, ft_strlen(env->var_value));
-			write(fd, "\n", 1);
-		}
-		env = env->next;
 	}
 	mini_call()->exit_status = 0;
 }

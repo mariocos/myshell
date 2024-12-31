@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/20 10:44:28 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:26:03 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,23 @@ void	close_cmd_fds(t_pipex *p)
 
 static void	prt_execve_error_msg(char *command)
 {
+	t_env	*current;
+	bool	has_path;
+
+	has_path = false;
+	current = mini_call()->env;
+	while (current)
+	{
+		if (!ft_strncmp(current->var_name, "PATH", 5))
+			has_path = true;
+		current = current->next;
+	}
 	write(2, "minishell: ", 11);
 	write(2, command, ft_strlen(command));
-	write(2, ": command not found\n", 20);
+	if (!has_path)
+		write(2, ": No such file or directory\n", 28);
+	else
+		write(2, ": command not found\n", 20);
 }
 
 /*

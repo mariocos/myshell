@@ -25,7 +25,8 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/init/mini_init.c \
 	   $(SRC_PATH)/builtins/m_export.c \
 	   $(SRC_PATH)/builtins/export_print.c \
-	   $(SRC_PATH)/builtins/unset_and_env.c \
+	   $(SRC_PATH)/builtins/unset.c \
+   	   $(SRC_PATH)/builtins/env.c \
 	   $(SRC_PATH)/builtins/pwd_cd_and_echo.c \
 	   $(SRC_PATH)/builtins/exit.c \
 	   $(SRC_PATH)/expand/hide_dolla.c \
