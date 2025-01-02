@@ -6,15 +6,15 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:01:11 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/20 20:06:15 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2025/01/02 22:43:58 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /*
-   called during init transforms env into export list.
- */
+called during init transforms env into export list.
+*/
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	if (s1 == NULL || s2 == NULL)
@@ -36,15 +36,16 @@ bool	invalid_export(char *str)
 	i = 0;
 	if (!str)
 		return (false);
-	if (str[0] == '=' || ft_isdigit(str[0]))
+	if (str[0] == '=' || ft_isdigit(str[0])
+		|| (!ft_isalpha(str[0]) && str[0] != '_'))
 		return (true);
-	if (!ft_isalpha(str[0]) && str[0] != '_')
-		return (false);
-	while (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_')
+	while (str[i] && str[i] != '=')
+	{
+		if (!ft_isalpha(str[i]) && !ft_isdigit(str[i]) && str[i] != '_')
+			return (true);
 		i++;
-	if (str[i] != '\0' || str[i] != '=')
-		return (false);
-	return (true);
+	}
+	return (false);
 }
 
 bool	var_exists(t_env *start, t_env *new)
@@ -78,7 +79,8 @@ void	export(char **args, int fd)
 		{
 			write(2, "minishell: export: \"", 21);
 			write(2, args[i], ft_strlen(args[i]));
-			write(2, "\": not a valid identifier\n", 26);			mini_call()->exit_status = 1;
+			write(2, "\": not a valid identifier\n", 26);
+			mini_call()->exit_status = 1;
 		}
 		else
 			var_add_back(mini_call()->env, init_var(args[i]));
