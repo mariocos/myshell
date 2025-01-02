@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/31 11:36:45 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:59:47 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ Executes a single command without piping and waits for its completion
 */
 void	exec_single_comand(t_pipex *p)
 {
+	if (p->bad_command)
+	{
+		printf("catching well\n");
+		return ;
+	}
 	if (is_builtin(p))
 	{
 		exec_if_builtin(p);
@@ -99,8 +104,9 @@ running single or piped commands, and waiting for their completion
 */
 void	process_handler(t_pipex *p)
 {
-	if (prep_redir(p) < 0)
+	if (rep_redir(p) < 0)
 		return ;
+	printf("[%d] made it here %d\n", p->in_fd, p->bad_command);
 	if (!p->next)
 		exec_single_comand(p);
 	else

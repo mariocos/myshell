@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:42:33 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/17 22:15:32 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:02:12 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ for the current command
 */
 void	do_input_redir(t_pipex *p)
 {
+	printf("I AM PROBLEMATIC\n");
 	if (!p)
 		return ;
 	if (p->previous != NULL)

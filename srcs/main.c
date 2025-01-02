@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/31 11:30:23 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:15:37 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void	mini_loop(char **envp)
 	while (1)
 	{
 		mini_call()->input = readline("mini>");
+		printf("helloooo\n");
 		if (!mini_call()->input)
 		{
-			ft_put_str_fd("exit\n", 2);
+			ft_put_str_fd("mexit\n", 2);
 			break ;
 		}
 		if (mini_call()->input && *mini_call()->input)

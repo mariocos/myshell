@@ -42,6 +42,9 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex/utils/twistsplit.c \
 	   $(SRC_PATH)/pipex/utils/pathsrch.c \
 	   $(SRC_PATH)/pipex/utils/command_execution.c \
+	   $(SRC_PATH)/pipex/redir/prep_redir2.0.c \
+	   $(SRC_PATH)/pipex/redir/std_input2.0.c \
+	   $(SRC_PATH)/pipex/redir/doc_2.0.c \
 	   $(SRC_PATH)/pipex/redir/error_helper.c \
 	   $(SRC_PATH)/pipex/redir/input_redir.c \
 	   $(SRC_PATH)/pipex/redir/output_redir.c \
