@@ -6,7 +6,7 @@
 /*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:12:58 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/20 15:47:12 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:40:02 by hugo-mar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	echo(char **cmd, int fd)
 	while (cmd[i])
 	{
 		ft_put_str_fd(cmd[i], fd);
-		if (cmd[i + 1] != NULL)
+		if (cmd[i + 1] != NULL && ft_strlen(cmd[i]))
 			write (fd, " ", 1);
 		i++;
 	}
