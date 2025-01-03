@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/02 15:59:47 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:16:09 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,6 @@ int	spawn_child(t_pipex *p)
 	return (1);
 }
 
-/*
-Prepares input and output redirections,
-handling file openings and special cases before command execution
-*/
-int	prep_redir(t_pipex *p)
-{
-	if (prep_input_redir(mini_call()->pipex_list) < 0)
-		return (-1);
-	if (mini_call()->exit_status == 130 && p->has_doc)
-		return (-1);
-	if (mini_call()->exit_status == 144 && p->has_doc)
-	{
-		mini_call()->exit_status = 0;
-		return (1);
-	}
-	if (prep_output_redir(mini_call()->pipex_list) < 0)
-		return (-1);
-	return (1);
-}
 
 /*
 Executes a single command without piping and waits for its completion

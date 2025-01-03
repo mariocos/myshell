@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:16:09 by mario             #+#    #+#             */
-/*   Updated: 2024/12/17 21:20:04 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:31:26 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,10 @@ void	print_ctrl_d_msg(char *eof)
 	write(2, " delimited by end-of-file (wanted '", 35);
 	write(2, eof, ft_strlen(eof));
 	write(2, "')\n", 3);
+}
+
+void	if_close(int fd)
+{
+	if (fd > 2)
+		close(fd);
 }

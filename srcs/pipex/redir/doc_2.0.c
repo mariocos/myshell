@@ -10,11 +10,12 @@ static void	ctrl_d_msg_and_exit(char *help, t_pipex *p)
 
 static void	process_input_and_write_to_pipe(char *help, int fd)
 {
-	char	*str;
+	char	*str = NULL;
 
+ 	if (*help)
+		help = here_doc_expand(help);
 	str = ft_strjoin(help, "\n");
 	write(fd, str, ft_strlen(str));
-	free(help);
 	free(str);
 }
 
