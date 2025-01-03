@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/03 14:44:17 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 15:21:45 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ int	spawn_child(t_pipex *p)
 		child_process_new(p);
 	}
 	if (p->previous)
-		close(p->previous->pipe[0]);
+		if_close(p->previous->pipe[0]);
 	if (p->has_doc)
-		close(p->doc_pipe[0]);
-	if (p->next)
-		close(p->pipe[1]);
+		if_close(p->doc_pipe[0]);
+	if_close(p->pipe[1]);
 	if (!p->next)
-		close(p->pipe[0]);
+		if_close(p->pipe[0]);
 	return (1);
 }
 
