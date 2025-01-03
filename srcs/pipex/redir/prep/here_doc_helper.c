@@ -6,11 +6,11 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:16:09 by mario             #+#    #+#             */
-/*   Updated: 2025/01/03 12:31:26 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 12:36:24 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../../minishell.h"
 
 /*
 Expands variables in a string for HEREDOC processing

@@ -1,4 +1,4 @@
-#include "../../minishell.h"
+#include "../../../minishell.h"
 
 static void	ctrl_d_msg_and_exit(char *help, t_pipex *p)
 {
