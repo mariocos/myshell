@@ -19,10 +19,24 @@ static void	process_input_and_write_to_pipe(char *help, int fd)
 	free(str);
 }
 
+void	close_other_docs(t_pipex *p)
+{
+	t_pipex	*help;
+
+	help = p->previous;
+	while (help)
+	{
+		if (help->has_doc)
+			if_close(p->doc_pipe[0]);
+		p = p->previous;
+	}
+}
+
 static void	read_into_doc(char *eof, t_pipex *p)
 {
 	char	*help;
 
+	//close_other_docs(p);
 	if_close(p->doc_pipe[0]);
 	while (1)
 	{
@@ -53,8 +67,10 @@ static int	open_doc(char *str, t_pipex *p)
 		close_fds(p->doc_pipe);
 		return (-1);//change to crit error on fork
 	}
+	//missing signals
 	if (pid == 0)
 		read_into_doc(str, p);
+	//signalllss!!!!
 	if_close(p->doc_pipe[1]);
 	ft_waitpid(pid);
 	if (mini_call()->exit_status == 130)
@@ -72,9 +88,7 @@ int	do_docs_loop(t_pipex *p)
 	int	i;
 
 	i = 0;
-	if (!p->red_in)
-		return (0);
-	while (p->red_in[i] != NULL)
+	while (p->red_in && p->red_in[i] != NULL)
 	{
 		if (!ft_strncmp(p->red_in[i], "APP:", 4))
 			if (open_doc(p->red_in[i] + 4, p) < 0)

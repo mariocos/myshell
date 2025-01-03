@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:47:59 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/31 17:26:03 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:25:44 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,6 @@ char	*ft_strchr(const char *s, int c)
 	if (hold == '\0')
 		return ((char *)s);
 	return (0);
-}
-
-void	close_other_docs(t_pipex *p)
-{
-	t_pipex	*step;
-
-	step = p->next;
-	while (step != NULL)
-	{
-		if (step->has_doc)
-			close(step->doc_pipe[0]);
-		step = step->next;
-	}
-	step = step->previous;
-	while (step != NULL)
-	{
-		if (step->has_doc)
-			close(step->doc_pipe[0]);
-		step = step->previous;
-	}
 }
 
 void	close_cmd_fds(t_pipex *p)

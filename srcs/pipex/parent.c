@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/03 12:16:09 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:11:38 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ Executes a single command without piping and waits for its completion
 void	exec_single_comand(t_pipex *p)
 {
 	if (p->bad_command)
-	{
-		printf("catching well\n");
 		return ;
-	}
 	if (is_builtin(p))
 	{
 		exec_if_builtin(p);

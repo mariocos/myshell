@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2025/01/02 16:15:37 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:11:05 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	mini_loop(char **envp)
 	while (1)
 	{
 		mini_call()->input = readline("mini>");
-		printf("helloooo\n");
 		if (!mini_call()->input)
 		{
 			ft_put_str_fd("mexit\n", 2);

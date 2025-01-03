@@ -18,13 +18,21 @@ int	check_if_doc_final(t_pipex *p)
 	return (1);
 }
 
-int	rep_input_redir(t_pipex *p)
+int	rep_input_redir(t_pipex *start)
 {
+	t_pipex *p;
+
+	p = start;
 	while (p)
 	{
 		check_if_doc_final(p);
 		if (do_docs_loop(p) < 0)
 			return (-1);//could be changed to continue maybe
+		p = p->next;
+	}
+	p = start;
+	while (p)
+	{
 		if (open_input_files_loop(p) < 0)
 			return (-1);//reserved for critical errors
 		p = p->next;
