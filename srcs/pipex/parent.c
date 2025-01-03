@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/03 14:11:38 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:44:17 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	process_handler(t_pipex *p)
 {
 	if (rep_redir(p) < 0)
 		return ;
-	printf("[%d] made it here %d\n", p->in_fd, p->bad_command);
 	if (!p->next)
 		exec_single_comand(p);
 	else

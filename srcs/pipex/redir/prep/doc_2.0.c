@@ -19,24 +19,10 @@ static void	process_input_and_write_to_pipe(char *help, int fd)
 	free(str);
 }
 
-void	close_other_docs(t_pipex *p)
-{
-	t_pipex	*help;
-
-	help = p->previous;
-	while (help)
-	{
-		if (help->has_doc)
-			if_close(p->doc_pipe[0]);
-		p = p->previous;
-	}
-}
-
 static void	read_into_doc(char *eof, t_pipex *p)
 {
 	char	*help;
 
-	//close_other_docs(p);
 	if_close(p->doc_pipe[0]);
 	while (1)
 	{
