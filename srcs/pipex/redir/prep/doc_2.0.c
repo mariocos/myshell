@@ -1,10 +1,11 @@
 #include "../../../minishell.h"
 
-static void	ctrl_d_msg_and_exit(char *help, t_pipex *p)
+static void	ctrl_d_msg_and_exit(char *help, char *eof, t_pipex *p)
 {
 	if (help != NULL)
 		free(help);
 	if_close(p->doc_pipe[1]);
+	print_ctrl_d_msg(eof);
 	exit(144);
 }
 
@@ -28,7 +29,7 @@ static void	read_into_doc(char *eof, t_pipex *p)
 	{
 		help = readline("> ");
 		if (help == NULL)
-			ctrl_d_msg_and_exit(help, p);
+			ctrl_d_msg_and_exit(help, eof, p);
 		if (!ft_strcmp(help, eof))
 		{
 			free(help);
@@ -55,10 +56,18 @@ static int	open_doc(char *str, t_pipex *p)
 	}
 	//missing signals
 	if (pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+
 		read_into_doc(str, p);
+	}
 	//signalllss!!!!
+	set_parent_signals();
+
 	if_close(p->doc_pipe[1]);
 	ft_waitpid(pid);
+	set_main_signals();
+
 	if (mini_call()->exit_status == 130)
 		return (-1);
 	if (mini_call()->exit_status == 144)
