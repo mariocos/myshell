@@ -68,7 +68,7 @@ void	print_pipex_list(t_pipex *start)
 	printf("gonna print pipex list\n");
 	while (start)
 	{
-		printf("ind is %d\n", i);
+		printf("pipex ind is %d\n", i);
 		printf("\nprinting input redirections\n");
 		print_double_array(start->red_in);
 		printf("\nprinting output redirections\n");

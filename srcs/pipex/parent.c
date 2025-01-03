@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/31 11:36:45 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2025/01/03 15:21:45 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,23 @@ int	spawn_child(t_pipex *p)
 		child_process_new(p);
 	}
 	if (p->previous)
-		close(p->previous->pipe[0]);
+		if_close(p->previous->pipe[0]);
 	if (p->has_doc)
-		close(p->doc_pipe[0]);
-	if (p->next)
-		close(p->pipe[1]);
+		if_close(p->doc_pipe[0]);
+	if_close(p->pipe[1]);
 	if (!p->next)
-		close(p->pipe[0]);
+		if_close(p->pipe[0]);
 	return (1);
 }
 
-/*
-Prepares input and output redirections,
-handling file openings and special cases before command execution
-*/
-int	prep_redir(t_pipex *p)
-{
-	if (prep_input_redir(mini_call()->pipex_list) < 0)
-		return (-1);
-	if (mini_call()->exit_status == 130 && p->has_doc)
-		return (-1);
-	if (mini_call()->exit_status == 144 && p->has_doc)
-	{
-		mini_call()->exit_status = 0;
-		return (1);
-	}
-	if (prep_output_redir(mini_call()->pipex_list) < 0)
-		return (-1);
-	return (1);
-}
 
 /*
 Executes a single command without piping and waits for its completion
 */
 void	exec_single_comand(t_pipex *p)
 {
+	if (p->bad_command)
+		return ;
 	if (is_builtin(p))
 	{
 		exec_if_builtin(p);
@@ -99,7 +81,7 @@ running single or piped commands, and waiting for their completion
 */
 void	process_handler(t_pipex *p)
 {
-	if (prep_redir(p) < 0)
+	if (rep_redir(p) < 0)
 		return ;
 	if (!p->next)
 		exec_single_comand(p);

@@ -42,13 +42,13 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/pipex/utils/twistsplit.c \
 	   $(SRC_PATH)/pipex/utils/pathsrch.c \
 	   $(SRC_PATH)/pipex/utils/command_execution.c \
-	   $(SRC_PATH)/pipex/redir/error_helper.c \
+	   $(SRC_PATH)/pipex/redir/prep/prep_redir2.0.c \
+	   $(SRC_PATH)/pipex/redir/prep/std_input2.0.c \
+	   $(SRC_PATH)/pipex/redir/prep/doc_2.0.c \
+	   $(SRC_PATH)/pipex/redir/prep/output_prep2.0.c \
+	   $(SRC_PATH)/pipex/redir/prep/here_doc_helper.c \
 	   $(SRC_PATH)/pipex/redir/input_redir.c \
 	   $(SRC_PATH)/pipex/redir/output_redir.c \
-	   $(SRC_PATH)/pipex/redir/prep_out_redir.c \
-	   $(SRC_PATH)/pipex/redir/prep_input_redir.c \
-	   $(SRC_PATH)/pipex/redir/here_doc_helper.c \
-	   $(SRC_PATH)/pipex/redir/here_doc.c \
 	   $(SRC_PATH)/pipex/parent.c \
 	   $(SRC_PATH)/pipex/child.c \
 	   $(SRC_PATH)/pipex/parent_utils.c \

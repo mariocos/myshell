@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 19:53:07 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 19:53:08 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:11:56 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	populate_pipex(t_token *t_start, t_pipex *start)
 
 	t = t_start;
 	step = start;
-	while (t)
+	while (t != NULL)
 	{
 		if (t->token_type == HERE_DOC)
 			step->red_in = add_handler(step->red_in, t->next->token, "APP:");

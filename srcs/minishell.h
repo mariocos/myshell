@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hugo-mar <hugo-mar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2024/12/31 11:36:16 by hugo-mar         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:25:27 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,7 +358,6 @@ void	unset(char **str, t_env *env);
 int		pipe_error(void);
 int		fork_error(void);
 void	close_fds(int *fds);
-void	close_fds(int *fds);
 int		spawn_child(t_pipex *p);
 void	process_handler(t_pipex *p);
 void	child_process_new(t_pipex	*p);
@@ -370,17 +369,16 @@ void	ft_waitpid(int pid);
 /*------------------*/
 void	do_input_redir(t_pipex *p);
 void	do_out_redir(t_pipex *p);
-int		prep_input_redir(t_pipex *p);
-int		prep_output_redir(t_pipex *p);
-void	if_close(int fd);
-int		input_redir(char *str, t_pipex *p);
-void	prep_helper_file_opener(t_pipex *p, int *error_flag, int i);
-void	heredoc_helper(t_pipex *p);
-int		do_here_doc(char *str, t_pipex *p);
-void	help_free(char *s1, char *s2);
 char	*here_doc_expand(char *str);
 int		ft_count_digits(int n);
 void	print_ctrl_d_msg(char *eof);
 /*----------------------------------*/
+
+//redir 2.0
+int	rep_redir(t_pipex *p);
+int	open_input_files_loop(t_pipex *p);
+int	do_docs_loop(t_pipex *p);
+void	open_outfiles_loop(t_pipex *p);
+void	if_close(int fd);
 
 #endif
