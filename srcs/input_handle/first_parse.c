@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:13:55 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 17:15:13 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:13:51 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,30 @@ static bool	parse_red(t_token *t)
 	return (true);
 }
 
+bool	error_near_pipe(void)
+{
+	ft_put_str_fd("unexpected error near \"|\"\n", 2);
+	return (false);
+}
+
+bool	err_near_redir(t_token *t)
+{
+	if (!t || !t->token || !*t->token)
+	{
+		ft_put_str_fd("error near redirections\n", 2);
+		return (false);
+	}
+	if (!t->previous)
+	{
+		write (2, "error near newline\n", 19);
+		return (false);
+	}
+	write(2, "error near \"", 12);
+	write(2, &t->token[0], 1);
+	write(2, "\"\n", 2);
+	return (false);
+}
+
 bool	first_parse(t_token *start)
 {
 	t_token	*step;
@@ -42,13 +66,13 @@ bool	first_parse(t_token *start)
 		if (step->token_type == PIPE)
 		{
 			if (!parse_pipe(step))
-				return (false);
+				return (error_near_pipe());
 		}
 		else if (step->token_type == RED_APP || step->token_type == RED_IN
 			|| step->token_type == RED_OUT || step->token_type == HERE_DOC)
 		{
 			if (!parse_red(step))
-				return (false);
+				return (err_near_redir(step));
 		}
 		step = step->next;
 	}

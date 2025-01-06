@@ -42,8 +42,6 @@ int	rep_input_redir(t_pipex *start)
 
 int	rep_output_redir(t_pipex *p)
 {
-	if (!p->red_out)
-		return (0);
 	while (p)
 	{
 		open_outfiles_loop(p);

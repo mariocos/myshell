@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:11:52 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/03 14:11:29 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:06:37 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ int	input_handle(void)
 	expand_vars_loop(mini_call()->token);
 	tilde_loop(mini_call()->token);
 	if (!first_parse(mini_call()->token))
-	{
-		syntax_error();
 		return (-1);
-	}
 	tokens_to_pipex(mini_call()->token);
 	remove_pipex_quotes(mini_call()->pipex_list);
 	finish_input(mini_call()->input);
