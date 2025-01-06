@@ -24,6 +24,7 @@ static void	read_into_doc(char *eof, t_pipex *p)
 {
 	char	*help;
 
+	signal(SIGINT, SIG_DFL);
 	if_close(p->doc_pipe[0]);
 	while (1)
 	{
@@ -54,20 +55,12 @@ static int	open_doc(char *str, t_pipex *p)
 		close_fds(p->doc_pipe);
 		return (-1);//change to crit error on fork
 	}
-	//missing signals
 	if (pid == 0)
-	{
-		signal(SIGINT, SIG_DFL);
-
 		read_into_doc(str, p);
-	}
-	//signalllss!!!!
 	set_parent_signals();
-
 	if_close(p->doc_pipe[1]);
 	ft_waitpid(pid);
 	set_main_signals();
-
 	if (mini_call()->exit_status == 130)
 		return (-1);
 	if (mini_call()->exit_status == 144)
