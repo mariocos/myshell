@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/03 15:21:45 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:44:36 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	spawn_child(t_pipex *p)
 		if_close(p->pipe[0]);
 	return (1);
 }
-
 
 /*
 Executes a single command without piping and waits for its completion
