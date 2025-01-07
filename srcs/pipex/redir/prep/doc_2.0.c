@@ -79,11 +79,14 @@ int	do_docs_loop(t_pipex *p)
 	int	i;
 
 	i = 0;
-	while (p->red_in && p->red_in[i] != NULL)
+	while (p->red_in && p->red_in[i] != NULL && !p->bad_command)
 	{
 		if (!ft_strncmp(p->red_in[i], "APP:", 4))
 			if (open_doc(p->red_in[i] + 4, p) < 0)
-				break ;
+			{
+				if_close(p->doc_pipe[0]);
+				return(-1);
+			}
 		i++;
 	}
 	if (!p->has_doc)
