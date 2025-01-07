@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:42:24 by hugo-mar          #+#    #+#             */
-/*   Updated: 2025/01/03 14:11:05 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:14:20 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	mini_loop(char **envp)
 			add_history(mini_call()->input);
 			if (input_handle() == 1)
 				process_handler(mini_call()->pipex_list);
+			else
+				mini_call()->exit_status = 2;
 		}
 		clean_comand();
 	}
