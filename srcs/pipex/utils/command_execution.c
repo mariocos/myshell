@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:42:31 by hugo-mar          #+#    #+#             */
-/*   Updated: 2025/01/07 12:30:09 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:31:27 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ void	exec_if_builtin(t_pipex *process)
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
 		exit_builtin(process->cmd);
 	if (process->pid == 0)
-		exit(0);
+		exit(mini_call()->exit_status);
 }
