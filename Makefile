@@ -17,10 +17,15 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
 	   $(SRC_PATH)/lib/libft_utils_2.c \
 	   $(SRC_PATH)/lib/safe_malloc.c \
 	   $(SRC_PATH)/lib/itoa.c \
-	   $(SRC_PATH)/token/tokenizer.c \
-	   $(SRC_PATH)/token/re_token_utils.c \
-       $(SRC_PATH)/token/special_split.c \
-	   $(SRC_PATH)/token/re_tokenize.c \
+	   $(SRC_PATH)/parse/token/tokenizer.c \
+	   $(SRC_PATH)/parse/token/re_token_utils.c \
+       $(SRC_PATH)/parse/token/special_split.c \
+	   $(SRC_PATH)/parse/token/re_tokenize.c \
+	   $(SRC_PATH)/parse/expand/hide_dolla.c \
+	   $(SRC_PATH)/parse/expand/expand_utils.c \
+	   $(SRC_PATH)/parse/expand/expand_var_loop.c \
+	   $(SRC_PATH)/parse/expand/special_cases.c \
+	   $(SRC_PATH)/parse/expand/tilde_expand.c \
 	   $(SRC_PATH)/init/envp.c \
 	   $(SRC_PATH)/init/mini_init.c \
 	   $(SRC_PATH)/builtins/m_export.c \
@@ -29,11 +34,6 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
    	   $(SRC_PATH)/builtins/env.c \
 	   $(SRC_PATH)/builtins/pwd_cd_and_echo.c \
 	   $(SRC_PATH)/builtins/exit.c \
-	   $(SRC_PATH)/expand/hide_dolla.c \
-	   $(SRC_PATH)/expand/expand_utils.c \
-	   $(SRC_PATH)/expand/expand_var.c \
-	   $(SRC_PATH)/expand/special_cases.c \
-	   $(SRC_PATH)/expand/tilde_expand.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
 	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:42:30 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 17:45:13 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:44:55 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 /*
 	this file contains the main tokenizer functions,
@@ -40,7 +40,7 @@ t_token	*init_token(char *str)
 	t_token	*new_t;
 	int		str_len;
 
-	new_t = (t_token *)safe_malloc(sizeof(t_token) + 1);
+	new_t = (t_token *)safe_malloc(sizeof(t_token));
 	if (!new_t)
 		return (NULL);
 	str_len = ft_strlen(str);
@@ -55,7 +55,6 @@ t_token	*init_token(char *str)
 		new_t->token_type = get_token_type(str);
 	else
 		new_t->token_type = -1;
-	new_t->index = -1;
 	new_t->next = NULL;
 	new_t->previous = NULL;
 	return (new_t);

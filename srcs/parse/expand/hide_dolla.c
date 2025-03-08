@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hide_dolla.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:24:35 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 15:37:49 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:39:43 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	hide_expand(char *str)
 {

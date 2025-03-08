@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tilde_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:26:19 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/11 15:37:55 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:39:48 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 /*
 expands tilde to $HOME

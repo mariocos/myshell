@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   re_tokenize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:37:04 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 17:39:20 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:39:52 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 /*
 	tokens have already been created and separated by spaces,

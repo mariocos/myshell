@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   re_token_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:32 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/05 17:36:33 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:39:51 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 /*
 in case of operator preceding a word without a space

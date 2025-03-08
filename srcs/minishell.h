@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2025/01/07 14:49:30 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:16:23 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_pipex
 	int				doc_pipe[2];
 	int				out_fd;
 	int				in_fd;
-	bool			last_child;
 	bool			bad_command;
 	char			*path;
 	char			**red_out;
@@ -68,7 +67,6 @@ typedef struct s_token
 {
 	int				token_type;
 	char			*token;
-	int				index;
 	struct s_token	*previous;
 	struct s_token	*next;
 }			t_token;
@@ -116,13 +114,6 @@ typedef struct s_history
 	struct s_hisory	*next;
 	struct s_hisory	*previous;
 }		t_history;
-
-typedef struct s_index
-{
-	int	var_i;
-	int	new_i;
-	int	t_i;
-}	t_index;
 
 /*----------*/
 /*  quotes  */

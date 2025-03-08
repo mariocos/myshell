@@ -1,4 +1,14 @@
+/****************************************/
+/*      (\__/)                          */
+/*      (o^.^)                          */
+/*     z(_(")_(")_                      */
+/*                                      */
+/*   Mariocos: minishell revamped       */
+/****************************************/
+
 Hello, this is my minishell project!
+
+After completing this project i wanted to re visit some parts to make it more to my liking!
 
 [Documentation]
 
@@ -17,7 +27,7 @@ Firstly the input is tokanized by separating through spaces and initial token ty
 (int)t_token->index;
 
 E.g:
-"echo "hey"hello>test.txt|cat test.txt"
+[echo "hey"hello>test.txt|cat test.txt]
 Part 1
 token 1:[echo], token 2:["hey"hello>test.txt|cat], token 3:[test.txt]
 Part 2
@@ -48,7 +58,7 @@ the syntax is as follows $[NAME] and it will be fully replaced by the var value.
 
 A valid var name can only start with a letter or underscore,
 var names must only be composed of letters, numbers and underscores.
-An exception to this is that if a var name starts with a digit it can only have lenght one.(so this $4242 is basically ($4)242)
+An exception to this is that if a var name starts with a digit it can only have lenght one.(so this $4242 is basically ($4)242 and expands to "242")
 
 special expansions: i only implemented two special expansions, $$ and $? expanding to process id and exit_status respectively.
 

@@ -6,11 +6,11 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2024/12/18 17:43:29 by mario            ###   ########.fr       */
+/*   Updated: 2025/03/07 23:39:38 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 /*
 detects a $[var_name] inside a token that isnt inside quotes
