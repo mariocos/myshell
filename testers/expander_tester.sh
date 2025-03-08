@@ -30,7 +30,7 @@ commands=(
 	"echo $USER$USER$HOME$HOME$USER"
 )
 
-echo "Running tests..."
+echo "going to test your expander!"
 echo ""
 
 for cmd in "${commands[@]}"
