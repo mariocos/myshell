@@ -12,22 +12,21 @@ DIFF_OUTPUT=diff_output.txt
 
 commands=(
     "echo Hello, World!"
-	"echo $\"HOME\""
-	"echo \"$HOME\""
-	"echo '$HOME'"
-	"echo "smth"'$PATH'"
-	"echo smth$PATH$HOME"
-	"echo $??"
-	"echo $LOL"
-	"echo $HOME hi"
-	"echo $LOL hi"
-	"echo $\"LOL\""
-	"echo \"echo $'LOL'\""
-	"echo 'echo $\"LOL\"'"
-	"echo $1HOME"
-	"echo $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-	"echo $?$?$?$?$??$?$?$?$?$?$??$?$?$?$?$?$??$?$?$?$?$?$??$?$?$?$?$?$"
-	"echo $USER$USER$HOME$HOME$USER"
+	"echo \$\"HOME\""
+	"echo \"\$HOME\""
+	"echo '\$HOME'"
+	"echo "smth"'\$PATH'"
+	"echo smth\$PATH\$HOME"
+	"echo \$??"
+	"echo \$LOL"
+	"echo \$HOME hi"
+	"echo \$LOL hi"
+	"echo \$\"LOL\""
+	"echo \"echo \$'LOL'\""
+	"echo 'echo \$\"LOL\"'"
+	"echo \$1HOME"
+	"echo \$?\$?\$?\$?\$??\$?\$?\$?\$?\$?\$??\$?\$?\$?\$?\$?\$??\$?\$?\$?\$?\$?\$??\$?\$?\$?\$?\$?\$"
+	"echo \$USER\$USER\$HOME\$HOME\$USER"
 )
 
 echo "going to test your expander!"
@@ -35,24 +34,23 @@ echo ""
 
 for cmd in "${commands[@]}"
 do
-	echo "running cmd: $cmd"
 
     # Run command in bash
     echo -e "$cmd" | bash > "$BASH_OUTPUT" 2>&1
-	echo -n "bash output: "
-	cat "$BASH_OUTPUT"
 
     # Run command in minishell
     echo -e "$cmd" | $MINISHELL | grep -v "$MINI_PROMPT" > "$MINISHELL_OUTPUT" 2>&1
-	echo -n "your output: "
-	cat "$MINISHELL_OUTPUT"
-
 
     # Compare outputs
     diff "$BASH_OUTPUT" "$MINISHELL_OUTPUT" > "$DIFF_OUTPUT"
 
     if [ -s "$DIFF_OUTPUT" ]; then
         echo -e "\033[31mKO: \033[0m" "$cmd"
+		echo "running cmd: $cmd"
+		echo -n "bash output: "
+		cat "$BASH_OUTPUT"
+		echo -n "your output: "
+		cat "$MINISHELL_OUTPUT"
 		((COUNT++))
 	else
 		echo "OK"
