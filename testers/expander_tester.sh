@@ -12,6 +12,7 @@ DIFF_OUTPUT=diff_output.txt
 
 commands=(
     "echo Hello, World!"
+	"echo \$ola\$HOME\$ola\$HOME"
 	"echo \$\"HOME\""
 	"echo \"\$HOME\""
 	"echo '\$HOME'"
