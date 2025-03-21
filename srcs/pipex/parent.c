@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:36:15 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/07 14:44:36 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:43:37 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ running single or piped commands, and waiting for their completion
 */
 void	process_handler(t_pipex *p)
 {
-	if (rep_redir(p) < 0)
+	if (prep_redir(p) < 0)
 		return ;
 	if (!p->next)
 		exec_single_comand(p);

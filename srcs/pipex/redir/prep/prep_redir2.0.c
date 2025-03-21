@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_redir2.0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:44:58 by mariocos          #+#    #+#             */
-/*   Updated: 2025/01/07 14:46:22 by mariocos         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:44:15 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_if_doc_final(t_pipex *p)
 	return (1);
 }
 
-int	rep_input_redir(t_pipex *start)
+int	prep_input_redir(t_pipex *start)
 {
 	t_pipex	*p;
 
@@ -52,7 +52,7 @@ int	rep_input_redir(t_pipex *start)
 	return (1);
 }
 
-int	rep_output_redir(t_pipex *p)
+int	prep_output_redir(t_pipex *p)
 {
 	while (p)
 	{
@@ -62,13 +62,13 @@ int	rep_output_redir(t_pipex *p)
 	return (1);
 }
 
-int	rep_redir(t_pipex *p)
+int	prep_redir(t_pipex *p)
 {
 	if (!p)
 		return (-1);
-	if (rep_input_redir(p) < 0)
+	if (prep_input_redir(p) < 0)
 		return (-1);
-	if (rep_output_redir(p) < 0)
+	if (prep_output_redir(p) < 0)
 		return (-1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:33:22 by hugo-mar          #+#    #+#             */
-/*   Updated: 2025/03/07 23:16:23 by mario            ###   ########.fr       */
+/*   Updated: 2025/03/21 12:43:39 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -366,7 +366,7 @@ void	print_ctrl_d_msg(char *eof);
 /*----------------------------------*/
 
 //redir 2.0
-int		rep_redir(t_pipex *p);
+int		prep_redir(t_pipex *p);
 int		open_input_files_loop(t_pipex *p);
 int		do_docs_loop(t_pipex *p);
 void	open_outfiles_loop(t_pipex *p);
