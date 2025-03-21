@@ -1,0 +1,1 @@
+add to the expansion tester for it to probe the executable for the minishell prompt instead of taking it as parameter

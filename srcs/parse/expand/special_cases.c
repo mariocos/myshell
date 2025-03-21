@@ -6,14 +6,14 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:25:00 by mariocos          #+#    #+#             */
-/*   Updated: 2025/03/10 15:43:32 by mario            ###   ########.fr       */
+/*   Updated: 2025/03/19 21:49:06 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
 /*
-is special expand gets special expansions done
+	is special expand gets special expansions done
 could use enum to mask the diferent types of
 special expansions to make code more readable
 */
@@ -26,7 +26,7 @@ int	is_special_expand(char *var_name)
 	var_len = ft_strlen(var_name);
 	if (!ft_strncmp(var_name, "$", var_len))
 		return (1);
-	else if (!ft_strncmp(var_name, "?", var_len))
+	if (!ft_strncmp(var_name, "?", var_len))
 		return (1);
 	else
 		return (0);
