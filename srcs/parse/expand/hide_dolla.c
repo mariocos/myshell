@@ -6,12 +6,16 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:24:35 by mariocos          #+#    #+#             */
-/*   Updated: 2025/03/07 23:39:43 by mario            ###   ########.fr       */
+/*   Updated: 2025/03/21 12:10:35 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+/*
+	Identifes cases where the Dollar sign is escaped by another character
+and prevents it from being interpreted as an operator
+*/
 void	hide_expand(char *str)
 {
 	int	i;
@@ -30,6 +34,7 @@ void	hide_expand(char *str)
 	}
 }
 
+//undoes the previous funtion after expansions so we don get weird behaviours
 void	unhide_expand(char *str)
 {
 	int	i;

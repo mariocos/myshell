@@ -6,16 +6,14 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:25:00 by mariocos          #+#    #+#             */
-/*   Updated: 2025/03/19 21:49:06 by mario            ###   ########.fr       */
+/*   Updated: 2025/03/21 12:09:11 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
 /*
-	is special expand gets special expansions done
-could use enum to mask the diferent types of
-special expansions to make code more readable
+	is special expand identifies special expansions
 */
 int	is_special_expand(char *var_name)
 {
@@ -32,6 +30,10 @@ int	is_special_expand(char *var_name)
 		return (0);
 }
 
+/*
+	get_special var returns the var value for
+	the requested special expansion
+*/
 char	*get_special_var(char *var_name)
 {
 	int	var_len;

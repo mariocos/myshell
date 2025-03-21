@@ -98,12 +98,17 @@ otherwise it will be handled like a redirection operator and give a syntax error
 /*--------------*/
 /* tilde expand */
 /*--------------*/
-	Tilde expansions are a very complex part of bash, however in myshell its implemented with alot of simplifications.
+	Tilde expansions are a very complex part of bash, in myshell its implemented with alot of simplifications.
 the only tilde expansions considered are " ~ " and " ~/",
 expanding to "$HOME" and "$HOME/" respectively.
 
+If $HOME is unset tilde will expand to the original $HOME value.
+
+However the user is free to set $HOME to any value and tilde will expand to it. 
+
 If tilde is not used as stated before it will not be interpreted.
-E.g. [hello~hey], ["~"], ['~'], [~beans] will not be expanded.
+E.g. [hello~hey], will not be expanded.
+[~] [~/dir] [~hello], will be expanded
 /*------------------------------------------*/
 
 /*-----------------*/

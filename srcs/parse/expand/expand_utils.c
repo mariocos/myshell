@@ -6,7 +6,7 @@
 /*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:16:22 by mariocos          #+#    #+#             */
-/*   Updated: 2025/03/07 23:39:38 by mario            ###   ########.fr       */
+/*   Updated: 2025/03/21 12:20:55 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ char	*get_var_value(t_env *env, char *var_name)
 			return (ft_strdup(env->var_value));
 		env = env->next;
 	}
-	return (ft_strdup(""));
+	return (NULL);
 }

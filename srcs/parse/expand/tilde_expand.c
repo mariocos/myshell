@@ -1,23 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tilde_expand.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 21:26:19 by mariocos          #+#    #+#             */
-/*   Updated: 2025/03/07 23:39:48 by mario            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/****************************************/
+/*      (\__/)                          */
+/*      (o^.^)                          */
+/*     z(_(")_(")_                      */
+/*                                      */
+/*   Mariocos: minishell revamped       */
+/****************************************/
 
 #include "../../minishell.h"
 
 /*
-expands tilde to $HOME
-due to the necessites of tilde expansion (read README)
-since i split the tokens by spaces the only time
-theres gonna be a valid tilde to expand
-is if its at the begining of the token
+	this part is a bit complex so for info go to the readme
 */
 void	tilde_loop(t_token *t)
 {
@@ -28,6 +20,18 @@ void	tilde_loop(t_token *t)
 		else
 			t = t->next;
 	}
+}
+
+static char	*get_tilde_value(void)
+{
+	char *ret;
+
+	ret = get_var_value(mini_call()->env, "HOME");
+	if (ret == NULL)
+	{
+		ret = ft_strdup(mini_call()->home);
+	}
+	return (ret);
 }
 
 void	expand_tilde(t_token *t)
@@ -41,7 +45,7 @@ void	expand_tilde(t_token *t)
 	ret_i = 0;
 	t_i = 1;
 	exp_i = 0;
-	expand = ft_strdup(mini_call()->home);
+	expand = get_tilde_value();
 	ret = safe_malloc(ft_strlen(expand) + ft_strlen(t->token) + 1);
 	while (expand[exp_i] != '\0')
 		ret[ret_i++] = expand[exp_i++];
