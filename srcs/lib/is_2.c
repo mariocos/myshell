@@ -30,5 +30,7 @@ bool	is_builtin(t_pipex *p)
 		return (true);
 	if (!ft_strncmp(p->cmd[0], "env\0", 4))
 		return (true);
+	if (!ft_strncmp(p->cmd[0], "webserver\0", 10))
+		return (true);
 	return (false);
 }

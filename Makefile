@@ -34,6 +34,7 @@ SRCS = $(SRC_PATH)/quotes/quote_parse.c \
    	   $(SRC_PATH)/builtins/env.c \
 	   $(SRC_PATH)/builtins/pwd_cd_and_echo.c \
 	   $(SRC_PATH)/builtins/exit.c \
+	   $(SRC_PATH)/builtins/webserver.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex.c \
 	   $(SRC_PATH)/pipex_parsing/populate_pipex_utils.c \
 	   $(SRC_PATH)/pipex_parsing/token_to_pipe.c \
