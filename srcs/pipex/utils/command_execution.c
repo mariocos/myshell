@@ -83,6 +83,8 @@ void	exec_if_builtin(t_pipex *process)
 		export(process->cmd, process->out_fd);
 	else if (!ft_strncmp(cmd, "exit", 4) && ft_strlen(cmd) == 4)
 		exit_builtin(process->cmd);
+	else if (!ft_strncmp(cmd, "webserver", 9) && ft_strlen(cmd) == 9)
+		webserver(process->cmd, process->out_fd);
 	if (process->pid == 0)
 		exit(mini_call()->exit_status);
 }

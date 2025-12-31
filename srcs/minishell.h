@@ -341,6 +341,7 @@ void	cd(char **args, int fd);
 void	pwd(int fd);
 void	export(char **args, int fd);
 void	unset(char **str, t_env *env);
+void	webserver(char **args, int fd);
 /*-----------------------*/
 
 /*------------------*/
