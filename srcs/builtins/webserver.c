@@ -21,7 +21,7 @@ static void	send_response(int client_fd)
 
 	response = "HTTP/1.1 200 OK\r\n"
 		"Content-Type: text/html\r\n"
-		"Content-Length: 39\r\n"
+		"Content-Length: 38\r\n"
 		"\r\n"
 		"<html><body>Webserver 42</body></html>";
 	write(client_fd, response, ft_strlen(response));
