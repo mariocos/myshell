@@ -18,21 +18,38 @@
 static void	send_response(int client_fd)
 {
 	char	*response;
+	ssize_t	written;
+	ssize_t	total;
+	size_t	len;
 
 	response = "HTTP/1.1 200 OK\r\n"
 		"Content-Type: text/html\r\n"
 		"Content-Length: 38\r\n"
 		"\r\n"
 		"<html><body>Webserver 42</body></html>";
-	write(client_fd, response, ft_strlen(response));
+	len = ft_strlen(response);
+	total = 0;
+	while (total < (ssize_t)len)
+	{
+		written = write(client_fd, response + total, len - total);
+		if (written < 0)
+		{
+			if (errno == EINTR)
+				continue ;
+			break ;
+		}
+		total += written;
+	}
 }
 
 static void	handle_client(int client_fd)
 {
 	char	buffer[4096];
-	int		bytes_read;
+	ssize_t	bytes_read;
 
 	bytes_read = read(client_fd, buffer, sizeof(buffer) - 1);
+	while (bytes_read < 0 && errno == EINTR)
+		bytes_read = read(client_fd, buffer, sizeof(buffer) - 1);
 	if (bytes_read > 0)
 	{
 		buffer[bytes_read] = '\0';
@@ -89,6 +106,8 @@ void	webserver(char **args, int fd)
 		client_fd = accept(server_fd, (struct sockaddr *)&address, &addrlen);
 		if (client_fd < 0)
 		{
+			if (errno == EINTR)
+				continue ;
 			perror("minishell: webserver: accept");
 			continue ;
 		}
