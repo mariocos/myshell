@@ -1,0 +1,11 @@
+# Build artifacts
+objs/
+*.o
+minishell
+
+# Temporary files
+.vscode/
+.DS_Store
+*~
+*.swp
+*.swo
