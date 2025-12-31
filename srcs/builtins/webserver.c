@@ -21,9 +21,9 @@ static void	send_response(int client_fd)
 
 	response = "HTTP/1.1 200 OK\r\n"
 		"Content-Type: text/html\r\n"
-		"Content-Length: 42\r\n"
+		"Content-Length: 39\r\n"
 		"\r\n"
-		"<html><body>Webserver 42</body></html>\n";
+		"<html><body>Webserver 42</body></html>";
 	write(client_fd, response, ft_strlen(response));
 }
 
@@ -68,7 +68,7 @@ void	webserver(char **args, int fd)
 	}
 	address.sin_family = AF_INET;
 	address.sin_addr.s_addr = INADDR_ANY;
-	address.sin_port = htons(42);
+	address.sin_port = htons(4242);
 	if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0)
 	{
 		perror("minishell: webserver: bind");
@@ -83,7 +83,7 @@ void	webserver(char **args, int fd)
 		mini_call()->exit_status = 1;
 		return ;
 	}
-	ft_put_str_fd("Webserver listening on port 42\n", fd);
+	ft_put_str_fd("Webserver listening on port 4242\n", fd);
 	while (1)
 	{
 		client_fd = accept(server_fd, (struct sockaddr *)&address, &addrlen);
